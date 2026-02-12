@@ -1,0 +1,2074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier Code, Inc. — Obsidian Authority Prototype</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome 6.4.2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* ============================================================
+           OBSIDIAN AUTHORITY — Design Tokens
+           ============================================================ */
+        :root {
+            /* Backgrounds */
+            --bg-primary: #0B0F19;
+            --bg-elevated: #131825;
+            --bg-card: #1A2035;
+            --bg-footer: #070A12;
+
+            /* Borders */
+            --border-color: #2A3350;
+            --border-hover: #00B4F0;
+
+            /* Text */
+            --text-primary: #E8ECF4;
+            --text-secondary: #8892A8;
+            --text-muted: #5A6478;
+
+            /* Accents */
+            --accent: #00B4F0;
+            --accent-hover: #38CFFF;
+            --accent-warm: #F0A030;
+            --accent-glow: rgba(0, 180, 240, 0.08);
+            --accent-glow-strong: rgba(0, 180, 240, 0.15);
+
+            /* Gradient */
+            --gradient-accent: linear-gradient(135deg, #00B4F0, #0066CC);
+
+            /* Typography */
+            --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+            --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --space-4xl: 6rem;
+
+            /* Radius */
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-base: 0.3s ease;
+            --transition-slow: 0.5s ease;
+
+            /* Shadows */
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+            --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ============================================================
+           RESETS & BASE
+           ============================================================ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 400;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* Dotted grid pattern overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, #2A3350 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Ensure all content sits above the grid */
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        ::selection {
+            background: rgba(0, 180, 240, 0.3);
+            color: var(--text-primary);
+        }
+
+        /* ============================================================
+           SKIP LINK (Accessibility)
+           ============================================================ */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 16px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            z-index: 10000;
+            transition: top var(--transition-fast);
+        }
+
+        .skip-link:focus {
+            top: 16px;
+            color: var(--bg-primary);
+        }
+
+        /* ============================================================
+           FOCUS STYLES (Accessibility)
+           ============================================================ */
+        :focus-visible {
+            outline: 2px solid var(--text-primary);
+            outline-offset: 3px;
+        }
+
+        /* ============================================================
+           NAVBAR
+           ============================================================ */
+        .obsidian-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: background-color var(--transition-base), padding var(--transition-base), box-shadow var(--transition-base);
+        }
+
+        .obsidian-nav.scrolled {
+            background-color: rgba(11, 15, 25, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 0.6rem 0;
+            box-shadow: 0 1px 0 var(--border-color);
+        }
+
+        .obsidian-nav .navbar-brand img {
+            height: 28px;
+            width: auto;
+            transition: opacity var(--transition-fast);
+        }
+
+        .obsidian-nav .navbar-brand:hover img {
+            opacity: 0.85;
+        }
+
+        .obsidian-nav .nav-link {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+
+        .obsidian-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1rem;
+            right: 1rem;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform var(--transition-base);
+        }
+
+        .obsidian-nav .nav-link:hover,
+        .obsidian-nav .nav-link.active {
+            color: var(--accent);
+        }
+
+        .obsidian-nav .nav-link:hover::after,
+        .obsidian-nav .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-cta {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--accent) !important;
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-sm);
+            padding: 0.4rem 1.2rem !important;
+            margin-left: 0.5rem;
+            transition: all var(--transition-base);
+        }
+
+        .nav-cta:hover {
+            background: var(--accent);
+            color: var(--bg-primary) !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        /* Mobile nav toggle */
+        .obsidian-nav .navbar-toggler {
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.6rem;
+        }
+
+        .obsidian-nav .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%238892A8' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .obsidian-nav .navbar-collapse {
+            background: var(--bg-primary);
+        }
+
+        @media (max-width: 991.98px) {
+            .obsidian-nav .navbar-collapse.show,
+            .obsidian-nav .navbar-collapse.collapsing {
+                background: var(--bg-elevated);
+                border-radius: var(--radius-md);
+                padding: 1rem;
+                margin-top: 0.5rem;
+                border: 1px solid var(--border-color);
+            }
+
+            .nav-cta {
+                margin-left: 0;
+                margin-top: 0.5rem;
+                display: inline-block;
+                text-align: center;
+            }
+        }
+
+        /* ============================================================
+           HERO SECTION
+           ============================================================ */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0 80px;
+        }
+
+        /* Radial glow from top-right */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 180, 240, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            border-left: 3px solid var(--accent);
+            padding-left: 12px;
+            margin-bottom: var(--space-xl);
+        }
+
+        .hero-heading {
+            font-size: clamp(2.2rem, 4vw + 1rem, 3.75rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--space-lg);
+        }
+
+        .hero-heading .accent-word {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-heading .accent-word::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+            animation: underlinePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes underlinePulse {
+            0%, 100% { opacity: 0.6; transform: scaleX(0.85); }
+            50% { opacity: 1; transform: scaleX(1); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 1.1vw + 0.5rem, 1.15rem);
+            color: var(--text-secondary);
+            max-width: 480px;
+            margin-bottom: var(--space-2xl);
+            line-height: 1.7;
+        }
+
+        .btn-obsidian-primary {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.95rem;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: var(--radius-sm);
+            padding: 0.75rem 2rem;
+            transition: all var(--transition-base);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-obsidian-primary:hover {
+            background: var(--accent-hover);
+            color: var(--bg-primary);
+            box-shadow: 0 4px 20px rgba(0, 180, 240, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .btn-obsidian-secondary {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.95rem;
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-sm);
+            padding: 0.75rem 2rem;
+            transition: all var(--transition-base);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-obsidian-secondary:hover {
+            background: rgba(0, 180, 240, 0.1);
+            color: var(--accent-hover);
+            border-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Code Terminal / IDE Window */
+        .code-terminal {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-elevated);
+            max-width: 520px;
+            margin-left: auto;
+        }
+
+        .terminal-titlebar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #FF5F57; }
+        .terminal-dot.yellow { background: #FFBD2E; }
+        .terminal-dot.green { background: #28C840; }
+
+        .terminal-title {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-left: 8px;
+        }
+
+        .terminal-body {
+            padding: 20px;
+            height: 320px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .terminal-body::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(transparent, var(--bg-card));
+            pointer-events: none;
+        }
+
+        .code-scroll {
+            animation: codeScroll 30s linear infinite;
+        }
+
+        @keyframes codeScroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        .code-line {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            line-height: 1.8;
+            white-space: nowrap;
+        }
+
+        .code-keyword { color: #C792EA; }
+        .code-type { color: #FFCB6B; }
+        .code-string { color: #C3E88D; }
+        .code-annotation { color: #F0A030; }
+        .code-method { color: #82AAFF; }
+        .code-comment { color: var(--text-muted); font-style: italic; }
+        .code-bracket { color: var(--text-secondary); }
+        .code-param { color: #F78C6C; }
+
+        /* ============================================================
+           SECTION SHARED STYLES
+           ============================================================ */
+        .section-heading {
+            font-size: clamp(1.75rem, 2.5vw + 0.5rem, 2.5rem);
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-heading-line {
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-accent);
+            margin: 0 auto var(--space-md);
+            border-radius: 2px;
+        }
+
+        .section-subheading {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 560px;
+            margin: 0 auto var(--space-3xl);
+        }
+
+        .section-padding {
+            padding: var(--space-4xl) 0;
+        }
+
+        /* ============================================================
+           SERVICES — BENTO GRID
+           ============================================================ */
+        .services-section {
+            background: var(--bg-primary);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .bento-tile {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            transition: border-color var(--transition-base), box-shadow var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-tile:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .bento-tile.span-2 {
+            grid-column: span 2;
+        }
+
+        .bento-tile-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background: rgba(0, 180, 240, 0.08);
+        }
+
+        .bento-tile h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+
+        .bento-tile p {
+            color: var(--text-secondary);
+            font-size: 0.925rem;
+            line-height: 1.65;
+            margin-bottom: 0;
+        }
+
+        .bento-tile ul {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-md) 0 0;
+        }
+
+        .bento-tile ul li {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 4px 0;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .bento-tile ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.6;
+        }
+
+        /* Tech stack decorative tile */
+        .bento-tech-tile {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-xl);
+        }
+
+        .bento-tech-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: var(--radius-md);
+            background: rgba(0, 180, 240, 0.06);
+            border: 1px solid var(--border-color);
+            color: var(--accent);
+            font-size: 1.3rem;
+            transition: all var(--transition-base);
+        }
+
+        .bento-tech-icon:hover {
+            border-color: var(--accent);
+            background: rgba(0, 180, 240, 0.12);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 991.98px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .bento-tile.span-2 {
+                grid-column: span 1;
+            }
+        }
+
+        /* ============================================================
+           STATISTICS
+           ============================================================ */
+        .stats-section {
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            padding: var(--space-3xl) 0;
+        }
+
+        .stat-item {
+            flex: 1;
+            text-align: center;
+            padding: 0 var(--space-2xl);
+        }
+
+        .stat-item + .stat-item {
+            border-left: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-family: var(--font-mono);
+            font-size: clamp(2rem, 3vw + 0.5rem, 3rem);
+            font-weight: 400;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: var(--space-sm);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        @media (max-width: 767.98px) {
+            .stats-container {
+                flex-direction: column;
+                gap: var(--space-2xl);
+            }
+            .stat-item + .stat-item {
+                border-left: none;
+                border-top: 1px solid var(--border-color);
+                padding-top: var(--space-2xl);
+            }
+        }
+
+        /* ============================================================
+           PORTFOLIO — HORIZONTAL SCROLL
+           ============================================================ */
+        .portfolio-section {
+            background: var(--bg-primary);
+            overflow: hidden;
+        }
+
+        .portfolio-scroll {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 0 calc((100vw - 1200px) / 2);
+            padding-bottom: var(--space-xl);
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-color) transparent;
+        }
+
+        .portfolio-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .portfolio-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .portfolio-scroll::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        @media (max-width: 1200px) {
+            .portfolio-scroll {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+
+        .portfolio-card {
+            flex: 0 0 380px;
+            scroll-snap-align: start;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+            cursor: pointer;
+        }
+
+        .portfolio-card:hover {
+            border-color: rgba(0, 180, 240, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .portfolio-card.featured {
+            flex: 0 0 420px;
+            border-top: 3px solid var(--accent);
+        }
+
+        .portfolio-card-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-card-image .gradient-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .portfolio-card-image .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(11, 15, 25, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+
+        .portfolio-card:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay-link {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform: translateY(8px);
+            transition: transform var(--transition-base);
+        }
+
+        .portfolio-card:hover .overlay-link {
+            transform: translateY(0);
+        }
+
+        .portfolio-card-body {
+            padding: var(--space-xl);
+        }
+
+        .portfolio-card-title {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+
+        .portfolio-card-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--space-md);
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-badge {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent);
+            background: rgba(0, 180, 240, 0.08);
+            border: 1px solid rgba(0, 180, 240, 0.2);
+            border-radius: var(--radius-sm);
+            padding: 3px 10px;
+        }
+
+        /* Portfolio dot indicators */
+        .portfolio-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: var(--space-xl);
+        }
+
+        .portfolio-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-color);
+            transition: background var(--transition-fast);
+        }
+
+        .portfolio-dot.active {
+            background: var(--accent);
+        }
+
+        /* ============================================================
+           ABOUT SECTION
+           ============================================================ */
+        .about-section {
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: var(--space-md);
+        }
+
+        .about-subheading {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-top: var(--space-2xl);
+            margin-bottom: var(--space-lg);
+        }
+
+        .tech-stack-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            transition: border-color var(--transition-fast), background var(--transition-fast);
+        }
+
+        .tech-pill:hover {
+            border-color: var(--accent);
+            background: rgba(0, 180, 240, 0.06);
+        }
+
+        .tech-pill i {
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 11px;
+            width: 2px;
+            height: 100%;
+            background: var(--accent);
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--space-2xl);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--bg-elevated);
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        .timeline-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            transition: border-color var(--transition-base);
+        }
+
+        .timeline-card:hover {
+            border-color: rgba(0, 180, 240, 0.3);
+        }
+
+        .timeline-year {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: var(--space-xs);
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* ============================================================
+           CTA BANNER
+           ============================================================ */
+        .cta-section {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 180, 240, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-icon-wrap {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-lg);
+            background: rgba(0, 180, 240, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-xl);
+        }
+
+        .cta-icon-wrap i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .cta-heading {
+            font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
+            margin-bottom: var(--space-md);
+        }
+
+        .cta-text {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto var(--space-2xl);
+            line-height: 1.7;
+        }
+
+        .cta-note {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: var(--space-md);
+        }
+
+        /* ============================================================
+           CONTACT SECTION
+           ============================================================ */
+        .contact-section {
+            background: var(--bg-primary);
+        }
+
+        .contact-info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            height: 100%;
+        }
+
+        .contact-info-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: var(--space-lg);
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        .contact-detail-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: rgba(0, 180, 240, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-detail-icon i {
+            color: var(--accent);
+        }
+
+        .contact-detail h5 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .contact-detail p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .contact-detail a {
+            color: var(--accent);
+        }
+
+        .contact-credibility {
+            margin-top: auto;
+            padding-top: var(--space-xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .credibility-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .credibility-item i {
+            color: var(--accent);
+            font-size: 0.75rem;
+        }
+
+        /* Form styles */
+        .contact-form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+        }
+
+        .form-label-obsidian {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .form-input-obsidian {
+            display: block;
+            width: 100%;
+            padding: 10px 14px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .form-input-obsidian::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-input-obsidian:hover {
+            border-color: #3A4560;
+        }
+
+        .form-input-obsidian:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 180, 240, 0.15);
+        }
+
+        textarea.form-input-obsidian {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .obsidian-footer {
+            background: var(--bg-footer);
+            position: relative;
+        }
+
+        .footer-gradient-line {
+            height: 2px;
+            background: var(--gradient-accent);
+        }
+
+        .obsidian-footer h5 {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .obsidian-footer p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: var(--space-xl);
+            margin-top: var(--space-2xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .back-to-top:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 767.98px) {
+            .footer-bottom {
+                flex-direction: column;
+                gap: var(--space-md);
+                text-align: center;
+            }
+        }
+
+        /* ============================================================
+           REDUCED MOTION (Accessibility)
+           ============================================================ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            .code-scroll {
+                animation: none !important;
+            }
+
+            .hero-heading .accent-word::after {
+                animation: none !important;
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+
+        /* ============================================================
+           UTILITY CLASSES
+           ============================================================ */
+        .text-accent { color: var(--accent); }
+        .text-secondary-ob { color: var(--text-secondary); }
+        .font-mono { font-family: var(--font-mono); }
+        .font-heading { font-family: var(--font-heading); }
+
+        /* Prototype notice banner */
+        .prototype-banner {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            background: var(--accent-warm);
+            color: var(--bg-primary);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 400;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            z-index: 9999;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ================================================================
+         NAVIGATION
+         ================================================================ -->
+    <nav class="obsidian-nav" aria-label="Main navigation" id="navbar">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a class="navbar-brand" href="#home">
+                    <img src="src/main/resources/static/img/PremierCodeInc_transparent-white_300.png"
+                         alt="Premier Code, Inc."
+                         style="height: 28px; width: auto;">
+                </a>
+
+                <!-- Mobile toggle -->
+                <button class="navbar-toggler d-lg-none" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Nav links -->
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav align-items-lg-center gap-lg-1">
+                        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link nav-cta" href="#contact">Get In Touch</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- ================================================================
+             HERO SECTION
+             ================================================================ -->
+        <section class="hero-section" id="home">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <div class="hero-badge">PREMIER CODE, INC.</div>
+                        <h1 class="hero-heading">
+                            Engineering <span class="accent-word">Digital Solutions</span> Since 2010
+                        </h1>
+                        <p class="hero-subtitle">
+                            Comprehensive web solutions handling all aspects from development to deployment, monitoring, and maintenance.
+                        </p>
+                        <div class="d-flex gap-3 flex-column flex-sm-row">
+                            <a href="#services" class="btn-obsidian-primary">
+                                Our Services <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                            <a href="#contact" class="btn-obsidian-secondary">
+                                Get In Touch
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="code-terminal" aria-hidden="true">
+                            <div class="terminal-titlebar">
+                                <span class="terminal-dot red"></span>
+                                <span class="terminal-dot yellow"></span>
+                                <span class="terminal-dot green"></span>
+                                <span class="terminal-title">PremierCodeApp.java</span>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="code-scroll">
+                                    <div class="code-line"><span class="code-annotation">@SpringBootApplication</span></div>
+                                    <div class="code-line"><span class="code-annotation">@EnableScheduling</span></div>
+                                    <div class="code-line"><span class="code-keyword">public class</span> <span class="code-type">PremierCodeApp</span> <span class="code-bracket">{</span></div>
+                                    <div class="code-line">&nbsp;</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-comment">// Delivering solutions since 2010</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-annotation">@Bean</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-keyword">public</span> <span class="code-type">RestClient</span> <span class="code-method">restClient</span><span class="code-bracket">(</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-type">RestClient.Builder</span> builder<span class="code-bracket">)</span> <span class="code-bracket">{</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> builder</div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<span class="code-method">baseUrl</span><span class="code-bracket">(</span><span class="code-string">"https://api.premiercode"</span><span class="code-bracket">)</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<span class="code-method">build</span><span class="code-bracket">()</span>;</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-bracket">}</span></div>
+                                    <div class="code-line">&nbsp;</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-annotation">@Cacheable</span><span class="code-bracket">(</span><span class="code-string">"projects"</span><span class="code-bracket">)</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-keyword">public</span> <span class="code-type">List</span><span class="code-bracket">&lt;</span><span class="code-type">Project</span><span class="code-bracket">&gt;</span> <span class="code-method">getProjects</span><span class="code-bracket">() {</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> repository.<span class="code-method">findAll</span><span class="code-bracket">()</span>;</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-bracket">}</span></div>
+                                    <div class="code-line">&nbsp;</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-annotation">@Async</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-keyword">public void</span> <span class="code-method">deployApplication</span><span class="code-bracket">(</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-type">DeployConfig</span> config<span class="code-bracket">)</span> <span class="code-bracket">{</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;monitor.<span class="code-method">track</span><span class="code-bracket">(</span>config<span class="code-bracket">)</span>;</div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;kubernetes.<span class="code-method">deploy</span><span class="code-bracket">(</span>config<span class="code-bracket">)</span>;</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-bracket">}</span></div>
+                                    <div class="code-line">&nbsp;</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-annotation">@ConfigurationProperties</span><span class="code-bracket">(</span><span class="code-string">"premier"</span><span class="code-bracket">)</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-keyword">public record</span> <span class="code-type">AppConfig</span><span class="code-bracket">(</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-type">String</span> environment,</div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-type">Boolean</span> monitoring,</div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-type">String</span> region</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-bracket">) {}</span></div>
+                                    <div class="code-line"><span class="code-bracket">}</span></div>
+                                    <div class="code-line">&nbsp;</div>
+                                    <!-- Duplicate for seamless scroll loop -->
+                                    <div class="code-line"><span class="code-annotation">@SpringBootApplication</span></div>
+                                    <div class="code-line"><span class="code-annotation">@EnableScheduling</span></div>
+                                    <div class="code-line"><span class="code-keyword">public class</span> <span class="code-type">PremierCodeApp</span> <span class="code-bracket">{</span></div>
+                                    <div class="code-line">&nbsp;</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-comment">// Delivering solutions since 2010</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-annotation">@Bean</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-keyword">public</span> <span class="code-type">RestClient</span> <span class="code-method">restClient</span><span class="code-bracket">(</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-type">RestClient.Builder</span> builder<span class="code-bracket">)</span> <span class="code-bracket">{</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> builder</div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<span class="code-method">baseUrl</span><span class="code-bracket">(</span><span class="code-string">"https://api.premiercode"</span><span class="code-bracket">)</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<span class="code-method">build</span><span class="code-bracket">()</span>;</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-bracket">}</span></div>
+                                    <div class="code-line">&nbsp;</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-annotation">@Cacheable</span><span class="code-bracket">(</span><span class="code-string">"projects"</span><span class="code-bracket">)</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-keyword">public</span> <span class="code-type">List</span><span class="code-bracket">&lt;</span><span class="code-type">Project</span><span class="code-bracket">&gt;</span> <span class="code-method">getProjects</span><span class="code-bracket">() {</span></div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> repository.<span class="code-method">findAll</span><span class="code-bracket">()</span>;</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-bracket">}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             SERVICES — BENTO GRID
+             ================================================================ -->
+        <section class="services-section section-padding" id="services">
+            <div class="container">
+                <h2 class="section-heading">Our Services</h2>
+                <span class="section-heading-line" aria-hidden="true"></span>
+                <p class="section-subheading">Comprehensive web development solutions for your business</p>
+
+                <div class="bento-grid">
+                    <!-- Row 1: Web Development (2 cols) + Server Management (1 col) -->
+                    <div class="bento-tile span-2">
+                        <div class="bento-tile-icon">
+                            <i class="fas fa-code" aria-hidden="true"></i>
+                        </div>
+                        <h3>Web Development</h3>
+                        <p>Full-stack development using Java, Spring Framework, Bootstrap, and MySQL to create responsive and dynamic websites.</p>
+                        <ul>
+                            <li>Custom web application architecture and development</li>
+                            <li>Spring Boot microservices and REST API design</li>
+                            <li>Database modeling, optimization, and migration</li>
+                            <li>Responsive, mobile-first user interfaces</li>
+                        </ul>
+                    </div>
+                    <div class="bento-tile">
+                        <div class="bento-tile-icon">
+                            <i class="fas fa-server" aria-hidden="true"></i>
+                        </div>
+                        <h3>Server Management</h3>
+                        <p>Deploying, monitoring, and backing up servers to ensure your website runs smoothly with optimal performance.</p>
+                    </div>
+
+                    <!-- Row 2: AI Integration (2 cols) + Uptime Monitoring (1 col) -->
+                    <div class="bento-tile span-2">
+                        <div class="bento-tile-icon">
+                            <i class="fas fa-brain" aria-hidden="true"></i>
+                        </div>
+                        <h3>AI Integration</h3>
+                        <p>Implementing cutting-edge AI and machine learning technologies to enhance your web applications with intelligent features.</p>
+                        <ul>
+                            <li>Large language model integration and prompt engineering</li>
+                            <li>Intelligent search, recommendations, and automation</li>
+                            <li>Natural language processing and data analysis pipelines</li>
+                            <li>Custom AI-powered tools and workflows</li>
+                        </ul>
+                    </div>
+                    <div class="bento-tile">
+                        <div class="bento-tile-icon">
+                            <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        </div>
+                        <h3>Uptime Monitoring</h3>
+                        <p>Providing robust monitoring tools so you can track your site's uptime status and receive instant downtime notifications.</p>
+                    </div>
+
+                    <!-- Row 3: Front-End Design + Back-End Development + Tech Icons -->
+                    <div class="bento-tile">
+                        <div class="bento-tile-icon">
+                            <i class="fas fa-paint-brush" aria-hidden="true"></i>
+                        </div>
+                        <h3>Front-End Design</h3>
+                        <p>Creating beautiful, intuitive user interfaces with the latest front-end technologies for exceptional user experiences.</p>
+                    </div>
+                    <div class="bento-tile">
+                        <div class="bento-tile-icon">
+                            <i class="fas fa-database" aria-hidden="true"></i>
+                        </div>
+                        <h3>Back-End Development</h3>
+                        <p>Building robust back-end systems that power your website with efficient data management and processing.</p>
+                    </div>
+                    <div class="bento-tile bento-tech-tile">
+                        <div class="bento-tech-icon" title="Java"><i class="fab fa-java" aria-hidden="true"></i></div>
+                        <div class="bento-tech-icon" title="Spring"><i class="fas fa-leaf" aria-hidden="true"></i></div>
+                        <div class="bento-tech-icon" title="Docker"><i class="fab fa-docker" aria-hidden="true"></i></div>
+                        <div class="bento-tech-icon" title="JavaScript"><i class="fab fa-js" aria-hidden="true"></i></div>
+                        <div class="bento-tech-icon" title="HTML5"><i class="fab fa-html5" aria-hidden="true"></i></div>
+                        <div class="bento-tech-icon" title="CSS3"><i class="fab fa-css3-alt" aria-hidden="true"></i></div>
+                        <div class="bento-tech-icon" title="Python"><i class="fab fa-python" aria-hidden="true"></i></div>
+                        <div class="bento-tech-icon" title="Linux"><i class="fab fa-linux" aria-hidden="true"></i></div>
+                        <div class="bento-tech-icon" title="AWS"><i class="fab fa-aws" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             CTA BANNER
+             ================================================================ -->
+        <section class="cta-section section-padding">
+            <div class="container">
+                <div class="text-center" style="position: relative; z-index: 1;">
+                    <div class="cta-icon-wrap">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                    </div>
+                    <h2 class="cta-heading">Is Your Website Performing at Its Best?</h2>
+                    <p class="cta-text">Your website is often the first impression customers have of your business. Slow load times, confusing navigation, and poor mobile experience can quietly hold back your growth.</p>
+                    <a href="#contact" class="btn-obsidian-primary" style="padding: 0.9rem 2.5rem; font-size: 1rem;">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        Get Your Free Website Health Report
+                    </a>
+                    <p class="cta-note">No obligation -- see how your site stacks up</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             STATISTICS
+             ================================================================ -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years of Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Projects Delivered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">9</div>
+                        <div class="stat-label">Industries Served</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             PORTFOLIO — HORIZONTAL SCROLL
+             ================================================================ -->
+        <section class="portfolio-section section-padding" id="portfolio">
+            <div class="container">
+                <h2 class="section-heading">Our Portfolio</h2>
+                <span class="section-heading-line" aria-hidden="true"></span>
+                <p class="section-subheading">Explore some of our recent projects across various industries</p>
+            </div>
+
+            <div class="portfolio-scroll" id="portfolioScroll">
+                <!-- 1. IronMarket (Featured) -->
+                <div class="portfolio-card featured">
+                    <div class="portfolio-card-image">
+                        <div class="gradient-placeholder" style="background: linear-gradient(135deg, #1a3a5c 0%, #0d1f33 100%);">
+                            <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary); opacity: 0.4;">IronMarket</span>
+                        </div>
+                        <div class="overlay">
+                            <span class="overlay-link">View Case Study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title">IronMarket.com</h3>
+                        <p class="portfolio-card-desc">Independent asset management platform for verification, valuation, and sales</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Spring Boot</span>
+                            <span class="tech-badge">MySQL</span>
+                            <span class="tech-badge">REST API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. TrainRight -->
+                <div class="portfolio-card">
+                    <div class="portfolio-card-image">
+                        <div class="gradient-placeholder" style="background: linear-gradient(135deg, #2d1a4e 0%, #1a0f30 100%);">
+                            <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary); opacity: 0.4;">TrainRight</span>
+                        </div>
+                        <div class="overlay">
+                            <span class="overlay-link">View Case Study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title">TrainRight.org</h3>
+                        <p class="portfolio-card-desc">Training platform with comprehensive course management</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Spring</span>
+                            <span class="tech-badge">Thymeleaf</span>
+                            <span class="tech-badge">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. CivicAim -->
+                <div class="portfolio-card">
+                    <div class="portfolio-card-image">
+                        <div class="gradient-placeholder" style="background: linear-gradient(135deg, #1a4e3a 0%, #0f3020 100%);">
+                            <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary); opacity: 0.4;">CivicAim</span>
+                        </div>
+                        <div class="overlay">
+                            <span class="overlay-link">View Case Study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title">CivicAim.com</h3>
+                        <p class="portfolio-card-desc">Philanthropy consulting for strategic grantmaking and impact evaluation</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Spring Boot</span>
+                            <span class="tech-badge">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. EQEarth -->
+                <div class="portfolio-card">
+                    <div class="portfolio-card-image">
+                        <div class="gradient-placeholder" style="background: linear-gradient(135deg, #3a3a1a 0%, #20200f 100%);">
+                            <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary); opacity: 0.4;">EQEarth</span>
+                        </div>
+                        <div class="overlay">
+                            <span class="overlay-link">View Case Study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title">EQEarth.com</h3>
+                        <p class="portfolio-card-desc">Social networking platform for equipment and machinery industry professionals</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Spring</span>
+                            <span class="tech-badge">Social API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. GlobalAuctionLink -->
+                <div class="portfolio-card">
+                    <div class="portfolio-card-image">
+                        <div class="gradient-placeholder" style="background: linear-gradient(135deg, #1a2e4e 0%, #0f1a30 100%);">
+                            <span style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--text-primary); opacity: 0.4;">GlobalAuctionLink</span>
+                        </div>
+                        <div class="overlay">
+                            <span class="overlay-link">View Case Study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title">GlobalAuctionLink.com</h3>
+                        <p class="portfolio-card-desc">Cloud-based private auction platform for inventory liquidation and revenue maximization</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Spring Boot</span>
+                            <span class="tech-badge">WebSocket</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. GoDigiFarm -->
+                <div class="portfolio-card">
+                    <div class="portfolio-card-image">
+                        <div class="gradient-placeholder" style="background: linear-gradient(135deg, #1a4e1a 0%, #0f300f 100%);">
+                            <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary); opacity: 0.4;">GoDigiFarm</span>
+                        </div>
+                        <div class="overlay">
+                            <span class="overlay-link">View Case Study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title">GoDigifarm.com</h3>
+                        <p class="portfolio-card-desc">Multi-platform e-commerce ecosystem for precision agriculture and RTK services</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">E-commerce</span>
+                            <span class="tech-badge">API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. FlexCo Fleet SBO -->
+                <div class="portfolio-card">
+                    <div class="portfolio-card-image">
+                        <div class="gradient-placeholder" style="background: linear-gradient(135deg, #4e2a1a 0%, #301a0f 100%);">
+                            <span style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--text-primary); opacity: 0.4;">FlexCo Fleet</span>
+                        </div>
+                        <div class="overlay">
+                            <span class="overlay-link">View Case Study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title">FlexCo Fleet SBO</h3>
+                        <p class="portfolio-card-desc">Sealed bid auction platform for Harley-Davidson dealer-to-dealer fleet sales</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Spring</span>
+                            <span class="tech-badge">Auction Engine</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. CodeArchaeology -->
+                <div class="portfolio-card">
+                    <div class="portfolio-card-image">
+                        <div class="gradient-placeholder" style="background: linear-gradient(135deg, #2a1a4e 0%, #1a0f30 100%);">
+                            <span style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--text-primary); opacity: 0.4;">CodeArchaeology</span>
+                        </div>
+                        <div class="overlay">
+                            <span class="overlay-link">View Case Study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title">CodeArchaeology.dev</h3>
+                        <p class="portfolio-card-desc">Educational platform exploring 75+ programming languages from FORTRAN to Rust</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Spring Boot</span>
+                            <span class="tech-badge">AI/ML</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. HugeMX -->
+                <div class="portfolio-card">
+                    <div class="portfolio-card-image">
+                        <div class="gradient-placeholder" style="background: linear-gradient(135deg, #1a3a4e 0%, #0f2030 100%);">
+                            <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary); opacity: 0.4;">HugeMX</span>
+                        </div>
+                        <div class="overlay">
+                            <span class="overlay-link">View Case Study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title">HugeMX.com</h3>
+                        <p class="portfolio-card-desc">Professional email hosting with enterprise-grade infrastructure and deliverability</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Mail Server</span>
+                            <span class="tech-badge">DNS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dot indicators -->
+            <div class="portfolio-dots" aria-hidden="true">
+                <span class="portfolio-dot active"></span>
+                <span class="portfolio-dot"></span>
+                <span class="portfolio-dot"></span>
+                <span class="portfolio-dot"></span>
+                <span class="portfolio-dot"></span>
+                <span class="portfolio-dot"></span>
+                <span class="portfolio-dot"></span>
+                <span class="portfolio-dot"></span>
+                <span class="portfolio-dot"></span>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             ABOUT SECTION
+             ================================================================ -->
+        <section class="about-section section-padding" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <h2 class="section-heading" style="text-align: left;">About Premier Code, Inc.</h2>
+                        <span class="section-heading-line" style="margin: 0 0 var(--space-2xl);" aria-hidden="true"></span>
+
+                        <p class="about-text">Founded in 2010, Premier Code, Inc. has established itself as a trusted provider of comprehensive web development solutions across multiple industries including auctioning, training, philanthropy, and social media.</p>
+                        <p class="about-text">Our team of experienced developers specializes in creating robust, scalable web applications using the latest technologies and best practices. We pride ourselves on delivering end-to-end solutions, from initial concept to deployment and ongoing maintenance.</p>
+                        <p class="about-text">With over a decade of experience, we've helped businesses of all sizes transform their digital presence and achieve their online goals.</p>
+
+                        <h4 class="about-subheading">Our Technology Stack</h4>
+                        <div class="tech-stack-pills">
+                            <span class="tech-pill"><i class="fab fa-java" aria-hidden="true"></i> Java</span>
+                            <span class="tech-pill"><i class="fas fa-leaf" aria-hidden="true"></i> Spring</span>
+                            <span class="tech-pill"><i class="fab fa-bootstrap" aria-hidden="true"></i> Bootstrap</span>
+                            <span class="tech-pill"><i class="fas fa-database" aria-hidden="true"></i> MySQL</span>
+                            <span class="tech-pill"><i class="fab fa-html5" aria-hidden="true"></i> HTML5</span>
+                            <span class="tech-pill"><i class="fab fa-css3-alt" aria-hidden="true"></i> CSS3</span>
+                            <span class="tech-pill"><i class="fab fa-js" aria-hidden="true"></i> JavaScript</span>
+                            <span class="tech-pill"><i class="fas fa-brain" aria-hidden="true"></i> AI/ML</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4 class="about-subheading" style="margin-top: 0;">Our Journey</h4>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-card">
+                                    <div class="timeline-year">2010</div>
+                                    <p class="timeline-desc">Premier Code, Inc. founded with a mission to deliver exceptional web solutions</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-card">
+                                    <div class="timeline-year">2013</div>
+                                    <p class="timeline-desc">Expanded services to include server management and monitoring</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-card">
+                                    <div class="timeline-year">2016</div>
+                                    <p class="timeline-desc">Reached milestone of 50+ successful projects across diverse industries</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-card">
+                                    <div class="timeline-year">2020</div>
+                                    <p class="timeline-desc">Celebrated 10 years of excellence in web development</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-card">
+                                    <div class="timeline-year">2023</div>
+                                    <p class="timeline-desc">Integrated AI and machine learning capabilities into our service offerings</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             CONTACT SECTION
+             ================================================================ -->
+        <section class="contact-section section-padding" id="contact">
+            <div class="container">
+                <h2 class="section-heading">Get In Touch</h2>
+                <span class="section-heading-line" aria-hidden="true"></span>
+                <p class="section-subheading">Ready to start your next project? Contact us today.</p>
+
+                <div class="row g-4">
+                    <div class="col-lg-5">
+                        <div class="contact-info-card d-flex flex-column">
+                            <h3>Contact Information</h3>
+                            <p class="about-text" style="margin-bottom: var(--space-xl);">Have questions about our services or want to discuss your project requirements? Reach out to us.</p>
+
+                            <div class="contact-detail">
+                                <div class="contact-detail-icon">
+                                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h5>Email</h5>
+                                    <p><a href="mailto:info@premiercodeinc.com">info@premiercodeinc.com</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-detail">
+                                <div class="contact-detail-icon">
+                                    <i class="fas fa-clock" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h5>Response Time</h5>
+                                    <p>We typically respond within 4 hours</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-credibility">
+                                <div class="credibility-item">
+                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                    <span>Over 50 projects delivered since 2010</span>
+                                </div>
+                                <div class="credibility-item">
+                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                    <span>9 industries served across multiple sectors</span>
+                                </div>
+                                <div class="credibility-item">
+                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                    <span>End-to-end development, deployment, and maintenance</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="contact-form-card">
+                            <form id="contactForm" onsubmit="event.preventDefault(); alert('This is a prototype. Form submission is disabled.');">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="contactName" class="form-label-obsidian">Your Name</label>
+                                        <input type="text" class="form-input-obsidian" id="contactName" name="name"
+                                               placeholder="John Smith" required autocomplete="name">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="contactEmail" class="form-label-obsidian">Your Email (optional)</label>
+                                        <input type="email" class="form-input-obsidian" id="contactEmail" name="email"
+                                               placeholder="john@example.com" autocomplete="email">
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="contactMessage" class="form-label-obsidian">Your Message</label>
+                                    <textarea class="form-input-obsidian" id="contactMessage" name="message" rows="5"
+                                              placeholder="Tell us about your project..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn-obsidian-primary" style="width: 100%; justify-content: center; padding: 0.85rem;">
+                                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================================================================
+         FOOTER
+         ================================================================ -->
+    <footer class="obsidian-footer">
+        <div class="footer-gradient-line" aria-hidden="true"></div>
+        <div class="container" style="padding-top: var(--space-3xl); padding-bottom: var(--space-2xl);">
+            <div class="row">
+                <!-- Brand column -->
+                <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                    <img src="src/main/resources/static/img/PremierCodeInc_transparent-white_300.png"
+                         alt="Premier Code, Inc."
+                         style="height: 30px; width: auto; margin-bottom: var(--space-lg);">
+                    <p>Premier Code, Inc. delivers comprehensive web solutions since 2010, handling all aspects from development to deployment and maintenance.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-6 col-lg-2 mb-4 mb-lg-0">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+                    <h5>Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Server Management</a></li>
+                        <li><a href="#services">Uptime Monitoring</a></li>
+                        <li><a href="#services">Back-End Development</a></li>
+                        <li><a href="#services">AI Integration</a></li>
+                    </ul>
+                </div>
+
+                <!-- Industries -->
+                <div class="col-md-12 col-lg-3">
+                    <h5>Industries</h5>
+                    <ul class="footer-links">
+                        <li><a href="#portfolio">Auctioning</a></li>
+                        <li><a href="#portfolio">Training</a></li>
+                        <li><a href="#portfolio">Philanthropy</a></li>
+                        <li><a href="#portfolio">Social Media</a></li>
+                        <li><a href="#portfolio">E-commerce</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span class="footer-copyright">&copy; 2026 Premier Code, Inc. All Rights Reserved.</span>
+                <a href="#home" class="back-to-top">
+                    Back to top <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Prototype Notice -->
+    <div class="prototype-banner" aria-hidden="true">PROTOTYPE: Obsidian Authority</div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ================================================================
+        // Navbar scroll behavior
+        // ================================================================
+        (function() {
+            const navbar = document.getElementById('navbar');
+            let lastScroll = 0;
+
+            function onScroll() {
+                const scrollY = window.scrollY;
+                if (scrollY > 40) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                lastScroll = scrollY;
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll(); // run on load
+        })();
+
+        // ================================================================
+        // Portfolio scroll dot indicators
+        // ================================================================
+        (function() {
+            const scrollContainer = document.getElementById('portfolioScroll');
+            const dots = document.querySelectorAll('.portfolio-dot');
+            const cards = scrollContainer.querySelectorAll('.portfolio-card');
+
+            if (!scrollContainer || dots.length === 0 || cards.length === 0) return;
+
+            function updateDots() {
+                const scrollLeft = scrollContainer.scrollLeft;
+                const scrollWidth = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+                if (scrollWidth <= 0) return;
+
+                const progress = scrollLeft / scrollWidth;
+                const activeIndex = Math.round(progress * (dots.length - 1));
+
+                dots.forEach(function(dot, i) {
+                    dot.classList.toggle('active', i === activeIndex);
+                });
+            }
+
+            scrollContainer.addEventListener('scroll', updateDots, { passive: true });
+            updateDots();
+        })();
+
+        // ================================================================
+        // Active nav link highlighting on scroll
+        // ================================================================
+        (function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.obsidian-nav .nav-link:not(.nav-cta)');
+
+            function highlightNav() {
+                const scrollY = window.scrollY + 100;
+
+                sections.forEach(function(section) {
+                    const top = section.offsetTop;
+                    const height = section.offsetHeight;
+                    const id = section.getAttribute('id');
+
+                    if (scrollY >= top && scrollY < top + height) {
+                        navLinks.forEach(function(link) {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', highlightNav, { passive: true });
+        })();
+    </script>
+</body>
+</html>

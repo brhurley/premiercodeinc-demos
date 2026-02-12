@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier Code, Inc. — Glass Meridian Design Prototype</title>
+    <meta name="description" content="Glass Meridian design prototype for Premier Code, Inc. homepage redesign">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome 6.4.2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* =============================================
+           GLASS MERIDIAN — DESIGN TOKENS
+           ============================================= */
+        :root {
+            /* Backgrounds */
+            --bg-base: #F0F2F8;
+            --bg-glass: rgba(255,255,255,0.65);
+            --bg-glass-border: rgba(255,255,255,0.3);
+            --bg-card: rgba(255,255,255,0.8);
+
+            /* Text */
+            --text-primary: #1E2A3A;
+            --text-secondary: #546378;
+            --text-muted: #8896A8;
+
+            /* Accents */
+            --accent-primary: #2563EB;
+            --accent-hover: #3B82F6;
+            --accent-secondary: #6366F1;
+
+            /* Decorative */
+            --blob-indigo: rgba(99,102,241,0.15);
+            --blob-blue: rgba(37,99,235,0.1);
+
+            /* Typography */
+            --font-heading: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+            --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'Fira Code', 'Courier New', monospace;
+
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            --space-24: 6rem;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(30,42,58,0.06);
+            --shadow-md: 0 4px 12px rgba(30,42,58,0.08);
+            --shadow-lg: 0 12px 32px rgba(30,42,58,0.1);
+            --shadow-xl: 0 24px 48px rgba(30,42,58,0.12);
+
+            /* Radius */
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-2xl: 32px;
+            --radius-full: 9999px;
+
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+            --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* =============================================
+           BASE STYLES
+           ============================================= */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            background-color: var(--bg-base);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        p {
+            margin: 0 0 1rem 0;
+        }
+
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* =============================================
+           SKIP LINK
+           ============================================= */
+        .skip-link {
+            position: absolute;
+            top: -50px;
+            left: 16px;
+            background: var(--accent-primary);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+            font-weight: 600;
+            font-family: var(--font-heading);
+            z-index: 10000;
+            transition: top var(--transition-fast);
+        }
+
+        .skip-link:focus {
+            top: 0;
+            color: #fff;
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+
+        /* =============================================
+           GLOBAL DECORATIVE BACKGROUND BLOBS
+           ============================================= */
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.7;
+        }
+
+        .bg-blob--1 {
+            width: 600px;
+            height: 600px;
+            background: var(--blob-indigo);
+            top: -100px;
+            right: -150px;
+            animation: blobFloat1 20s ease-in-out infinite;
+        }
+
+        .bg-blob--2 {
+            width: 500px;
+            height: 500px;
+            background: var(--blob-blue);
+            top: 40%;
+            left: -200px;
+            animation: blobFloat2 25s ease-in-out infinite;
+        }
+
+        .bg-blob--3 {
+            width: 450px;
+            height: 450px;
+            background: var(--blob-indigo);
+            bottom: -100px;
+            right: 20%;
+            animation: blobFloat3 22s ease-in-out infinite;
+        }
+
+        @keyframes blobFloat1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-40px, 30px) scale(1.05); }
+            66% { transform: translate(20px, -20px) scale(0.95); }
+        }
+
+        @keyframes blobFloat2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -40px) scale(1.03); }
+            66% { transform: translate(-20px, 20px) scale(0.97); }
+        }
+
+        @keyframes blobFloat3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-30px, -20px) scale(1.04); }
+            66% { transform: translate(40px, 30px) scale(0.96); }
+        }
+
+        /* =============================================
+           CONTENT WRAPPER (above blobs)
+           ============================================= */
+        .page-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* =============================================
+           GLASS UTILITIES
+           ============================================= */
+        .glass {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--bg-glass-border);
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* =============================================
+           FLOATING PILL NAVBAR
+           ============================================= */
+        .gm-navbar-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            padding: 16px 24px;
+            transition: padding var(--transition-base);
+        }
+
+        .gm-navbar-wrapper.scrolled {
+            padding: 8px 24px;
+        }
+
+        .gm-navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: var(--radius-lg);
+            padding: 12px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 24px rgba(30,42,58,0.08);
+            transition: box-shadow var(--transition-base), padding var(--transition-base);
+        }
+
+        .gm-navbar-wrapper.scrolled .gm-navbar {
+            box-shadow: 0 8px 32px rgba(30,42,58,0.12);
+            padding: 10px 28px;
+        }
+
+        .gm-navbar__brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gm-navbar__brand img {
+            height: 36px;
+            width: auto;
+        }
+
+        .gm-navbar__links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .gm-navbar__links a {
+            display: block;
+            padding: 8px 16px;
+            color: var(--text-primary);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: var(--radius-md);
+            transition: color var(--transition-fast), background var(--transition-fast);
+            text-decoration: none;
+        }
+
+        .gm-navbar__links a:hover,
+        .gm-navbar__links a.active {
+            color: var(--accent-primary);
+            background: rgba(37,99,235,0.06);
+        }
+
+        .gm-navbar__cta {
+            display: inline-flex;
+            align-items: center;
+            padding: 9px 22px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff !important;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            box-shadow: 0 2px 12px rgba(37,99,235,0.25);
+        }
+
+        .gm-navbar__cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(37,99,235,0.35);
+            color: #fff !important;
+        }
+
+        /* Mobile hamburger */
+        .gm-navbar__toggle {
+            display: none;
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+        }
+
+        .gm-navbar__mobile-menu {
+            display: none;
+        }
+
+        /* =============================================
+           HERO SECTION
+           ============================================= */
+        .gm-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #2563EB 0%, #4F46E5 40%, #6366F1 100%);
+        }
+
+        /* Mesh/noise texture overlay */
+        .gm-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 40%),
+                radial-gradient(circle at 60% 80%, rgba(99,102,241,0.15) 0%, transparent 40%),
+                radial-gradient(circle at 40% 30%, rgba(255,255,255,0.04) 0%, transparent 30%);
+            z-index: 1;
+        }
+
+        /* Subtle dot pattern for texture */
+        .gm-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+            background-size: 24px 24px;
+            z-index: 1;
+        }
+
+        .gm-hero__content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 140px 24px 80px;
+            width: 100%;
+        }
+
+        .gm-hero__text {
+            max-width: 660px;
+        }
+
+        .gm-hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: var(--radius-full);
+            color: rgba(255,255,255,0.9);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            margin-bottom: var(--space-8);
+        }
+
+        .gm-hero__badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #34D399;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .gm-hero h1 {
+            font-size: clamp(2.25rem, 5vw, 3.75rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: var(--space-6);
+            text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+            letter-spacing: -0.02em;
+        }
+
+        .gm-hero__subtitle {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            margin-bottom: var(--space-10);
+            max-width: 540px;
+        }
+
+        .gm-hero__buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: var(--space-16);
+        }
+
+        .gm-btn-hero-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: #fff;
+            color: var(--accent-primary);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            transition: all var(--transition-base);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .gm-btn-hero-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            color: var(--accent-primary);
+        }
+
+        .gm-btn-hero-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: #fff;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .gm-btn-hero-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+            color: #fff;
+        }
+
+        /* Browser mockup */
+        .gm-hero__mockup {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .gm-browser {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+        }
+
+        .gm-browser__toolbar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            background: rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .gm-browser__dots {
+            display: flex;
+            gap: 7px;
+        }
+
+        .gm-browser__dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .gm-browser__dot--red { background: #FF5F57; }
+        .gm-browser__dot--yellow { background: #FEBC2E; }
+        .gm-browser__dot--green { background: #28C840; }
+
+        .gm-browser__url {
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+            border-radius: var(--radius-md);
+            padding: 7px 16px;
+            color: rgba(255,255,255,0.7);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .gm-browser__content {
+            height: 340px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gm-browser__content-inner {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .gm-browser__content-inner .brand-text {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.8);
+            letter-spacing: -0.01em;
+        }
+
+        .gm-browser__content-inner .brand-subtext {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 6px;
+        }
+
+        /* Decorative grid lines inside browser mockup */
+        .gm-browser__grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Floating decorative shapes in hero */
+        .gm-hero__deco {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .gm-hero__deco--1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 70%);
+            top: -100px;
+            right: -100px;
+            animation: heroFloat1 15s ease-in-out infinite;
+        }
+
+        .gm-hero__deco--2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.04), transparent 70%);
+            bottom: -50px;
+            left: -50px;
+            animation: heroFloat2 18s ease-in-out infinite;
+        }
+
+        .gm-hero__deco--3 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(99,102,241,0.2), transparent 70%);
+            top: 30%;
+            right: 15%;
+            animation: heroFloat3 12s ease-in-out infinite;
+        }
+
+        @keyframes heroFloat1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, 20px); }
+        }
+
+        @keyframes heroFloat2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -30px); }
+        }
+
+        @keyframes heroFloat3 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-15px, -25px); }
+        }
+
+        /* =============================================
+           SECTION STYLES
+           ============================================= */
+        .gm-section {
+            padding: 100px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gm-section__header {
+            text-align: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .gm-section__label {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            background: rgba(37,99,235,0.08);
+            padding: 4px 14px;
+            border-radius: var(--radius-full);
+            margin-bottom: var(--space-4);
+            letter-spacing: 0.02em;
+        }
+
+        .gm-section__title {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+        }
+
+        .gm-section__subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .gm-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* =============================================
+           SERVICES SECTION — SINGLE GLASS PANEL
+           ============================================= */
+        .gm-services-panel {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gm-services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .gm-service-cell {
+            padding: var(--space-10);
+            border-right: 1px solid rgba(255,255,255,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            transition: background var(--transition-base);
+            position: relative;
+        }
+
+        .gm-service-cell:nth-child(3n) {
+            border-right: none;
+        }
+
+        .gm-service-cell:nth-child(n+4) {
+            border-bottom: none;
+        }
+
+        .gm-service-cell:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        .gm-service-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.25rem;
+            margin-bottom: var(--space-5);
+            box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+        }
+
+        .gm-service-cell h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-3);
+        }
+
+        .gm-service-cell p {
+            font-size: 0.925rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* =============================================
+           STATISTICS SECTION
+           ============================================= */
+        .gm-stats {
+            padding: 80px 0;
+        }
+
+        .gm-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .gm-stat-card {
+            text-align: center;
+            padding: var(--space-10) var(--space-8);
+        }
+
+        .gm-stat-number {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: var(--space-3);
+        }
+
+        .gm-stat-label {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+        }
+
+        .gm-stat-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* =============================================
+           PORTFOLIO SECTION
+           ============================================= */
+        .gm-portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .gm-portfolio-card {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+
+        .gm-portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(30,42,58,0.15);
+        }
+
+        .gm-portfolio-card:hover .gm-portfolio-card__img {
+            background-size: 110% 110%;
+        }
+
+        .gm-portfolio-card--featured {
+            grid-column: span 2;
+        }
+
+        .gm-portfolio-card__img {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: background-size var(--transition-slow);
+            background-size: 100% 100%;
+        }
+
+        .gm-portfolio-card--featured .gm-portfolio-card__img {
+            height: 260px;
+        }
+
+        .gm-portfolio-card__img-label {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.95);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+
+        .gm-portfolio-card--featured .gm-portfolio-card__img-label {
+            font-size: 1.5rem;
+        }
+
+        .gm-portfolio-card__body {
+            padding: var(--space-5) var(--space-6);
+        }
+
+        .gm-portfolio-card__name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .gm-portfolio-card__desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-3);
+            line-height: 1.5;
+        }
+
+        .gm-portfolio-card--featured .gm-portfolio-card__result {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--accent-primary);
+            background: rgba(37,99,235,0.06);
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            margin-bottom: var(--space-3);
+        }
+
+        .gm-portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .gm-portfolio-tag {
+            display: inline-block;
+            padding: 3px 12px;
+            background: rgba(37,99,235,0.1);
+            color: var(--accent-primary);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Portfolio placeholder gradient palettes */
+        .gm-gradient-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .gm-gradient-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .gm-gradient-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .gm-gradient-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .gm-gradient-5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .gm-gradient-6 { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+        .gm-gradient-7 { background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%); }
+        .gm-gradient-8 { background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); }
+        .gm-gradient-9 { background: linear-gradient(135deg, #f5576c 0%, #ff8a65 100%); }
+
+        /* =============================================
+           ABOUT SECTION
+           ============================================= */
+        .gm-about-text p {
+            font-size: 1.025rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+        }
+
+        .gm-about-text h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-top: var(--space-8);
+            margin-bottom: var(--space-5);
+        }
+
+        /* Tech stack pills */
+        .gm-tech-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .gm-tech-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .gm-tech-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .gm-tech-pill i {
+            color: var(--accent-primary);
+            font-size: 1rem;
+        }
+
+        /* Timeline */
+        .gm-timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .gm-timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        .gm-timeline-item {
+            position: relative;
+            margin-bottom: var(--space-6);
+        }
+
+        .gm-timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .gm-timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 18px;
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border: 3px solid var(--accent-primary);
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+        }
+
+        .gm-timeline-card {
+            padding: var(--space-5) var(--space-6);
+        }
+
+        .gm-timeline-card h4 {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            margin-bottom: var(--space-2);
+            font-weight: 400;
+        }
+
+        .gm-timeline-card p {
+            font-size: 0.925rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* =============================================
+           CONTACT SECTION
+           ============================================= */
+        .gm-contact {
+            background: linear-gradient(135deg, #2563EB 0%, #4F46E5 40%, #6366F1 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gm-contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .gm-contact .gm-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .gm-contact__header {
+            text-align: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .gm-contact__header h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: var(--space-4);
+        }
+
+        .gm-contact__header p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.05rem;
+        }
+
+        .gm-contact-panel {
+            max-width: 720px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-12) var(--space-10);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.15);
+        }
+
+        .gm-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .gm-form-group {
+            margin-bottom: var(--space-5);
+        }
+
+        .gm-form-label {
+            display: block;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: var(--space-2);
+        }
+
+        .gm-form-input,
+        .gm-form-textarea {
+            display: block;
+            width: 100%;
+            padding: 12px 18px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: var(--radius-md);
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.5;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+            outline: none;
+        }
+
+        .gm-form-input::placeholder,
+        .gm-form-textarea::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+
+        .gm-form-input:hover,
+        .gm-form-textarea:hover {
+            background: rgba(255,255,255,0.14);
+        }
+
+        .gm-form-input:focus,
+        .gm-form-textarea:focus {
+            border-color: rgba(255,255,255,0.5);
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.14);
+        }
+
+        .gm-form-textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .gm-form-submit {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 36px;
+            background: #fff;
+            color: var(--accent-primary);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .gm-form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+        }
+
+        .gm-form-submit:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 3px;
+        }
+
+        .gm-form-note {
+            text-align: center;
+            margin-top: var(--space-5);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+
+        .gm-form-note i {
+            margin-right: 6px;
+        }
+
+        /* =============================================
+           CTA BANNER
+           ============================================= */
+        .gm-cta-banner {
+            padding: 80px 0;
+        }
+
+        .gm-cta-card {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: var(--space-12) var(--space-10);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: var(--radius-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gm-cta-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .gm-cta-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .gm-cta-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(255,255,255,0.15);
+            border-radius: var(--radius-lg);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: #fff;
+            margin-bottom: var(--space-5);
+        }
+
+        .gm-cta-card h3 {
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: var(--space-4);
+        }
+
+        .gm-cta-card p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.05rem;
+            max-width: 540px;
+            margin: 0 auto var(--space-8);
+        }
+
+        .gm-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: #fff;
+            color: var(--accent-primary);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            transition: all var(--transition-base);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .gm-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+            color: var(--accent-primary);
+        }
+
+        .gm-cta-note {
+            display: block;
+            margin-top: var(--space-4);
+            font-size: 0.825rem;
+            color: rgba(255,255,255,0.55);
+        }
+
+        /* =============================================
+           FOOTER
+           ============================================= */
+        .gm-footer {
+            background: #1E2A3A;
+            color: rgba(255,255,255,0.7);
+            padding: 64px 0 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gm-footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.2fr 1.2fr;
+            gap: 48px;
+            padding-bottom: 48px;
+        }
+
+        .gm-footer__brand p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.5);
+            margin-top: var(--space-4);
+        }
+
+        .gm-footer__brand-text {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: #fff;
+            letter-spacing: -0.01em;
+        }
+
+        .gm-footer h5 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #fff;
+            margin-bottom: var(--space-5);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .gm-footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .gm-footer ul li {
+            margin-bottom: 10px;
+        }
+
+        .gm-footer ul li a {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .gm-footer ul li a:hover {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .gm-footer__gradient-line {
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-primary));
+            border: none;
+            margin: 0;
+        }
+
+        .gm-footer__copyright {
+            padding: 24px 0;
+            text-align: center;
+            font-size: 0.825rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        /* =============================================
+           FOCUS VISIBLE (ACCESSIBILITY)
+           ============================================= */
+        *:focus-visible {
+            outline: 2px solid #1E4D8C;
+            outline-offset: 3px;
+        }
+
+        .gm-hero *:focus-visible,
+        .gm-contact *:focus-visible {
+            outline-color: #fff;
+        }
+
+        /* =============================================
+           REDUCED MOTION
+           ============================================= */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* =============================================
+           RESPONSIVE
+           ============================================= */
+
+        /* Tablets */
+        @media (max-width: 992px) {
+            .gm-navbar__links {
+                display: none;
+            }
+
+            .gm-navbar__toggle {
+                display: block;
+            }
+
+            .gm-navbar__mobile-menu.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: calc(100% + 8px);
+                left: 16px;
+                right: 16px;
+                background: rgba(255,255,255,0.92);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(255,255,255,0.5);
+                border-radius: var(--radius-lg);
+                padding: 16px;
+                box-shadow: var(--shadow-xl);
+                z-index: 9999;
+            }
+
+            .gm-navbar__mobile-menu a {
+                display: block;
+                padding: 12px 16px;
+                color: var(--text-primary);
+                font-family: var(--font-heading);
+                font-weight: 600;
+                font-size: 1rem;
+                border-radius: var(--radius-md);
+                text-decoration: none;
+                transition: background var(--transition-fast);
+            }
+
+            .gm-navbar__mobile-menu a:hover {
+                background: rgba(37,99,235,0.06);
+                color: var(--accent-primary);
+            }
+
+            .gm-navbar__mobile-menu .gm-navbar__cta {
+                margin-top: 8px;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .gm-services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gm-service-cell:nth-child(2n) {
+                border-right: none;
+            }
+
+            .gm-service-cell:nth-child(n+5) {
+                border-bottom: none;
+            }
+
+            .gm-service-cell:nth-child(3) {
+                border-right: 1px solid rgba(255,255,255,0.3);
+            }
+
+            .gm-portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gm-portfolio-card--featured {
+                grid-column: span 2;
+            }
+
+            .gm-footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+
+            .gm-footer__brand {
+                grid-column: span 2;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .gm-section {
+                padding: 64px 0;
+            }
+
+            .gm-hero__content {
+                padding: 120px 20px 60px;
+            }
+
+            .gm-hero h1 {
+                font-size: 2rem;
+            }
+
+            .gm-hero__buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .gm-hero__mockup {
+                display: none;
+            }
+
+            .gm-services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gm-service-cell {
+                border-right: none !important;
+                border-bottom: 1px solid rgba(255,255,255,0.3) !important;
+            }
+
+            .gm-service-cell:last-child {
+                border-bottom: none !important;
+            }
+
+            .gm-stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gm-portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gm-portfolio-card--featured {
+                grid-column: span 1;
+            }
+
+            .gm-form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .gm-contact-panel {
+                padding: var(--space-8) var(--space-5);
+            }
+
+            .gm-footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .gm-footer__brand {
+                grid-column: span 1;
+            }
+
+            .gm-about-row {
+                flex-direction: column;
+            }
+
+            .gm-about-col {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Global Decorative Background Blobs -->
+    <div class="bg-blobs" aria-hidden="true">
+        <div class="bg-blob bg-blob--1"></div>
+        <div class="bg-blob bg-blob--2"></div>
+        <div class="bg-blob bg-blob--3"></div>
+    </div>
+
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+
+        <!-- ============================================
+             FLOATING PILL NAVBAR
+             ============================================ -->
+        <header class="gm-navbar-wrapper" id="navbar-wrapper">
+            <nav class="gm-navbar" aria-label="Main navigation" role="navigation">
+                <a class="gm-navbar__brand" href="#home">
+                    <img src="src/main/resources/static/img/PremierCodeInc_300.jpg" alt="Premier Code Inc logo" width="150" height="27">
+                </a>
+
+                <ul class="gm-navbar__links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact" class="gm-navbar__cta">Contact Us</a></li>
+                </ul>
+
+                <button class="gm-navbar__toggle" aria-label="Open navigation menu" aria-expanded="false" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+
+                <div class="gm-navbar__mobile-menu" id="mobileMenu" role="menu">
+                    <a href="#home" role="menuitem" onclick="closeMobileMenu()">Home</a>
+                    <a href="#services" role="menuitem" onclick="closeMobileMenu()">Services</a>
+                    <a href="#portfolio" role="menuitem" onclick="closeMobileMenu()">Portfolio</a>
+                    <a href="#about" role="menuitem" onclick="closeMobileMenu()">About</a>
+                    <a href="#contact" class="gm-navbar__cta" role="menuitem" onclick="closeMobileMenu()">Contact Us</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- ============================================
+             HERO SECTION
+             ============================================ -->
+        <section class="gm-hero" id="home">
+            <!-- Decorative shapes -->
+            <div class="gm-hero__deco gm-hero__deco--1" aria-hidden="true"></div>
+            <div class="gm-hero__deco gm-hero__deco--2" aria-hidden="true"></div>
+            <div class="gm-hero__deco gm-hero__deco--3" aria-hidden="true"></div>
+
+            <div class="gm-hero__content">
+                <div class="gm-hero__text">
+                    <div class="gm-hero__badge">
+                        <span class="gm-hero__badge-dot" aria-hidden="true"></span>
+                        Delivering solutions since 2010
+                    </div>
+
+                    <h1 id="main-content">We Build Web Applications That Grow Businesses</h1>
+
+                    <p class="gm-hero__subtitle">
+                        Premier Code, Inc. delivers comprehensive web solutions, handling all aspects from development to deployment, monitoring, and maintenance.
+                    </p>
+
+                    <div class="gm-hero__buttons">
+                        <a href="#services" class="gm-btn-hero-primary">
+                            Our Services
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <a href="#contact" class="gm-btn-hero-secondary">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Browser Mockup -->
+                <div class="gm-hero__mockup">
+                    <div class="gm-browser">
+                        <div class="gm-browser__toolbar">
+                            <div class="gm-browser__dots" aria-hidden="true">
+                                <span class="gm-browser__dot gm-browser__dot--red"></span>
+                                <span class="gm-browser__dot gm-browser__dot--yellow"></span>
+                                <span class="gm-browser__dot gm-browser__dot--green"></span>
+                            </div>
+                            <div class="gm-browser__url">
+                                <i class="fas fa-lock" aria-hidden="true" style="margin-right: 8px; font-size: 0.7rem;"></i>
+                                premiercodeinc.com
+                            </div>
+                        </div>
+                        <div class="gm-browser__content">
+                            <div class="gm-browser__grid" aria-hidden="true"></div>
+                            <div class="gm-browser__content-inner">
+                                <div class="brand-text">PREMIER CODE, INC.</div>
+                                <div class="brand-subtext">Transforming Ideas into Digital Reality</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SERVICES SECTION
+             ============================================ -->
+        <section class="gm-section" id="services">
+            <div class="gm-container">
+                <div class="gm-section__header">
+                    <span class="gm-section__label">What We Do</span>
+                    <h2 class="gm-section__title">Our Services</h2>
+                    <p class="gm-section__subtitle">Comprehensive web development solutions for your business</p>
+                </div>
+
+                <div class="gm-services-panel">
+                    <div class="gm-services-grid">
+                        <!-- Web Development -->
+                        <div class="gm-service-cell">
+                            <div class="gm-service-icon">
+                                <i class="fas fa-code" aria-hidden="true"></i>
+                            </div>
+                            <h3>Web Development</h3>
+                            <p>Full-stack development using Java, Spring Framework, Bootstrap, and MySQL to create responsive and dynamic websites.</p>
+                        </div>
+
+                        <!-- Server Management -->
+                        <div class="gm-service-cell">
+                            <div class="gm-service-icon">
+                                <i class="fas fa-server" aria-hidden="true"></i>
+                            </div>
+                            <h3>Server Management</h3>
+                            <p>Deploying, monitoring, and backing up servers to ensure your website runs smoothly with optimal performance.</p>
+                        </div>
+
+                        <!-- Uptime Monitoring -->
+                        <div class="gm-service-cell">
+                            <div class="gm-service-icon">
+                                <i class="fas fa-chart-line" aria-hidden="true"></i>
+                            </div>
+                            <h3>Uptime Monitoring</h3>
+                            <p>Providing robust monitoring tools so you can track your site's uptime status and receive instant downtime notifications.</p>
+                        </div>
+
+                        <!-- Front-End Design -->
+                        <div class="gm-service-cell">
+                            <div class="gm-service-icon">
+                                <i class="fas fa-paint-brush" aria-hidden="true"></i>
+                            </div>
+                            <h3>Front-End Design</h3>
+                            <p>Creating beautiful, intuitive user interfaces with the latest front-end technologies for exceptional user experiences.</p>
+                        </div>
+
+                        <!-- Back-End Development -->
+                        <div class="gm-service-cell">
+                            <div class="gm-service-icon">
+                                <i class="fas fa-database" aria-hidden="true"></i>
+                            </div>
+                            <h3>Back-End Development</h3>
+                            <p>Building robust back-end systems that power your website with efficient data management and processing.</p>
+                        </div>
+
+                        <!-- AI Integration -->
+                        <div class="gm-service-cell">
+                            <div class="gm-service-icon">
+                                <i class="fas fa-brain" aria-hidden="true"></i>
+                            </div>
+                            <h3>AI Integration</h3>
+                            <p>Implementing cutting-edge AI and machine learning technologies to enhance your web applications with intelligent features.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             CTA BANNER
+             ============================================ -->
+        <section class="gm-cta-banner" aria-labelledby="cta-heading">
+            <div class="gm-container">
+                <div class="gm-cta-card">
+                    <div class="gm-cta-icon" aria-hidden="true">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 id="cta-heading">Is Your Website Performing at Its Best?</h3>
+                    <p>Your website is often the first impression customers have of your business. Slow load times, confusing navigation, and poor mobile experience can quietly hold back your growth.</p>
+                    <a href="#contact" class="gm-cta-btn">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        Get Your Free Website Health Report
+                    </a>
+                    <span class="gm-cta-note">No obligation -- see how your site stacks up</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             STATISTICS SECTION
+             ============================================ -->
+        <section class="gm-stats" aria-label="Company statistics">
+            <div class="gm-container">
+                <div class="gm-stats-grid">
+                    <div class="gm-stat-card glass-card">
+                        <div class="gm-stat-number">15+</div>
+                        <div class="gm-stat-label">Years in Business</div>
+                        <p class="gm-stat-desc">Delivering web solutions since 2010</p>
+                    </div>
+                    <div class="gm-stat-card glass-card">
+                        <div class="gm-stat-number">50+</div>
+                        <div class="gm-stat-label">Projects Delivered</div>
+                        <p class="gm-stat-desc">Across diverse industries worldwide</p>
+                    </div>
+                    <div class="gm-stat-card glass-card">
+                        <div class="gm-stat-number">9</div>
+                        <div class="gm-stat-label">Industries Served</div>
+                        <p class="gm-stat-desc">From e-commerce to philanthropy</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             PORTFOLIO SECTION
+             ============================================ -->
+        <section class="gm-section" id="portfolio">
+            <div class="gm-container">
+                <div class="gm-section__header">
+                    <span class="gm-section__label">Our Work</span>
+                    <h2 class="gm-section__title">Our Portfolio</h2>
+                    <p class="gm-section__subtitle">Explore some of our recent projects across various industries</p>
+                </div>
+
+                <div class="gm-portfolio-grid">
+                    <!-- FEATURED: IronMarket -->
+                    <div class="gm-portfolio-card glass-card gm-portfolio-card--featured">
+                        <div class="gm-portfolio-card__img gm-gradient-2">
+                            <span class="gm-portfolio-card__img-label">IronMarket.com</span>
+                        </div>
+                        <div class="gm-portfolio-card__body">
+                            <div class="gm-portfolio-card__result">Featured Project</div>
+                            <div class="gm-portfolio-card__name">IronMarket.com</div>
+                            <p class="gm-portfolio-card__desc">Independent asset management platform for verification, valuation, and sales</p>
+                            <div class="gm-portfolio-tags">
+                                <span class="gm-portfolio-tag">Java</span>
+                                <span class="gm-portfolio-tag">Spring</span>
+                                <span class="gm-portfolio-tag">MySQL</span>
+                                <span class="gm-portfolio-tag">Asset Management</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TrainRight -->
+                    <div class="gm-portfolio-card glass-card">
+                        <div class="gm-portfolio-card__img gm-gradient-1">
+                            <span class="gm-portfolio-card__img-label">TrainRight.org</span>
+                        </div>
+                        <div class="gm-portfolio-card__body">
+                            <div class="gm-portfolio-card__name">TrainRight.org</div>
+                            <p class="gm-portfolio-card__desc">Training platform with comprehensive course management</p>
+                            <div class="gm-portfolio-tags">
+                                <span class="gm-portfolio-tag">Java</span>
+                                <span class="gm-portfolio-tag">Spring</span>
+                                <span class="gm-portfolio-tag">Training</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CivicAim -->
+                    <div class="gm-portfolio-card glass-card">
+                        <div class="gm-portfolio-card__img gm-gradient-3">
+                            <span class="gm-portfolio-card__img-label">CivicAim.com</span>
+                        </div>
+                        <div class="gm-portfolio-card__body">
+                            <div class="gm-portfolio-card__name">CivicAim.com</div>
+                            <p class="gm-portfolio-card__desc">Philanthropy consulting for strategic grantmaking and impact evaluation</p>
+                            <div class="gm-portfolio-tags">
+                                <span class="gm-portfolio-tag">Philanthropy</span>
+                                <span class="gm-portfolio-tag">Consulting</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EQEarth -->
+                    <div class="gm-portfolio-card glass-card">
+                        <div class="gm-portfolio-card__img gm-gradient-4">
+                            <span class="gm-portfolio-card__img-label">EQEarth.com</span>
+                        </div>
+                        <div class="gm-portfolio-card__body">
+                            <div class="gm-portfolio-card__name">EQEarth.com</div>
+                            <p class="gm-portfolio-card__desc">Social networking platform for equipment and machinery industry professionals</p>
+                            <div class="gm-portfolio-tags">
+                                <span class="gm-portfolio-tag">Social Media</span>
+                                <span class="gm-portfolio-tag">Networking</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GlobalAuctionLink -->
+                    <div class="gm-portfolio-card glass-card">
+                        <div class="gm-portfolio-card__img gm-gradient-5">
+                            <span class="gm-portfolio-card__img-label">GlobalAuctionLink.com</span>
+                        </div>
+                        <div class="gm-portfolio-card__body">
+                            <div class="gm-portfolio-card__name">GlobalAuctionLink.com</div>
+                            <p class="gm-portfolio-card__desc">Cloud-based private auction platform for inventory liquidation and revenue maximization</p>
+                            <div class="gm-portfolio-tags">
+                                <span class="gm-portfolio-tag">Auctioning</span>
+                                <span class="gm-portfolio-tag">Cloud</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GoDigifarm -->
+                    <div class="gm-portfolio-card glass-card">
+                        <div class="gm-portfolio-card__img gm-gradient-6">
+                            <span class="gm-portfolio-card__img-label">GoDigifarm.com</span>
+                        </div>
+                        <div class="gm-portfolio-card__body">
+                            <div class="gm-portfolio-card__name">GoDigifarm.com</div>
+                            <p class="gm-portfolio-card__desc">Multi-platform e-commerce ecosystem for precision agriculture and RTK services</p>
+                            <div class="gm-portfolio-tags">
+                                <span class="gm-portfolio-tag">E-commerce</span>
+                                <span class="gm-portfolio-tag">Agriculture</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FlexCo Fleet SBO -->
+                    <div class="gm-portfolio-card glass-card">
+                        <div class="gm-portfolio-card__img gm-gradient-7">
+                            <span class="gm-portfolio-card__img-label">FlexCo Fleet SBO</span>
+                        </div>
+                        <div class="gm-portfolio-card__body">
+                            <div class="gm-portfolio-card__name">FlexCo Fleet SBO</div>
+                            <p class="gm-portfolio-card__desc">Sealed bid auction platform for Harley-Davidson dealer-to-dealer fleet sales</p>
+                            <div class="gm-portfolio-tags">
+                                <span class="gm-portfolio-tag">Auctioning</span>
+                                <span class="gm-portfolio-tag">Automotive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CodeArchaeology -->
+                    <div class="gm-portfolio-card glass-card">
+                        <div class="gm-portfolio-card__img gm-gradient-8">
+                            <span class="gm-portfolio-card__img-label">CodeArchaeology.dev</span>
+                        </div>
+                        <div class="gm-portfolio-card__body">
+                            <div class="gm-portfolio-card__name">CodeArchaeology.dev</div>
+                            <p class="gm-portfolio-card__desc">Educational platform exploring 75+ programming languages from FORTRAN to Rust</p>
+                            <div class="gm-portfolio-tags">
+                                <span class="gm-portfolio-tag">Education</span>
+                                <span class="gm-portfolio-tag">Programming</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HugeMX -->
+                    <div class="gm-portfolio-card glass-card">
+                        <div class="gm-portfolio-card__img gm-gradient-9">
+                            <span class="gm-portfolio-card__img-label">HugeMX.com</span>
+                        </div>
+                        <div class="gm-portfolio-card__body">
+                            <div class="gm-portfolio-card__name">HugeMX.com</div>
+                            <p class="gm-portfolio-card__desc">Professional email hosting with enterprise-grade infrastructure and deliverability</p>
+                            <div class="gm-portfolio-tags">
+                                <span class="gm-portfolio-tag">Email</span>
+                                <span class="gm-portfolio-tag">Infrastructure</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             ABOUT SECTION
+             ============================================ -->
+        <section class="gm-section" id="about">
+            <div class="gm-container">
+                <div class="gm-section__header">
+                    <span class="gm-section__label">Who We Are</span>
+                    <h2 class="gm-section__title">About Premier Code, Inc.</h2>
+                </div>
+
+                <div class="gm-about-row" style="display: flex; gap: 64px; align-items: flex-start;">
+                    <div class="gm-about-col" style="width: 55%;">
+                        <div class="gm-about-text">
+                            <p>Founded in 2010, Premier Code, Inc. has established itself as a trusted provider of comprehensive web development solutions across multiple industries including auctioning, training, philanthropy, and social media.</p>
+                            <p>Our team of experienced developers specializes in creating robust, scalable web applications using the latest technologies and best practices. We pride ourselves on delivering end-to-end solutions, from initial concept to deployment and ongoing maintenance.</p>
+                            <p>With over a decade of experience, we've helped businesses of all sizes transform their digital presence and achieve their online goals.</p>
+
+                            <h4>Our Technology Stack</h4>
+                            <div class="gm-tech-pills">
+                                <span class="gm-tech-pill">
+                                    <i class="fab fa-java" aria-hidden="true"></i> Java
+                                </span>
+                                <span class="gm-tech-pill">
+                                    <i class="fas fa-leaf" aria-hidden="true"></i> Spring
+                                </span>
+                                <span class="gm-tech-pill">
+                                    <i class="fab fa-bootstrap" aria-hidden="true"></i> Bootstrap
+                                </span>
+                                <span class="gm-tech-pill">
+                                    <i class="fas fa-database" aria-hidden="true"></i> MySQL
+                                </span>
+                                <span class="gm-tech-pill">
+                                    <i class="fab fa-html5" aria-hidden="true"></i> HTML5
+                                </span>
+                                <span class="gm-tech-pill">
+                                    <i class="fab fa-css3-alt" aria-hidden="true"></i> CSS3
+                                </span>
+                                <span class="gm-tech-pill">
+                                    <i class="fab fa-js" aria-hidden="true"></i> JavaScript
+                                </span>
+                                <span class="gm-tech-pill">
+                                    <i class="fas fa-brain" aria-hidden="true"></i> AI/ML
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gm-about-col" style="width: 45%;">
+                        <div class="gm-timeline">
+                            <div class="gm-timeline-item">
+                                <div class="gm-timeline-card glass-card">
+                                    <h4>2010</h4>
+                                    <p>Premier Code, Inc. founded with a mission to deliver exceptional web solutions</p>
+                                </div>
+                            </div>
+                            <div class="gm-timeline-item">
+                                <div class="gm-timeline-card glass-card">
+                                    <h4>2013</h4>
+                                    <p>Expanded services to include server management and monitoring</p>
+                                </div>
+                            </div>
+                            <div class="gm-timeline-item">
+                                <div class="gm-timeline-card glass-card">
+                                    <h4>2016</h4>
+                                    <p>Reached milestone of 50+ successful projects across diverse industries</p>
+                                </div>
+                            </div>
+                            <div class="gm-timeline-item">
+                                <div class="gm-timeline-card glass-card">
+                                    <h4>2020</h4>
+                                    <p>Celebrated 10 years of excellence in web development</p>
+                                </div>
+                            </div>
+                            <div class="gm-timeline-item">
+                                <div class="gm-timeline-card glass-card">
+                                    <h4>2023</h4>
+                                    <p>Integrated AI and machine learning capabilities into our service offerings</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             CONTACT SECTION
+             ============================================ -->
+        <section class="gm-contact gm-section" id="contact">
+            <div class="gm-container">
+                <div class="gm-contact__header">
+                    <h2>Let's Build Something Great Together</h2>
+                    <p>Ready to start your next project? Tell us about it.</p>
+                </div>
+
+                <div class="gm-contact-panel">
+                    <form action="#" method="POST" id="contactForm" novalidate>
+                        <div class="gm-form-row">
+                            <div class="gm-form-group">
+                                <label for="contactName" class="gm-form-label">Your Name</label>
+                                <input type="text" class="gm-form-input" id="contactName" name="name" placeholder="John Doe" required autocomplete="name">
+                            </div>
+                            <div class="gm-form-group">
+                                <label for="contactEmail" class="gm-form-label">Your Email (optional)</label>
+                                <input type="email" class="gm-form-input" id="contactEmail" name="email" placeholder="john@example.com" autocomplete="email">
+                            </div>
+                        </div>
+                        <div class="gm-form-group">
+                            <label for="contactMessage" class="gm-form-label">Your Message</label>
+                            <textarea class="gm-form-textarea" id="contactMessage" name="message" placeholder="Tell us about your project..." required autocomplete="off"></textarea>
+                        </div>
+                        <div style="text-align: center;">
+                            <button type="submit" class="gm-form-submit">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                Send Message
+                            </button>
+                        </div>
+                        <p class="gm-form-note">
+                            <i class="fas fa-clock" aria-hidden="true"></i>
+                            We typically respond within 4 hours
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             FOOTER
+             ============================================ -->
+        <footer class="gm-footer">
+            <div class="gm-container">
+                <div class="gm-footer-grid">
+                    <div class="gm-footer__brand">
+                        <div class="gm-footer__brand-text">PREMIER CODE, INC.</div>
+                        <p>Premier Code, Inc. delivers comprehensive web solutions since 2010, handling all aspects from development to deployment and maintenance.</p>
+                    </div>
+
+                    <div>
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h5>Services</h5>
+                        <ul>
+                            <li><a href="#services">Web Development</a></li>
+                            <li><a href="#services">Server Management</a></li>
+                            <li><a href="#services">Uptime Monitoring</a></li>
+                            <li><a href="#services">Back-End Development</a></li>
+                            <li><a href="#services">AI Integration</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h5>Industries</h5>
+                        <ul>
+                            <li><a href="#portfolio">Auctioning</a></li>
+                            <li><a href="#portfolio">Training</a></li>
+                            <li><a href="#portfolio">Philanthropy</a></li>
+                            <li><a href="#portfolio">Social Media</a></li>
+                            <li><a href="#portfolio">E-commerce</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="gm-footer__gradient-line">
+
+            <div class="gm-footer__copyright">
+                &copy; 2026 Premier Code, Inc. All Rights Reserved.
+            </div>
+        </footer>
+
+    </div><!-- /.page-content -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ---- Sticky navbar scroll effect ----
+        const navbarWrapper = document.getElementById('navbar-wrapper');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 40) {
+                navbarWrapper.classList.add('scrolled');
+            } else {
+                navbarWrapper.classList.remove('scrolled');
+            }
+        });
+
+        // ---- Mobile menu toggle ----
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.gm-navbar__toggle');
+            const isOpen = menu.classList.contains('open');
+
+            menu.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', !isOpen);
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.gm-navbar__toggle');
+            menu.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.gm-navbar__toggle');
+            if (menu.classList.contains('open') && !menu.contains(e.target) && !toggle.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // ---- Active nav link highlighting on scroll ----
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.gm-navbar__links a:not(.gm-navbar__cta)');
+
+        window.addEventListener('scroll', function() {
+            let current = '';
+            sections.forEach(function(section) {
+                const sectionTop = section.offsetTop - 200;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(function(link) {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
