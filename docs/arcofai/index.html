@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arc of AI Conference - Website Redesign Proposal | Premier Code, Inc.</title>
+    <meta name="description" content="Website redesign proposal for Arc of AI Conference by Premier Code, Inc. Three professional design concepts for review.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           Reset & Base
+           ============================================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --color-bg: #f8f9fa;
+            --color-surface: #ffffff;
+            --color-dark: #1a1a2e;
+            --color-dark-alt: #16213e;
+            --color-primary: #0f3460;
+            --color-accent: #e94560;
+            --color-accent-hover: #d63851;
+            --color-text: #333333;
+            --color-text-muted: #6c757d;
+            --color-border: #dee2e6;
+            --color-border-light: #e9ecef;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ============================================================
+           Header
+           ============================================================ */
+        .site-header {
+            background: var(--color-dark);
+            color: #ffffff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--color-accent);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-tagline {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .header-contact {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .header-contact a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        /* ============================================================
+           Hero
+           ============================================================ */
+        .hero {
+            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-alt) 50%, var(--color-primary) 100%);
+            color: #ffffff;
+            padding: 5rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(233, 69, 96, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(15, 52, 96, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(233, 69, 96, 0.15);
+            border: 1px solid rgba(233, 69, 96, 0.3);
+            color: #ff8fa3;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span {
+            color: var(--color-accent);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.75);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .hero-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .hero-meta svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+        }
+
+        /* ============================================================
+           Main Content
+           ============================================================ */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--color-dark);
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.3px;
+        }
+
+        .section-header p {
+            font-size: 1.05rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+           Example Cards
+           ============================================================ */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .example-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .example-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .example-preview {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .example-preview-bg {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .example-1 .example-preview-bg {
+            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 50%, #0ea5e9 100%);
+        }
+
+        .example-2 .example-preview-bg {
+            background: linear-gradient(135deg, #1a0533 0%, #6b21a8 50%, #f97316 100%);
+        }
+
+        .example-3 .example-preview-bg {
+            background: linear-gradient(135deg, #1a1d23 0%, #2a2e36 50%, #10b981 100%);
+        }
+
+        .example-number {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+            padding: 0.35rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .example-body {
+            padding: 1.5rem;
+        }
+
+        .example-body h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .example-body .subtitle {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .example-features {
+            list-style: none;
+            margin-bottom: 1.25rem;
+        }
+
+        .example-features li {
+            font-size: 0.85rem;
+            color: var(--color-text);
+            padding: 0.3rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .example-features li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .example-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .example-tag {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 50px;
+            background: var(--color-bg);
+            color: var(--color-text-muted);
+            font-weight: 500;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .btn-view {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--color-primary);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.2s ease;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-view:hover {
+            background: var(--color-dark);
+        }
+
+        .btn-view svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-view:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* ============================================================
+           Findings Summary
+           ============================================================ */
+        .findings {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--color-border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .findings h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--color-border-light);
+        }
+
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .finding-card {
+            background: var(--color-bg);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .finding-card h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .finding-score {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .finding-score.score-low { color: #dc3545; }
+        .finding-score.score-mid { color: #fd7e14; }
+        .finding-score.score-high { color: #28a745; }
+
+        .finding-label {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        .finding-bar {
+            height: 6px;
+            background: var(--color-border-light);
+            border-radius: 3px;
+            margin-top: 0.75rem;
+            overflow: hidden;
+        }
+
+        .finding-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+
+        .finding-bar-fill.fill-low { background: #dc3545; }
+        .finding-bar-fill.fill-mid { background: #fd7e14; }
+        .finding-bar-fill.fill-high { background: #28a745; }
+
+        /* ============================================================
+           Issues List
+           ============================================================ */
+        .issues-section {
+            margin-bottom: 3rem;
+        }
+
+        .issues-section h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .issue-item {
+            background: var(--color-surface);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            border: 1px solid var(--color-border-light);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .issue-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+
+        .issue-icon.critical { background: #fff5f5; color: #dc3545; }
+        .issue-icon.warning { background: #fff8e1; color: #fd7e14; }
+        .issue-icon.info { background: #e3f2fd; color: #0d6efd; }
+
+        .issue-text h5 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .issue-text p {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            line-height: 1.5;
+        }
+
+        /* ============================================================
+           What's Included
+           ============================================================ */
+        .included-section {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .included-section h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .included-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .included-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+        }
+
+        .included-check {
+            width: 22px;
+            height: 22px;
+            background: #e8f5e9;
+            color: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .included-check svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .included-item span {
+            font-size: 0.9rem;
+            color: var(--color-text);
+        }
+
+        /* ============================================================
+           Footer
+           ============================================================ */
+        .site-footer {
+            background: var(--color-dark);
+            color: rgba(255,255,255,0.6);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-tagline {
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 1.5rem;
+        }
+
+        /* ============================================================
+           Scorecard Table
+           ============================================================ */
+        .scorecard-intro {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .scorecard-table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 1rem;
+        }
+
+        .scorecard-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            min-width: 600px;
+        }
+
+        .scorecard-table thead {
+            background: var(--color-bg);
+        }
+
+        .scorecard-table th {
+            padding: 0.75rem 1rem;
+            text-align: center;
+            font-weight: 700;
+            color: var(--color-dark);
+            font-size: 0.8rem;
+            border-bottom: 2px solid var(--color-border-light);
+            vertical-align: bottom;
+            line-height: 1.3;
+        }
+
+        .scorecard-table th:first-child {
+            text-align: left;
+        }
+
+        .scorecard-subtitle {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--color-text-muted);
+            margin-top: 0.15rem;
+        }
+
+        .scorecard-table td {
+            padding: 0.75rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border-light);
+            vertical-align: middle;
+        }
+
+        .scorecard-table td:first-child {
+            text-align: left;
+        }
+
+        .scorecard-category {
+            font-weight: 600;
+            color: var(--color-dark);
+        }
+
+        .scorecard-col-original {
+            background: rgba(220, 53, 69, 0.04);
+        }
+
+        .scorecard-table tbody tr:hover {
+            background: rgba(0,0,0,0.02);
+        }
+
+        .score-badge {
+            display: inline-block;
+            padding: 0.25rem 0.65rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .score-badge--low {
+            background: #fff5f5;
+            color: #dc3545;
+        }
+
+        .score-badge--mid {
+            background: #fff8e1;
+            color: #d97706;
+        }
+
+        .score-badge--high {
+            background: #e8f5e9;
+            color: #16a34a;
+        }
+
+        .score-badge--pending {
+            background: #f0f0f0;
+            color: #888;
+            font-style: italic;
+        }
+
+        .scorecard-note {
+            font-size: 0.78rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+
+        /* ============================================================
+           Responsive
+           ============================================================ */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+            .findings-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .header-contact {
+                display: none;
+            }
+            .findings, .included-section {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .findings-grid {
+                grid-template-columns: 1fr;
+            }
+            .issues-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================================
+           Print Styles
+           ============================================================ */
+        @media print {
+            .site-header { position: static; }
+            .example-card { break-inside: avoid; }
+            .btn-view { color: var(--color-primary); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">PC</div>
+                <div>
+                    <div class="logo-text">Premier Code, Inc.</div>
+                    <div class="logo-tagline">Transforming Ideas into Digital Reality</div>
+                </div>
+            </a>
+            <div class="header-contact">
+                <a href="https://www.premiercodeinc.com">premiercodeinc.com</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Website Redesign Proposal</div>
+            <h1>Arc of AI Conference<br><span>Homepage Redesign</span></h1>
+            <p>Three professional design concepts for your consideration. Each design focuses on accessibility, SEO, mobile responsiveness, and modern web standards.</p>
+            <div class="hero-meta">
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    Prepared February 2026
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Prepared for Dr. Venkat Subramaniam
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Arc of AI 2026
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Current Site Assessment -->
+        <div class="findings">
+            <h2>Current Site Assessment</h2>
+            <div class="findings-grid">
+                <div class="finding-card">
+                    <h4>Design Quality</h4>
+                    <div class="finding-score score-low">2 / 10</div>
+                    <div class="finding-label">Needs significant improvement</div>
+                    <div class="finding-bar">
+                        <div class="finding-bar-fill fill-low" style="width: 20%;"></div>
+                    </div>
+                </div>
+                <div class="finding-card">
+                    <h4>SEO Score</h4>
+                    <div class="finding-score score-low">8 / 100</div>
+                    <div class="finding-label">Critical issues found</div>
+                    <div class="finding-bar">
+                        <div class="finding-bar-fill fill-low" style="width: 8%;"></div>
+                    </div>
+                </div>
+                <div class="finding-card">
+                    <h4>Accessibility</h4>
+                    <div class="finding-score score-low">Non-Compliant</div>
+                    <div class="finding-label">WCAG 2.1 AA failures</div>
+                    <div class="finding-bar">
+                        <div class="finding-bar-fill fill-low" style="width: 10%;"></div>
+                    </div>
+                </div>
+                <div class="finding-card">
+                    <h4>Mobile Experience</h4>
+                    <div class="finding-score score-mid">Limited</div>
+                    <div class="finding-label">JS-dependent rendering</div>
+                    <div class="finding-bar">
+                        <div class="finding-bar-fill fill-mid" style="width: 25%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Issues Found -->
+        <div class="issues-section">
+            <h2>Key Issues Identified</h2>
+            <div class="issues-grid">
+                <div class="issue-item">
+                    <div class="issue-icon critical">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                    </div>
+                    <div class="issue-text">
+                        <h5>Zero Server-Side Content</h5>
+                        <p>Entire site is JavaScript-rendered SPA. Search engines index only an empty shell.</p>
+                    </div>
+                </div>
+                <div class="issue-item">
+                    <div class="issue-icon critical">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                    </div>
+                    <div class="issue-text">
+                        <h5>Only 1 Page Indexed by Google</h5>
+                        <p>No meta descriptions, no OG tags, no structured data, no sitemap.</p>
+                    </div>
+                </div>
+                <div class="issue-item">
+                    <div class="issue-icon critical">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                    </div>
+                    <div class="issue-text">
+                        <h5>No Semantic HTML</h5>
+                        <p>Missing headings hierarchy, landmarks, ARIA labels. Screen readers cannot navigate.</p>
+                    </div>
+                </div>
+                <div class="issue-item">
+                    <div class="issue-icon warning">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <div class="issue-text">
+                        <h5>Auto-Click Navigation Pattern</h5>
+                        <p>Page uses window.onload to auto-click hidden elements. Fragile and inaccessible.</p>
+                    </div>
+                </div>
+                <div class="issue-item">
+                    <div class="issue-icon warning">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <div class="issue-text">
+                        <h5>Poor Mobile Typography</h5>
+                        <p>No responsive font scaling, cramped layouts on smaller screens.</p>
+                    </div>
+                </div>
+                <div class="issue-item">
+                    <div class="issue-icon info">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    </div>
+                    <div class="issue-text">
+                        <h5>No Social Sharing Support</h5>
+                        <p>Missing Open Graph and Twitter Card meta tags. Links shared on social media show no preview.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design Examples -->
+        <div class="section-header">
+            <h2>Proposed Design Concepts</h2>
+            <p>Click any design below to view the full interactive homepage prototype. All designs use accurate conference content for April 13-16, 2026.</p>
+        </div>
+
+        <div class="examples-grid">
+            <!-- Example 1 -->
+            <div class="example-card example-1">
+                <div class="example-preview">
+                    <div class="example-preview-bg">
+                        <span>Modern Minimal</span>
+                    </div>
+                    <div class="example-number">Concept 1</div>
+                </div>
+                <div class="example-body">
+                    <h3>Modern Minimal</h3>
+                    <p class="subtitle">Deep navy, electric blue, and cyan with clean typography</p>
+                    <ul class="example-features">
+                        <li>Space Grotesk + Inter font pairing</li>
+                        <li>Animated gradient hero with particle effects</li>
+                        <li>Glass-morphism header and navigation</li>
+                        <li>Scroll-triggered reveal animations</li>
+                    </ul>
+                    <div class="example-tags">
+                        <span class="example-tag">Sleek</span>
+                        <span class="example-tag">Developer-focused</span>
+                        <span class="example-tag">Dark theme</span>
+                    </div>
+                    <a href="example1/index.html" class="btn-view">
+                        View Design
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Example 2 -->
+            <div class="example-card example-2">
+                <div class="example-preview">
+                    <div class="example-preview-bg">
+                        <span>Bold Gradient</span>
+                    </div>
+                    <div class="example-number">Concept 2</div>
+                </div>
+                <div class="example-body">
+                    <h3>Bold Gradient</h3>
+                    <p class="subtitle">Purple-to-orange gradients with glass-morphism cards</p>
+                    <ul class="example-features">
+                        <li>Outfit + DM Sans font pairing</li>
+                        <li>Glass-morphism cards with gradient borders</li>
+                        <li>Floating geometric background shapes</li>
+                        <li>Horizontal scroll session carousel</li>
+                    </ul>
+                    <div class="example-tags">
+                        <span class="example-tag">Bold</span>
+                        <span class="example-tag">Vibrant</span>
+                        <span class="example-tag">Energetic</span>
+                    </div>
+                    <a href="example2/index.html" class="btn-view">
+                        View Design
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Example 3 -->
+            <div class="example-card example-3">
+                <div class="example-preview">
+                    <div class="example-preview-bg">
+                        <span>Slate Gray</span>
+                    </div>
+                    <div class="example-number">Concept 3</div>
+                </div>
+                <div class="example-body">
+                    <h3>Slate Gray</h3>
+                    <p class="subtitle">Medium gray base with vibrant green accents</p>
+                    <ul class="example-features">
+                        <li>Sora + Plus Jakarta Sans font pairing</li>
+                        <li>Lighter gray base that lets accents pop</li>
+                        <li>Clean, industrial-modern aesthetic</li>
+                        <li>High-contrast accent color system</li>
+                    </ul>
+                    <div class="example-tags">
+                        <span class="example-tag">Modern</span>
+                        <span class="example-tag">Clean</span>
+                        <span class="example-tag">High-Contrast</span>
+                    </div>
+                    <a href="example3/index.html" class="btn-view">
+                        View Design
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Redesign Scorecard -->
+        <div class="findings scorecard">
+            <h2>Redesign Scorecard</h2>
+            <p class="scorecard-intro">Independent review scores comparing the original arcofai.com against our redesign concepts.</p>
+            <div class="scorecard-table-wrapper">
+                <table class="scorecard-table" aria-label="Redesign comparison scorecard">
+                    <thead>
+                        <tr>
+                            <th scope="col">Category</th>
+                            <th scope="col" class="scorecard-col-original">Original Site</th>
+                            <th scope="col">Concept 1<span class="scorecard-subtitle">Modern Minimal</span></th>
+                            <th scope="col">Concept 2<span class="scorecard-subtitle">Bold Gradient</span></th>
+                            <th scope="col">Concept 3<span class="scorecard-subtitle">Slate Gray</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="scorecard-category">Design Quality</td>
+                            <td class="scorecard-col-original"><span class="score-badge score-badge--low">2 / 10</span></td>
+                            <td><span class="score-badge score-badge--mid">6.0 / 10</span></td>
+                            <td><span class="score-badge score-badge--mid">5.5 / 10</span></td>
+                            <td><span class="score-badge score-badge--pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td class="scorecard-category">SEO Score</td>
+                            <td class="scorecard-col-original"><span class="score-badge score-badge--low">8 / 100</span></td>
+                            <td><span class="score-badge score-badge--mid">67 / 100</span></td>
+                            <td><span class="score-badge score-badge--mid">63 / 100</span></td>
+                            <td><span class="score-badge score-badge--pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td class="scorecard-category">Accessibility</td>
+                            <td class="scorecard-col-original"><span class="score-badge score-badge--low">Non-Compliant</span></td>
+                            <td><span class="score-badge score-badge--high">Largely Compliant</span></td>
+                            <td><span class="score-badge score-badge--mid">Partially Compliant</span></td>
+                            <td><span class="score-badge score-badge--pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td class="scorecard-category">Mobile</td>
+                            <td class="scorecard-col-original"><span class="score-badge score-badge--low">Limited</span></td>
+                            <td><span class="score-badge score-badge--high">Full Responsive</span></td>
+                            <td><span class="score-badge score-badge--high">Full Responsive</span></td>
+                            <td><span class="score-badge score-badge--pending">Pending</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="scorecard-note">Scores reflect honest, independent review. Concept 3 (Slate Gray) is a new design and will be scored after review.</p>
+        </div>
+
+        <!-- What's Included in Each Design -->
+        <div class="included-section">
+            <h2>What Each Design Includes</h2>
+            <div class="included-list">
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Semantic HTML5 with proper heading hierarchy</span>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>WCAG 2.1 AA accessibility compliance</span>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>JSON-LD structured data for search engines</span>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Open Graph & Twitter Card meta tags</span>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Fully responsive mobile-first design</span>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>CSS-only animations (no JS frameworks)</span>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Prefers-reduced-motion support</span>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Print-optimized stylesheet</span>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Server-rendered content (SEO-friendly)</span>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Actual conference data: 59 sessions, 28 speakers</span>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Keyboard-navigable with focus indicators</span>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Zero external JS dependencies</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">Premier Code, Inc.</div>
+            <div class="footer-tagline">Transforming Ideas into Digital Reality</div>
+            <div class="footer-links">
+                <a href="https://www.premiercodeinc.com">Website</a>
+                <a href="mailto:info@premiercodeinc.com">Contact</a>
+                <a href="example1/index.html">Concept 1</a>
+                <a href="example2/index.html">Concept 2</a>
+                <a href="example3/index.html">Concept 3</a>
+            </div>
+            <div class="footer-copy">
+                &copy; 2026 Premier Code, Inc. All rights reserved. This proposal and all associated designs are confidential.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
