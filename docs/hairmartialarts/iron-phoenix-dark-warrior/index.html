@@ -1,0 +1,2809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Iron Phoenix Martial Arts | GShim Taekwondo | Austin, TX</title>
+    <meta name="description" content="Iron Phoenix Martial Arts - Premier GShim Taekwondo training in Austin, TX. GTMA affiliate school offering classes for all ages. Start your free trial today.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           DESIGN TOKENS
+           ============================================================ */
+        :root {
+            /* Colors - Dark Warrior Palette */
+            --color-bg-primary: #0a0a0a;
+            --color-bg-secondary: #111111;
+            --color-bg-tertiary: #1a1a1a;
+            --color-bg-card: #1e1e1e;
+            --color-bg-elevated: #2a2a2a;
+            --color-bg-input: #1a1a1a;
+
+            --color-red-primary: #c41e3a;
+            --color-red-bright: #e63946;
+            --color-red-dark: #9a1830;
+            --color-red-glow: rgba(230, 57, 70, 0.25);
+            --color-red-subtle: rgba(196, 30, 58, 0.1);
+            --color-red-border: rgba(196, 30, 58, 0.3);
+
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #b0b0b0;
+            --color-text-muted: #777777;
+            --color-text-on-red: #ffffff;
+
+            --color-border: #2a2a2a;
+            --color-border-light: #333333;
+            --color-gold: #d4a848;
+            --color-gold-light: #f0d080;
+
+            /* Typography */
+            --font-heading: 'Bebas Neue', 'Impact', sans-serif;
+            --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+            --text-xs: clamp(0.7rem, 0.65rem + 0.15vw, 0.75rem);
+            --text-sm: clamp(0.8rem, 0.75rem + 0.2vw, 0.875rem);
+            --text-base: clamp(0.9rem, 0.85rem + 0.25vw, 1rem);
+            --text-lg: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+            --text-xl: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+            --text-2xl: clamp(1.5rem, 1.2rem + 0.8vw, 1.875rem);
+            --text-3xl: clamp(2rem, 1.5rem + 1.5vw, 2.75rem);
+            --text-4xl: clamp(2.5rem, 1.8rem + 2vw, 3.5rem);
+            --text-5xl: clamp(3rem, 2rem + 3vw, 5rem);
+            --text-6xl: clamp(3.5rem, 2.5rem + 4vw, 7rem);
+
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            --space-24: 6rem;
+            --space-32: 8rem;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.6);
+            --shadow-xl: 0 16px 50px rgba(0,0,0,0.7);
+            --shadow-red: 0 4px 20px rgba(196, 30, 58, 0.3);
+            --shadow-red-lg: 0 8px 40px rgba(196, 30, 58, 0.4);
+
+            /* Border Radius */
+            --radius-sm: 0.25rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.25rem;
+            --radius-full: 9999px;
+
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+            --transition-slow: 400ms ease;
+            --transition-spring: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            /* Layout */
+            --header-height: 70px;
+            --container-max: 1200px;
+            --container-narrow: 800px;
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height);
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            background-color: var(--color-bg-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img { max-width: 100%; display: block; }
+
+        a {
+            color: var(--color-red-bright);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        a:hover { color: var(--color-text-primary); }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            line-height: 1.1;
+            letter-spacing: 0.02em;
+        }
+
+        ul { list-style: none; }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        /* ============================================================
+           UTILITY CLASSES
+           ============================================================ */
+        .container {
+            max-width: var(--container-max);
+            margin-inline: auto;
+            padding-inline: var(--space-5);
+        }
+
+        .container--narrow {
+            max-width: var(--container-narrow);
+        }
+
+        .section {
+            padding-block: var(--space-20);
+            position: relative;
+        }
+
+        .section--alt {
+            background-color: var(--color-bg-secondary);
+        }
+
+        .section-label {
+            font-family: var(--font-heading);
+            font-size: var(--text-lg);
+            color: var(--color-red-bright);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 2px;
+            background: var(--color-red-bright);
+        }
+
+        .section-title {
+            font-size: var(--text-4xl);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-4);
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-body);
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .text-center { text-align: center; }
+        .text-center .section-subtitle { margin-inline: auto; }
+        .text-center .section-label { justify-content: center; }
+        .text-center .section-label::before { display: none; }
+
+        /* ============================================================
+           SCROLL ANIMATIONS
+           ============================================================ */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-on-scroll.delay-1 { transition-delay: 0.1s; }
+        .animate-on-scroll.delay-2 { transition-delay: 0.2s; }
+        .animate-on-scroll.delay-3 { transition-delay: 0.3s; }
+        .animate-on-scroll.delay-4 { transition-delay: 0.4s; }
+
+        /* ============================================================
+           HEADER / NAVIGATION
+           ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            z-index: 1000;
+            transition: background-color var(--transition-base), box-shadow var(--transition-base);
+            background-color: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .header.is-scrolled {
+            background-color: rgba(10, 10, 10, 0.95);
+            box-shadow: 0 1px 0 var(--color-border), var(--shadow-md);
+        }
+
+        .header__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            max-width: var(--container-max);
+            margin-inline: auto;
+            padding-inline: var(--space-5);
+        }
+
+        .header__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            text-decoration: none;
+            z-index: 1001;
+        }
+
+        .header__logo-icon {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+        }
+
+        .header__logo-text {
+            font-family: var(--font-heading);
+            font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
+            color: var(--color-text-primary);
+            letter-spacing: 0.05em;
+            line-height: 1.1;
+        }
+
+        .header__logo-text span {
+            color: var(--color-red-bright);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .nav__link {
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-md);
+            transition: color var(--transition-fast), background-color var(--transition-fast);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .nav__link:hover {
+            color: var(--color-text-primary);
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .nav__cta {
+            font-family: var(--font-heading);
+            font-size: var(--text-base);
+            letter-spacing: 0.08em;
+            padding: var(--space-2) var(--space-5);
+            background: var(--color-red-primary);
+            color: var(--color-text-on-red);
+            border-radius: var(--radius-md);
+            margin-left: var(--space-3);
+            transition: all var(--transition-fast);
+            text-decoration: none;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .nav__cta:hover {
+            background: var(--color-red-bright);
+            box-shadow: var(--shadow-red);
+            color: var(--color-text-on-red);
+            transform: translateY(-1px);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            z-index: 1001;
+            padding: 2px;
+        }
+
+        .hamburger__line {
+            width: 100%;
+            height: 2px;
+            background: var(--color-text-primary);
+            border-radius: 2px;
+            transition: all var(--transition-base);
+            transform-origin: center;
+        }
+
+        .hamburger.is-active .hamburger__line:nth-child(1) {
+            transform: rotate(45deg) translateY(5px) translateX(5px);
+        }
+        .hamburger.is-active .hamburger__line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.is-active .hamburger__line:nth-child(3) {
+            transform: rotate(-45deg) translateY(-5px) translateX(5px);
+        }
+
+        /* Mobile nav */
+        @media (max-width: 900px) {
+            .hamburger { display: flex; }
+
+            .nav {
+                position: fixed;
+                inset: 0;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: var(--space-4);
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(30px);
+                -webkit-backdrop-filter: blur(30px);
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity var(--transition-slow), visibility var(--transition-slow);
+            }
+
+            .nav.is-open {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav__link {
+                font-size: var(--text-xl);
+                font-family: var(--font-heading);
+                letter-spacing: 0.1em;
+                padding: var(--space-3) var(--space-6);
+            }
+
+            .nav__cta {
+                font-size: var(--text-xl);
+                padding: var(--space-3) var(--space-8);
+                margin-left: 0;
+                margin-top: var(--space-4);
+            }
+        }
+
+        /* ============================================================
+           HERO SECTION
+           ============================================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--color-bg-primary);
+        }
+
+        /* Animated background - geometric patterns */
+        .hero__bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .hero__bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(ellipse 600px 600px at 20% 50%, rgba(196, 30, 58, 0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 400px at 80% 30%, rgba(230, 57, 70, 0.05) 0%, transparent 60%),
+                radial-gradient(ellipse 300px 300px at 60% 80%, rgba(196, 30, 58, 0.04) 0%, transparent 50%);
+            animation: heroGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-2%, 1%) scale(1.02); }
+            100% { transform: translate(1%, -1%) scale(1); }
+        }
+
+        /* Diagonal slash pattern */
+        .hero__slashes {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            opacity: 0.03;
+        }
+
+        .hero__slashes::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 400%;
+            height: 400%;
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 40px,
+                rgba(255,255,255,0.5) 40px,
+                rgba(255,255,255,0.5) 41px
+            );
+            animation: slashScroll 20s linear infinite;
+        }
+
+        @keyframes slashScroll {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(56.57px, 56.57px); }
+        }
+
+        /* Red accent line */
+        .hero__accent-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--color-red-primary), var(--color-red-bright), var(--color-red-primary), transparent);
+        }
+
+        /* Floating particles */
+        .hero__particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--color-red-bright);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat linear infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 25%; animation-duration: 15s; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 40%; animation-duration: 10s; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 55%; animation-duration: 14s; animation-delay: 1s; }
+        .particle:nth-child(5) { left: 70%; animation-duration: 11s; animation-delay: 3s; }
+        .particle:nth-child(6) { left: 85%; animation-duration: 13s; animation-delay: 5s; }
+        .particle:nth-child(7) { left: 15%; animation-duration: 16s; animation-delay: 6s; width: 3px; height: 3px; }
+        .particle:nth-child(8) { left: 60%; animation-duration: 9s; animation-delay: 7s; }
+        .particle:nth-child(9) { left: 90%; animation-duration: 17s; animation-delay: 2.5s; width: 3px; height: 3px; }
+        .particle:nth-child(10) { left: 35%; animation-duration: 13s; animation-delay: 4.5s; }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-20vh); opacity: 0; }
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: var(--space-8);
+            max-width: 900px;
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: rgba(196, 30, 58, 0.12);
+            border: 1px solid var(--color-red-border);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            color: var(--color-red-bright);
+            font-weight: 500;
+            margin-bottom: var(--space-8);
+            letter-spacing: 0.05em;
+            animation: fadeInDown 0.8s ease-out 0.2s both;
+        }
+
+        .hero__badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hero__title {
+            font-size: var(--text-6xl);
+            color: var(--color-text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: var(--space-6);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero__title span {
+            color: var(--color-red-bright);
+            position: relative;
+        }
+
+        .hero__tagline {
+            font-family: var(--font-body);
+            font-size: var(--text-xl);
+            color: var(--color-text-secondary);
+            font-weight: 300;
+            margin-bottom: var(--space-10);
+            letter-spacing: 0.03em;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .hero__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .hero__scroll-hint {
+            position: absolute;
+            bottom: var(--space-8);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--color-text-muted);
+            font-size: var(--text-xs);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: fadeIn 1s ease-out 1.2s both;
+        }
+
+        .hero__scroll-hint .scroll-arrow {
+            width: 20px;
+            height: 30px;
+            border: 2px solid var(--color-text-muted);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .hero__scroll-hint .scroll-arrow::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 8px;
+            background: var(--color-red-bright);
+            border-radius: 2px;
+            animation: scrollBounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+            50% { transform: translateX(-50%) translateY(6px); opacity: 0.4; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ============================================================
+           BUTTONS
+           ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            font-family: var(--font-heading);
+            font-size: var(--text-lg);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: var(--space-3) var(--space-8);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-base);
+            text-decoration: none;
+            border: 2px solid transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .btn:hover::after {
+            transform: translateX(100%);
+        }
+
+        .btn--primary {
+            background: var(--color-red-primary);
+            color: var(--color-text-on-red);
+            border-color: var(--color-red-primary);
+        }
+
+        .btn--primary:hover {
+            background: var(--color-red-bright);
+            border-color: var(--color-red-bright);
+            box-shadow: var(--shadow-red-lg);
+            transform: translateY(-2px);
+            color: var(--color-text-on-red);
+        }
+
+        .btn--outline {
+            background: transparent;
+            color: var(--color-text-primary);
+            border-color: var(--color-border-light);
+        }
+
+        .btn--outline:hover {
+            border-color: var(--color-red-bright);
+            color: var(--color-red-bright);
+            background: var(--color-red-subtle);
+            transform: translateY(-2px);
+        }
+
+        .btn--small {
+            font-size: var(--text-base);
+            padding: var(--space-2) var(--space-5);
+        }
+
+        .btn--ghost {
+            background: transparent;
+            color: var(--color-red-bright);
+            border: none;
+            padding: var(--space-2) var(--space-3);
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn--ghost:hover {
+            color: var(--color-text-primary);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .btn--ghost svg {
+            transition: transform var(--transition-fast);
+        }
+
+        .btn--ghost:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* ============================================================
+           PROGRAMS SECTION
+           ============================================================ */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-12);
+        }
+
+        .program-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            position: relative;
+            transition: all var(--transition-base);
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-red-primary), var(--color-red-bright));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--transition-slow);
+        }
+
+        .program-card:hover {
+            border-color: var(--color-red-border);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg), 0 0 30px rgba(196, 30, 58, 0.08);
+        }
+
+        .program-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .program-card__icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-lg);
+            background: var(--color-red-subtle);
+            border: 1px solid var(--color-red-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-5);
+            font-size: 1.75rem;
+            transition: all var(--transition-base);
+        }
+
+        .program-card:hover .program-card__icon {
+            background: var(--color-red-primary);
+            border-color: var(--color-red-primary);
+            box-shadow: var(--shadow-red);
+        }
+
+        .program-card__age {
+            font-family: var(--font-body);
+            font-size: var(--text-xs);
+            color: var(--color-red-bright);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-2);
+        }
+
+        .program-card__title {
+            font-size: var(--text-2xl);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-3);
+            text-transform: uppercase;
+        }
+
+        .program-card__desc {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-6);
+        }
+
+        .program-card__features {
+            margin-bottom: var(--space-6);
+        }
+
+        .program-card__feature {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            padding-block: var(--space-1);
+        }
+
+        .program-card__feature svg {
+            width: 14px;
+            height: 14px;
+            color: var(--color-red-bright);
+            flex-shrink: 0;
+        }
+
+        /* ============================================================
+           ABOUT SECTION
+           ============================================================ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-12);
+            align-items: center;
+            margin-top: var(--space-12);
+        }
+
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; gap: var(--space-8); }
+        }
+
+        .about__text p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--space-5);
+            font-size: var(--text-base);
+        }
+
+        .about__text p:last-of-type {
+            margin-bottom: var(--space-8);
+        }
+
+        .about__visual {
+            position: relative;
+        }
+
+        .about__image-placeholder {
+            aspect-ratio: 4/3;
+            border-radius: var(--radius-xl);
+            background: linear-gradient(135deg, var(--color-bg-tertiary), var(--color-bg-elevated));
+            border: 1px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about__image-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 30% 40%, rgba(196, 30, 58, 0.08), transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(230, 57, 70, 0.05), transparent 50%);
+        }
+
+        .about__image-icon {
+            width: 80px;
+            height: 80px;
+            color: var(--color-red-primary);
+            opacity: 0.6;
+            position: relative;
+        }
+
+        .about__image-text {
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+            position: relative;
+        }
+
+        /* GTMA Badge */
+        .gtma-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-5);
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-lg);
+            margin-top: var(--space-6);
+        }
+
+        .gtma-badge__icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--color-red-subtle);
+            border: 1px solid var(--color-red-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .gtma-badge__text {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .gtma-badge__text strong {
+            color: var(--color-text-primary);
+            display: block;
+            font-weight: 600;
+        }
+
+        /* Grand Master card */
+        .gm-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin-top: var(--space-8);
+            display: flex;
+            gap: var(--space-5);
+            align-items: flex-start;
+        }
+
+        @media (max-width: 500px) {
+            .gm-card { flex-direction: column; }
+        }
+
+        .gm-card__avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-bg-elevated), var(--color-bg-tertiary));
+            border: 2px solid var(--color-red-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .gm-card__avatar svg {
+            width: 32px;
+            height: 32px;
+            color: var(--color-red-primary);
+            opacity: 0.6;
+        }
+
+        .gm-card__info h4 {
+            font-size: var(--text-xl);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-1);
+            text-transform: uppercase;
+        }
+
+        .gm-card__rank {
+            font-size: var(--text-xs);
+            color: var(--color-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: var(--space-3);
+        }
+
+        .gm-card__info p {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           SCHEDULE SECTION
+           ============================================================ */
+        .schedule-wrapper {
+            margin-top: var(--space-12);
+            overflow-x: auto;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--color-border);
+            background: var(--color-bg-card);
+            scrollbar-width: thin;
+            scrollbar-color: var(--color-border-light) transparent;
+        }
+
+        .schedule-wrapper::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .schedule-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .schedule-wrapper::-webkit-scrollbar-thumb {
+            background: var(--color-border-light);
+            border-radius: 3px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            min-width: 680px;
+            border-collapse: collapse;
+        }
+
+        .schedule-table thead {
+            background: var(--color-bg-elevated);
+        }
+
+        .schedule-table th {
+            font-family: var(--font-heading);
+            font-size: var(--text-base);
+            color: var(--color-text-primary);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: var(--space-4) var(--space-5);
+            text-align: left;
+            border-bottom: 2px solid var(--color-red-primary);
+            white-space: nowrap;
+        }
+
+        .schedule-table td {
+            padding: var(--space-3) var(--space-5);
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            border-bottom: 1px solid var(--color-border);
+            vertical-align: top;
+        }
+
+        .schedule-table tbody tr {
+            transition: background-color var(--transition-fast);
+        }
+
+        .schedule-table tbody tr:hover {
+            background: rgba(196, 30, 58, 0.04);
+        }
+
+        .schedule-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .schedule-class {
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
+
+        .schedule-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            margin-left: var(--space-2);
+        }
+
+        .schedule-tag--shadow {
+            background: rgba(147, 51, 234, 0.15);
+            color: #c084fc;
+        }
+
+        .schedule-tag--dragon {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+        }
+
+        .schedule-tag--athlete {
+            background: rgba(196, 30, 58, 0.15);
+            color: var(--color-red-bright);
+        }
+
+        .schedule-tag--weapons {
+            background: rgba(212, 168, 72, 0.15);
+            color: var(--color-gold-light);
+        }
+
+        .schedule-note {
+            margin-top: var(--space-4);
+            text-align: center;
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+        }
+
+        /* ============================================================
+           TESTIMONIALS SECTION
+           ============================================================ */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-12);
+        }
+
+        .testimonial-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            transition: all var(--transition-base);
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--color-border-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-card__quote-icon {
+            position: absolute;
+            top: var(--space-6);
+            right: var(--space-6);
+            font-family: Georgia, serif;
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--color-red-primary);
+            opacity: 0.15;
+        }
+
+        .testimonial-card__stars {
+            display: flex;
+            gap: 2px;
+            margin-bottom: var(--space-4);
+        }
+
+        .star {
+            color: var(--color-gold);
+            font-size: 1rem;
+        }
+
+        .testimonial-card__text {
+            font-size: var(--text-base);
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--space-6);
+            font-style: italic;
+        }
+
+        .testimonial-card__author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding-top: var(--space-4);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .testimonial-card__avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-red-primary), var(--color-red-bright));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: var(--text-sm);
+            flex-shrink: 0;
+        }
+
+        .testimonial-card__name {
+            font-weight: 600;
+            font-size: var(--text-sm);
+            color: var(--color-text-primary);
+        }
+
+        .testimonial-card__role {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+        }
+
+        /* ============================================================
+           INSTRUCTORS SECTION
+           ============================================================ */
+        .instructors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-12);
+        }
+
+        .instructor-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: all var(--transition-base);
+        }
+
+        .instructor-card:hover {
+            border-color: var(--color-red-border);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg), 0 0 30px rgba(196, 30, 58, 0.08);
+        }
+
+        .instructor-card__image {
+            height: 280px;
+            background: linear-gradient(180deg, var(--color-bg-tertiary) 0%, var(--color-bg-elevated) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instructor-card__image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, var(--color-bg-card), transparent);
+        }
+
+        .instructor-card__silhouette {
+            width: 120px;
+            height: 120px;
+            color: var(--color-border-light);
+            opacity: 0.4;
+        }
+
+        .instructor-card__body {
+            padding: var(--space-6);
+            position: relative;
+            margin-top: -var(--space-4);
+        }
+
+        .instructor-card__rank {
+            display: inline-block;
+            padding: var(--space-1) var(--space-3);
+            background: var(--color-red-primary);
+            color: white;
+            font-size: var(--text-xs);
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--space-3);
+        }
+
+        .instructor-card__name {
+            font-size: var(--text-2xl);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-1);
+            text-transform: uppercase;
+        }
+
+        .instructor-card__title {
+            font-size: var(--text-sm);
+            color: var(--color-red-bright);
+            font-weight: 500;
+            margin-bottom: var(--space-3);
+        }
+
+        .instructor-card__specialties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+        }
+
+        .specialty-tag {
+            padding: var(--space-1) var(--space-3);
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            color: var(--color-text-secondary);
+        }
+
+        /* ============================================================
+           CONTACT SECTION
+           ============================================================ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-10);
+            margin-top: var(--space-12);
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Contact Info */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        .contact-item {
+            display: flex;
+            gap: var(--space-4);
+            align-items: flex-start;
+        }
+
+        .contact-item__icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-lg);
+            background: var(--color-red-subtle);
+            border: 1px solid var(--color-red-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--color-red-bright);
+        }
+
+        .contact-item__icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .contact-item__label {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-1);
+        }
+
+        .contact-item__value {
+            font-size: var(--text-base);
+            color: var(--color-text-primary);
+            font-weight: 500;
+        }
+
+        .contact-item__value a {
+            color: var(--color-text-primary);
+        }
+
+        .contact-item__value a:hover {
+            color: var(--color-red-bright);
+        }
+
+        .contact-item__detail {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            margin-top: var(--space-1);
+        }
+
+        /* Map Placeholder */
+        .map-placeholder {
+            margin-top: var(--space-6);
+            aspect-ratio: 16/9;
+            border-radius: var(--radius-xl);
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(0deg, rgba(26,26,26,0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(26,26,26,0.2) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.5;
+        }
+
+        .map-placeholder svg {
+            width: 40px;
+            height: 40px;
+            color: var(--color-red-primary);
+            opacity: 0.5;
+            position: relative;
+        }
+
+        .map-placeholder span {
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+            position: relative;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+        }
+
+        .contact-form__title {
+            font-size: var(--text-2xl);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-2);
+            text-transform: uppercase;
+        }
+
+        .contact-form__subtitle {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-6);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-5);
+        }
+
+        .form-label {
+            display: block;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-2);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            display: block;
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            color: var(--color-text-primary);
+            background: var(--color-bg-input);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-md);
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+            outline: none;
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--color-text-muted);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--color-red-primary);
+            box-shadow: 0 0 0 3px var(--color-red-glow);
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23777777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: var(--space-10);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+        }
+
+        @media (max-width: 500px) {
+            .form-row { grid-template-columns: 1fr; }
+        }
+
+        /* ============================================================
+           FLOATING CTA
+           ============================================================ */
+        .floating-cta {
+            position: fixed;
+            bottom: var(--space-6);
+            right: var(--space-6);
+            z-index: 900;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all var(--transition-base);
+        }
+
+        .floating-cta.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .floating-cta__btn {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-5);
+            background: var(--color-red-primary);
+            color: white;
+            font-family: var(--font-heading);
+            font-size: var(--text-base);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: var(--radius-full);
+            box-shadow: var(--shadow-red-lg);
+            transition: all var(--transition-base);
+            text-decoration: none;
+            white-space: nowrap;
+            animation: floatingPulse 3s ease-in-out infinite;
+        }
+
+        .floating-cta__btn:hover {
+            background: var(--color-red-bright);
+            transform: scale(1.05);
+            box-shadow: 0 8px 40px rgba(230, 57, 70, 0.5);
+            color: white;
+        }
+
+        .floating-cta__btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        @keyframes floatingPulse {
+            0%, 100% { box-shadow: var(--shadow-red-lg); }
+            50% { box-shadow: 0 8px 50px rgba(196, 30, 58, 0.5); }
+        }
+
+        @media (max-width: 600px) {
+            .floating-cta {
+                right: var(--space-4);
+                bottom: var(--space-4);
+            }
+            .floating-cta__btn {
+                padding: var(--space-3) var(--space-4);
+                font-size: var(--text-sm);
+            }
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border);
+            padding-block: var(--space-16) var(--space-8);
+        }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-10);
+            margin-bottom: var(--space-12);
+        }
+
+        @media (max-width: 768px) {
+            .footer__grid {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-8);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .footer__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer__brand p {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-top: var(--space-4);
+            max-width: 300px;
+        }
+
+        .footer__social {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-5);
+        }
+
+        .footer__social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            transition: all var(--transition-fast);
+        }
+
+        .footer__social-link:hover {
+            background: var(--color-red-primary);
+            border-color: var(--color-red-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer__social-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .footer__heading {
+            font-family: var(--font-heading);
+            font-size: var(--text-lg);
+            color: var(--color-text-primary);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-5);
+        }
+
+        .footer__links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .footer__link {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+            text-decoration: none;
+        }
+
+        .footer__link:hover {
+            color: var(--color-red-bright);
+        }
+
+        .footer__bottom {
+            padding-top: var(--space-8);
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .footer__copyright {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+        }
+
+        .footer__legal {
+            display: flex;
+            gap: var(--space-5);
+        }
+
+        .footer__legal a {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            text-decoration: none;
+        }
+
+        .footer__legal a:hover {
+            color: var(--color-text-secondary);
+        }
+
+        /* ============================================================
+           SECTION DIVIDERS
+           ============================================================ */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-border-light), transparent);
+            margin-inline: auto;
+            max-width: var(--container-max);
+        }
+
+        /* Stats row in hero */
+        .hero__stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-10);
+            margin-top: var(--space-12);
+            animation: fadeInUp 0.8s ease-out 1s both;
+        }
+
+        @media (max-width: 500px) {
+            .hero__stats { gap: var(--space-6); }
+        }
+
+        .hero__stat {
+            text-align: center;
+        }
+
+        .hero__stat-value {
+            font-family: var(--font-heading);
+            font-size: var(--text-3xl);
+            color: var(--color-red-bright);
+            letter-spacing: 0.03em;
+        }
+
+        .hero__stat-label {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: var(--space-1);
+        }
+
+        /* ============================================================
+           BACK TO TOP
+           ============================================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: var(--space-6);
+            left: var(--space-6);
+            z-index: 900;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border-light);
+            color: var(--color-text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+
+        .back-to-top.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--color-red-primary);
+            border-color: var(--color-red-primary);
+            color: white;
+        }
+
+        .back-to-top svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        @media (max-width: 600px) {
+            .back-to-top { display: none; }
+        }
+
+        /* ============================================================
+           RESPONSIVE TWEAKS
+           ============================================================ */
+        @media (max-width: 768px) {
+            .section { padding-block: var(--space-16); }
+            .hero__stats { flex-wrap: wrap; }
+        }
+
+        @media (max-width: 500px) {
+            .section { padding-block: var(--space-12); }
+            .programs-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .instructors-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Prevent FOUC on animations */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .animate-on-scroll {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
+    <header class="header" id="header">
+        <div class="header__inner">
+            <a href="#hero" class="header__logo" aria-label="Iron Phoenix Martial Arts - Home">
+                <!-- Phoenix SVG Icon -->
+                <svg class="header__logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4C24 4 16 12 16 20C16 24.4 18.4 28.4 22 30.8V40L18 44H24V46H24V44H30L26 40V30.8C29.6 28.4 32 24.4 32 20C32 12 24 4 24 4Z" fill="#c41e3a"/>
+                    <path d="M24 4C24 4 20 10 20 18C20 22 22 26 24 28C26 26 28 22 28 18C28 10 24 4 24 4Z" fill="#e63946"/>
+                    <circle cx="24" cy="18" r="2.5" fill="#0a0a0a"/>
+                    <path d="M12 16C12 16 14 20 18 22" stroke="#c41e3a" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M36 16C36 16 34 20 30 22" stroke="#c41e3a" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8 12C8 12 12 18 18 20" stroke="#e63946" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <path d="M40 12C40 12 36 18 30 20" stroke="#e63946" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                </svg>
+                <div class="header__logo-text">
+                    Iron <span>Phoenix</span>
+                </div>
+            </a>
+
+            <nav class="nav" id="nav" aria-label="Main navigation">
+                <a href="#programs" class="nav__link">Programs</a>
+                <a href="#about" class="nav__link">About</a>
+                <a href="#schedule" class="nav__link">Schedule</a>
+                <a href="#instructors" class="nav__link">Instructors</a>
+                <a href="#testimonials" class="nav__link">Reviews</a>
+                <a href="#contact" class="nav__link">Contact</a>
+                <a href="#contact" class="nav__cta">Free Trial</a>
+            </nav>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         HERO SECTION
+         ============================================================ -->
+    <section class="hero" id="hero">
+        <div class="hero__bg"></div>
+        <div class="hero__slashes"></div>
+        <div class="hero__particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="hero__accent-line"></div>
+
+        <div class="hero__content">
+            <div class="hero__badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                </svg>
+                GTMA Affiliate School &mdash; Austin, TX
+            </div>
+
+            <h1 class="hero__title">
+                Iron <span>Phoenix</span><br>
+                Martial Arts
+            </h1>
+
+            <p class="hero__tagline">
+                Forge Your Path. Find Your Strength.
+            </p>
+
+            <div class="hero__actions">
+                <a href="#contact" class="btn btn--primary">
+                    Start Your Free Trial
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#programs" class="btn btn--outline">
+                    Explore Programs
+                </a>
+            </div>
+
+            <div class="hero__stats">
+                <div class="hero__stat">
+                    <div class="hero__stat-value">15+</div>
+                    <div class="hero__stat-label">Years Teaching</div>
+                </div>
+                <div class="hero__stat">
+                    <div class="hero__stat-value">500+</div>
+                    <div class="hero__stat-label">Active Students</div>
+                </div>
+                <div class="hero__stat">
+                    <div class="hero__stat-value">50+</div>
+                    <div class="hero__stat-label">Black Belts Produced</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero__scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         PROGRAMS SECTION
+         ============================================================ -->
+    <section class="section" id="programs">
+        <div class="container">
+            <div class="text-center animate-on-scroll">
+                <div class="section-label">Our Programs</div>
+                <h2 class="section-title">Training For Every Warrior</h2>
+                <p class="section-subtitle">
+                    From our youngest ninjas to seasoned athletes, we offer world-class GShim Taekwondo programs built on five decades of traditional martial arts excellence.
+                </p>
+            </div>
+
+            <div class="programs-grid">
+                <!-- Shadow Moogi -->
+                <div class="program-card animate-on-scroll delay-1">
+                    <div class="program-card__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <div class="program-card__age">Ages 4-6</div>
+                    <h3 class="program-card__title">Shadow Moogi</h3>
+                    <p class="program-card__desc">
+                        Our foundational program introduces your little warrior to martial arts through play-based learning, building coordination, focus, and confidence.
+                    </p>
+                    <div class="program-card__features">
+                        <div class="program-card__feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Motor skill development
+                        </div>
+                        <div class="program-card__feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Life skills & character building
+                        </div>
+                        <div class="program-card__feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Fun, structured classes
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn--ghost">
+                        Learn More
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+
+                <!-- Dragon Squad -->
+                <div class="program-card animate-on-scroll delay-2">
+                    <div class="program-card__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <div class="program-card__age">Ages 7-12</div>
+                    <h3 class="program-card__title">Dragon Squad</h3>
+                    <p class="program-card__desc">
+                        Progressive physical training paired with essential life skills. Students develop discipline, respect, and physical excellence through the GShim curriculum.
+                    </p>
+                    <div class="program-card__features">
+                        <div class="program-card__feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            GShim color belt progression
+                        </div>
+                        <div class="program-card__feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Self-defense fundamentals
+                        </div>
+                        <div class="program-card__feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Tournament preparation
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn--ghost">
+                        Learn More
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+
+                <!-- GTMA Athlete -->
+                <div class="program-card animate-on-scroll delay-3">
+                    <div class="program-card__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </div>
+                    <div class="program-card__age">Ages 13+</div>
+                    <h3 class="program-card__title">GTMA Athlete</h3>
+                    <p class="program-card__desc">
+                        The full GShim Taekwondo experience for teens and adults. Master advanced forms, sparring techniques, and the philosophical depth of traditional martial arts.
+                    </p>
+                    <div class="program-card__features">
+                        <div class="program-card__feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Full GShim curriculum
+                        </div>
+                        <div class="program-card__feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Advanced sparring & forms
+                        </div>
+                        <div class="program-card__feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Black Belt certification path
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn--ghost">
+                        Learn More
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+
+                <!-- GShim Weapons -->
+                <div class="program-card animate-on-scroll delay-4">
+                    <div class="program-card__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="8" y1="13" x2="16" y2="13"/>
+                            <line x1="8" y1="17" x2="16" y2="17"/>
+                        </svg>
+                    </div>
+                    <div class="program-card__age">Advanced Students</div>
+                    <h3 class="program-card__title">GShim Weapons</h3>
+                    <p class="program-card__desc">
+                        Expand your martial arts mastery with traditional weapons training. Learn the art of nunchuck, sword, bo staff, and kama under expert instruction.
+                    </p>
+                    <div class="program-card__features">
+                        <div class="program-card__feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Nunchuck &amp; bo staff
+                        </div>
+                        <div class="program-card__feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Sword &amp; kama training
+                        </div>
+                        <div class="program-card__feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Weapons forms &amp; combat sparring
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn--ghost">
+                        Learn More
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ============================================================
+         ABOUT SECTION
+         ============================================================ -->
+    <section class="section section--alt" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about__text animate-on-scroll">
+                    <div class="section-label">About Us</div>
+                    <h2 class="section-title">Built on Tradition.<br>Driven by Excellence.</h2>
+                    <p>
+                        Iron Phoenix Martial Arts is Austin's premier GShim Taekwondo academy, proudly affiliated with Global Traditional Martial Arts (GTMA). Founded on the belief that martial arts training transforms lives, we provide a welcoming, disciplined environment where students of all ages discover their inner strength.
+                    </p>
+                    <p>
+                        Our curriculum is rooted in the GShim Taekwondo system developed by Grand Master G.K. Lee -- a world-class program built on five decades of traditional taekwondo combined with modern martial arts principles. Every class emphasizes not just physical technique, but the character development, respect, and mental resilience that define a true martial artist.
+                    </p>
+                    <p>
+                        Whether you are a parent seeking confidence-building activities for your child or an adult looking to challenge yourself, Iron Phoenix offers a path for you.
+                    </p>
+
+                    <div class="gtma-badge">
+                        <div class="gtma-badge__icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <div class="gtma-badge__text">
+                            <strong>GTMA Certified Affiliate</strong>
+                            Global Traditional Martial Arts
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about__visual animate-on-scroll delay-2">
+                    <div class="about__image-placeholder">
+                        <svg class="about__image-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                        <span class="about__image-text">School Interior Photo</span>
+                    </div>
+
+                    <!-- Grand Master Card -->
+                    <div class="gm-card">
+                        <div class="gm-card__avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="gm-card__info">
+                            <h4>Grand Master James Chen</h4>
+                            <div class="gm-card__rank">7th Degree Black Belt &bull; School Founder</div>
+                            <p>
+                                With over 30 years of martial arts experience and direct training under Grand Master G.K. Lee, Master Chen founded Iron Phoenix to bring world-class GShim Taekwondo instruction to the Austin community.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ============================================================
+         SCHEDULE SECTION
+         ============================================================ -->
+    <section class="section" id="schedule">
+        <div class="container">
+            <div class="text-center animate-on-scroll">
+                <div class="section-label">Class Schedule</div>
+                <h2 class="section-title">Train With Us</h2>
+                <p class="section-subtitle">
+                    Flexible class times designed to fit your family's schedule. All classes held at our Austin dojang.
+                </p>
+            </div>
+
+            <div class="schedule-wrapper animate-on-scroll delay-1">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                            <th>Saturday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="schedule-class">9:00 AM</span></td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>
+                                <span class="schedule-class">Family Class</span>
+                                <span class="schedule-tag schedule-tag--athlete">All Ages</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="schedule-class">10:00 AM</span></td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>
+                                <span class="schedule-class">GShim Weapons</span>
+                                <span class="schedule-tag schedule-tag--weapons">Advanced</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="schedule-class">4:00 PM</span></td>
+                            <td>
+                                <span class="schedule-class">Shadow Moogi</span>
+                                <span class="schedule-tag schedule-tag--shadow">4-6</span>
+                            </td>
+                            <td>--</td>
+                            <td>
+                                <span class="schedule-class">Shadow Moogi</span>
+                                <span class="schedule-tag schedule-tag--shadow">4-6</span>
+                            </td>
+                            <td>--</td>
+                            <td>
+                                <span class="schedule-class">Shadow Moogi</span>
+                                <span class="schedule-tag schedule-tag--shadow">4-6</span>
+                            </td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td><span class="schedule-class">4:45 PM</span></td>
+                            <td>
+                                <span class="schedule-class">Dragon Squad</span>
+                                <span class="schedule-tag schedule-tag--dragon">7-12</span>
+                            </td>
+                            <td>--</td>
+                            <td>
+                                <span class="schedule-class">Dragon Squad</span>
+                                <span class="schedule-tag schedule-tag--dragon">7-12</span>
+                            </td>
+                            <td>--</td>
+                            <td>
+                                <span class="schedule-class">Dragon Squad</span>
+                                <span class="schedule-tag schedule-tag--dragon">7-12</span>
+                            </td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td><span class="schedule-class">5:45 PM</span></td>
+                            <td>--</td>
+                            <td>
+                                <span class="schedule-class">Dragon Squad</span>
+                                <span class="schedule-tag schedule-tag--dragon">7-12</span>
+                            </td>
+                            <td>--</td>
+                            <td>
+                                <span class="schedule-class">Dragon Squad</span>
+                                <span class="schedule-tag schedule-tag--dragon">7-12</span>
+                            </td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td><span class="schedule-class">6:30 PM</span></td>
+                            <td>
+                                <span class="schedule-class">GTMA Athlete</span>
+                                <span class="schedule-tag schedule-tag--athlete">13+</span>
+                            </td>
+                            <td>
+                                <span class="schedule-class">GTMA Athlete</span>
+                                <span class="schedule-tag schedule-tag--athlete">13+</span>
+                            </td>
+                            <td>
+                                <span class="schedule-class">GTMA Athlete</span>
+                                <span class="schedule-tag schedule-tag--athlete">13+</span>
+                            </td>
+                            <td>
+                                <span class="schedule-class">GTMA Athlete</span>
+                                <span class="schedule-tag schedule-tag--athlete">13+</span>
+                            </td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td><span class="schedule-class">7:30 PM</span></td>
+                            <td>
+                                <span class="schedule-class">GShim Weapons</span>
+                                <span class="schedule-tag schedule-tag--weapons">Advanced</span>
+                            </td>
+                            <td>--</td>
+                            <td>
+                                <span class="schedule-class">Sparring Lab</span>
+                                <span class="schedule-tag schedule-tag--athlete">13+</span>
+                            </td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="schedule-note animate-on-scroll delay-2">
+                Schedule subject to change. Contact us for the most up-to-date class times and availability.
+            </p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ============================================================
+         TESTIMONIALS SECTION
+         ============================================================ -->
+    <section class="section section--alt" id="testimonials">
+        <div class="container">
+            <div class="text-center animate-on-scroll">
+                <div class="section-label">Testimonials</div>
+                <h2 class="section-title">What Our Families Say</h2>
+                <p class="section-subtitle">
+                    Real stories from real families whose lives have been transformed through training at Iron Phoenix.
+                </p>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card animate-on-scroll delay-1">
+                    <div class="testimonial-card__quote-icon">"</div>
+                    <div class="testimonial-card__stars">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+                    <p class="testimonial-card__text">
+                        My son started in Shadow Moogi at age 5 and the transformation has been incredible. His confidence, focus, and respect at home and school have improved beyond what I imagined. The instructors genuinely care about every child's development.
+                    </p>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar">SM</div>
+                        <div>
+                            <div class="testimonial-card__name">Sarah Mitchell</div>
+                            <div class="testimonial-card__role">Parent of Dragon Squad student</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card animate-on-scroll delay-2">
+                    <div class="testimonial-card__quote-icon">"</div>
+                    <div class="testimonial-card__stars">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+                    <p class="testimonial-card__text">
+                        I joined the GTMA Athlete program as a complete beginner at 35. The instructors made me feel welcome from day one. Two years later, I earned my blue belt and I am in the best shape of my life. Iron Phoenix is more than a gym -- it is a family.
+                    </p>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar">DR</div>
+                        <div>
+                            <div class="testimonial-card__name">David Ramirez</div>
+                            <div class="testimonial-card__role">Adult GTMA Athlete</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card animate-on-scroll delay-3">
+                    <div class="testimonial-card__quote-icon">"</div>
+                    <div class="testimonial-card__stars">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+                    <p class="testimonial-card__text">
+                        Both of my daughters train here and the GShim weapons program has been a highlight for our oldest. The discipline and structure at Iron Phoenix carries over into everything they do. We could not recommend this school more highly.
+                    </p>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar">JT</div>
+                        <div>
+                            <div class="testimonial-card__name">Jennifer Torres</div>
+                            <div class="testimonial-card__role">Parent of two students</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ============================================================
+         INSTRUCTORS SECTION
+         ============================================================ -->
+    <section class="section" id="instructors">
+        <div class="container">
+            <div class="text-center animate-on-scroll">
+                <div class="section-label">Our Team</div>
+                <h2 class="section-title">Meet Your Instructors</h2>
+                <p class="section-subtitle">
+                    Our certified GTMA instructors bring decades of combined experience, a passion for teaching, and genuine dedication to every student's journey.
+                </p>
+            </div>
+
+            <div class="instructors-grid">
+                <!-- Instructor 1 -->
+                <div class="instructor-card animate-on-scroll delay-1">
+                    <div class="instructor-card__image">
+                        <svg class="instructor-card__silhouette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <div class="instructor-card__body">
+                        <span class="instructor-card__rank">7th Dan</span>
+                        <h3 class="instructor-card__name">Master James Chen</h3>
+                        <div class="instructor-card__title">Head Instructor &amp; School Founder</div>
+                        <div class="instructor-card__specialties">
+                            <span class="specialty-tag">GShim Taekwondo</span>
+                            <span class="specialty-tag">Weapons</span>
+                            <span class="specialty-tag">Self-Defense</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instructor 2 -->
+                <div class="instructor-card animate-on-scroll delay-2">
+                    <div class="instructor-card__image">
+                        <svg class="instructor-card__silhouette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <div class="instructor-card__body">
+                        <span class="instructor-card__rank">5th Dan</span>
+                        <h3 class="instructor-card__name">Instructor Maria Gonzalez</h3>
+                        <div class="instructor-card__title">Youth Programs Director</div>
+                        <div class="instructor-card__specialties">
+                            <span class="specialty-tag">Shadow Moogi</span>
+                            <span class="specialty-tag">Dragon Squad</span>
+                            <span class="specialty-tag">Forms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instructor 3 -->
+                <div class="instructor-card animate-on-scroll delay-3">
+                    <div class="instructor-card__image">
+                        <svg class="instructor-card__silhouette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <div class="instructor-card__body">
+                        <span class="instructor-card__rank">4th Dan</span>
+                        <h3 class="instructor-card__name">Instructor Kyle Washington</h3>
+                        <div class="instructor-card__title">Competition Coach &amp; Fitness Lead</div>
+                        <div class="instructor-card__specialties">
+                            <span class="specialty-tag">Sparring</span>
+                            <span class="specialty-tag">Competition</span>
+                            <span class="specialty-tag">Fitness</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ============================================================
+         CONTACT SECTION
+         ============================================================ -->
+    <section class="section section--alt" id="contact">
+        <div class="container">
+            <div class="text-center animate-on-scroll">
+                <div class="section-label">Get Started</div>
+                <h2 class="section-title">Begin Your Journey Today</h2>
+                <p class="section-subtitle">
+                    Schedule your free trial class and experience the Iron Phoenix difference. No obligation, no pressure -- just an introduction to a life-changing journey.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Contact Info & Map -->
+                <div class="animate-on-scroll delay-1">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-item__icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-item__label">Address</div>
+                                <div class="contact-item__value">4812 South Lamar Blvd, Suite 200</div>
+                                <div class="contact-item__detail">Austin, TX 78745</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-item__icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-item__label">Phone</div>
+                                <div class="contact-item__value">
+                                    <a href="tel:+15127891234">(512) 789-1234</a>
+                                </div>
+                                <div class="contact-item__detail">Call or text anytime</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-item__icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-item__label">Email</div>
+                                <div class="contact-item__value">
+                                    <a href="mailto:info@ironphoenixma.com">info@ironphoenixma.com</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-item__icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-item__label">Hours</div>
+                                <div class="contact-item__value">Mon - Fri: 3:30 PM - 9:00 PM</div>
+                                <div class="contact-item__detail">Saturday: 9:00 AM - 12:00 PM</div>
+                                <div class="contact-item__detail">Sunday: Closed</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Placeholder -->
+                    <div class="map-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span>Interactive Map - 4812 S Lamar Blvd, Austin, TX</span>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form animate-on-scroll delay-2">
+                    <h3 class="contact-form__title">Schedule Your Free Trial</h3>
+                    <p class="contact-form__subtitle">Fill out the form below and we will reach out to schedule your complimentary introductory class.</p>
+
+                    <form action="#" method="POST" onsubmit="event.preventDefault(); alert('This is a demo prototype. In a live site, this form would submit to the server.'); return false;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="first-name">First Name *</label>
+                                <input class="form-input" type="text" id="first-name" name="first_name" placeholder="Your first name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="last-name">Last Name *</label>
+                                <input class="form-input" type="text" id="last-name" name="last_name" placeholder="Your last name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email *</label>
+                                <input class="form-input" type="email" id="email" name="email" placeholder="you@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="phone">Phone</label>
+                                <input class="form-input" type="tel" id="phone" name="phone" placeholder="(512) 555-0000">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="program">Interested Program</label>
+                            <select class="form-select" id="program" name="program">
+                                <option value="">Select a program...</option>
+                                <option value="shadow-moogi">Shadow Moogi (Ages 4-6)</option>
+                                <option value="dragon-squad">Dragon Squad (Ages 7-12)</option>
+                                <option value="gtma-athlete">GTMA Athlete (Ages 13+)</option>
+                                <option value="weapons">GShim Weapons Training</option>
+                                <option value="not-sure">Not Sure Yet</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea class="form-textarea" id="message" name="message" placeholder="Tell us about yourself or your child, any experience level, and any questions you have..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary" style="width:100%;">
+                            Request Free Trial
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <!-- Brand -->
+                <div class="footer__brand">
+                    <a href="#hero" class="header__logo" aria-label="Iron Phoenix Martial Arts">
+                        <svg class="header__logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px;">
+                            <path d="M24 4C24 4 16 12 16 20C16 24.4 18.4 28.4 22 30.8V40L18 44H24V46H24V44H30L26 40V30.8C29.6 28.4 32 24.4 32 20C32 12 24 4 24 4Z" fill="#c41e3a"/>
+                            <path d="M24 4C24 4 20 10 20 18C20 22 22 26 24 28C26 26 28 22 28 18C28 10 24 4 24 4Z" fill="#e63946"/>
+                            <circle cx="24" cy="18" r="2.5" fill="#0a0a0a"/>
+                        </svg>
+                        <div class="header__logo-text" style="font-size:1.2rem;">
+                            Iron <span>Phoenix</span>
+                        </div>
+                    </a>
+                    <p>
+                        Austin's premier GShim Taekwondo academy. Proudly affiliated with GTMA, empowering warriors of all ages through traditional martial arts excellence.
+                    </p>
+                    <div class="footer__social">
+                        <!-- Facebook -->
+                        <a href="#" class="footer__social-link" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="#" class="footer__social-link" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </a>
+                        <!-- YouTube -->
+                        <a href="#" class="footer__social-link" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#0a0a0a"/>
+                            </svg>
+                        </a>
+                        <!-- TikTok -->
+                        <a href="#" class="footer__social-link" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.85a8.16 8.16 0 004.76 1.52V6.92a4.84 4.84 0 01-1-.23z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="footer__heading">Quick Links</h4>
+                    <div class="footer__links">
+                        <a href="#programs" class="footer__link">Programs</a>
+                        <a href="#schedule" class="footer__link">Class Schedule</a>
+                        <a href="#instructors" class="footer__link">Instructors</a>
+                        <a href="#testimonials" class="footer__link">Reviews</a>
+                        <a href="#contact" class="footer__link">Free Trial</a>
+                    </div>
+                </div>
+
+                <!-- Programs -->
+                <div>
+                    <h4 class="footer__heading">Programs</h4>
+                    <div class="footer__links">
+                        <a href="#programs" class="footer__link">Shadow Moogi (4-6)</a>
+                        <a href="#programs" class="footer__link">Dragon Squad (7-12)</a>
+                        <a href="#programs" class="footer__link">GTMA Athlete (13+)</a>
+                        <a href="#programs" class="footer__link">GShim Weapons</a>
+                        <a href="#schedule" class="footer__link">Family Classes</a>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="footer__heading">Contact</h4>
+                    <div class="footer__links">
+                        <a href="tel:+15127891234" class="footer__link">(512) 789-1234</a>
+                        <a href="mailto:info@ironphoenixma.com" class="footer__link">info@ironphoenixma.com</a>
+                        <span class="footer__link" style="cursor:default;">4812 S Lamar Blvd #200</span>
+                        <span class="footer__link" style="cursor:default;">Austin, TX 78745</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <div class="footer__copyright">
+                    &copy; 2026 Iron Phoenix Martial Arts. All rights reserved. A GTMA Affiliate School.
+                </div>
+                <div class="footer__legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Waiver</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+         FLOATING CTA
+         ============================================================ -->
+    <div class="floating-cta" id="floatingCta">
+        <a href="#contact" class="floating-cta__btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            Free Trial
+        </a>
+    </div>
+
+    <!-- ============================================================
+         BACK TO TOP
+         ============================================================ -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"/>
+        </svg>
+    </button>
+
+    <!-- ============================================================
+         JAVASCRIPT
+         ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---- Header scroll effect ----
+            const header = document.getElementById('header');
+            const heroSection = document.getElementById('hero');
+
+            function updateHeader() {
+                if (window.scrollY > 50) {
+                    header.classList.add('is-scrolled');
+                } else {
+                    header.classList.remove('is-scrolled');
+                }
+            }
+
+            window.addEventListener('scroll', updateHeader, { passive: true });
+            updateHeader();
+
+            // ---- Mobile hamburger menu ----
+            const hamburger = document.getElementById('hamburger');
+            const nav = document.getElementById('nav');
+
+            hamburger.addEventListener('click', function() {
+                const isOpen = nav.classList.toggle('is-open');
+                hamburger.classList.toggle('is-active');
+                hamburger.setAttribute('aria-expanded', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            // Close nav when a link is clicked
+            nav.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('is-open');
+                    hamburger.classList.remove('is-active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // ---- Floating CTA visibility ----
+            const floatingCta = document.getElementById('floatingCta');
+
+            function updateFloatingCta() {
+                var heroBottom = heroSection.getBoundingClientRect().bottom;
+                if (heroBottom < 0) {
+                    floatingCta.classList.add('is-visible');
+                } else {
+                    floatingCta.classList.remove('is-visible');
+                }
+            }
+
+            window.addEventListener('scroll', updateFloatingCta, { passive: true });
+            updateFloatingCta();
+
+            // ---- Back to top button ----
+            var backToTop = document.getElementById('backToTop');
+
+            function updateBackToTop() {
+                if (window.scrollY > 600) {
+                    backToTop.classList.add('is-visible');
+                } else {
+                    backToTop.classList.remove('is-visible');
+                }
+            }
+
+            window.addEventListener('scroll', updateBackToTop, { passive: true });
+            updateBackToTop();
+
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ---- Scroll animations (IntersectionObserver) ----
+            var animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -40px 0px'
+                });
+
+                animatedElements.forEach(function(el) {
+                    observer.observe(el);
+                });
+            } else {
+                // Fallback: show all elements immediately
+                animatedElements.forEach(function(el) {
+                    el.classList.add('is-visible');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
