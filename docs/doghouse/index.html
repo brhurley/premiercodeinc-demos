@@ -4,587 +4,1316 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>The Dog House All Breed Grooming - Website Design Proposals | Premier Code, Inc.</title>
-    <meta name="description" content="Website design proposals for The Dog House All Breed Grooming by Premier Code, Inc.">
+    <title>The Dog House All Breed Grooming — Website Design Concepts | Premier Code, Inc.</title>
+    <meta name="description" content="Website design concepts prepared exclusively for The Dog House All Breed Grooming by Premier Code, Inc.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 
     <style>
+        /* ============================================
+           RESET & FOUNDATIONS
+           ============================================ */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --color-bg: #faf9f7;
-            --color-surface: #ffffff;
-            --color-dark: #2c1810;
-            --color-dark-alt: #3d2317;
-            --color-primary: #c0392b;
-            --color-primary-hover: #a93226;
-            --color-accent: #e74c3c;
-            --color-warm: #d4a574;
-            --color-text: #3a3a3a;
-            --color-text-muted: #7a7a7a;
-            --color-border: #e8e4df;
-            --color-border-light: #f0ece7;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
-            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
-            --shadow-lg: 0 8px 30px rgba(0,0,0,0.1);
-            --shadow-xl: 0 20px 60px rgba(0,0,0,0.12);
-            --radius-sm: 8px;
-            --radius-md: 12px;
+            --bg: #FAF8F5;
+            --surface: #FFFFFF;
+            --dark: #2C1810;
+            --body-text: #4A3B32;
+            --muted: #8B7D72;
+            --accent: #C49A6C;
+            --accent-light: #D4A574;
+            --accent-subtle: rgba(196, 154, 108, 0.12);
+            --border: #EDE6DD;
+            --border-light: #F3EDE6;
+
+            /* Concept accent colors */
+            --warm-gold: #B8860B;
+            --heritage-rose: #C4917B;
+            --coastal-sage: #4a7c59;
+
+            /* Typography */
+            --font-display: 'Cormorant Garamond', 'Georgia', serif;
+            --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --space-4xl: 6rem;
+            --space-5xl: 8rem;
+
+            /* Radii */
+            --radius-sm: 6px;
+            --radius-md: 10px;
             --radius-lg: 16px;
-            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --radius-xl: 20px;
+
+            /* Shadows */
+            --shadow-subtle: 0 1px 3px rgba(44, 24, 16, 0.04);
+            --shadow-card: 0 4px 24px rgba(44, 24, 16, 0.06), 0 1px 2px rgba(44, 24, 16, 0.04);
+            --shadow-card-hover: 0 12px 40px rgba(44, 24, 16, 0.1), 0 4px 12px rgba(44, 24, 16, 0.06);
+            --shadow-elevated: 0 20px 60px rgba(44, 24, 16, 0.12);
+
+            /* Transitions */
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-fast: 200ms;
+            --duration-base: 350ms;
+            --duration-slow: 600ms;
         }
 
-        html { font-size: 16px; scroll-behavior: smooth; }
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
 
         body {
-            font-family: var(--font-family);
-            color: var(--color-text);
-            background: var(--color-bg);
+            font-family: var(--font-body);
+            color: var(--body-text);
+            background: var(--bg);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
 
-        /* Header */
+        img { max-width: 100%; display: block; }
+        a { color: inherit; }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: var(--space-md);
+            background: var(--dark);
+            color: #fff;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            z-index: 1000;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus {
+            top: var(--space-md);
+        }
+
+        /* ============================================
+           OVERLINE — Signature typographic device
+           ============================================ */
+        .overline {
+            font-family: var(--font-body);
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* ============================================
+           DECORATIVE DIVIDER
+           ============================================ */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-md);
+            padding: var(--space-md) 0;
+        }
+        .divider::before,
+        .divider::after {
+            content: '';
+            height: 1px;
+            width: 60px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+        .divider__icon {
+            color: var(--accent);
+            opacity: 0.6;
+        }
+        .divider__icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ============================================
+           HEADER — Frosted glass
+           ============================================ */
         .site-header {
-            background: var(--color-dark);
-            color: #ffffff;
-            padding: 0.75rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            background: rgba(44, 24, 16, 0.92);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .header-inner {
-            max-width: 1200px;
+            max-width: 1120px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0.625rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .logo {
+        .header-logo {
             display: flex;
             align-items: center;
             text-decoration: none;
         }
 
-        .logo img {
-            height: 40px;
+        .header-logo img {
+            height: 36px;
             width: auto;
         }
 
-        .header-tagline {
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.5);
-            font-weight: 400;
-            letter-spacing: 1.5px;
+        .header-label {
+            font-family: var(--font-body);
+            font-size: 0.625rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
         }
 
-        /* Hero */
+        @supports not (backdrop-filter: blur(1px)) {
+            .site-header {
+                background: rgba(44, 24, 16, 0.98);
+            }
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
         .hero {
-            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-alt) 40%, #5a2d1a 100%);
-            color: #ffffff;
-            padding: 4rem 1.5rem 5rem;
-            text-align: center;
             position: relative;
+            padding: var(--space-4xl) var(--space-lg) var(--space-5xl);
+            text-align: center;
             overflow: hidden;
+            background: var(--bg);
         }
 
+        /* Subtle warm radial gradients for atmosphere */
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 60%, rgba(212,165,116,0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 40%, rgba(231,76,60,0.06) 0%, transparent 50%);
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 25% 20%, rgba(196, 154, 108, 0.1) 0%, transparent 60%),
+                radial-gradient(ellipse at 75% 80%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(196, 154, 108, 0.03) 0%, transparent 80%);
             pointer-events: none;
         }
 
         .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
             position: relative;
             z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
         }
 
-        .hero-badge {
-            display: inline-block;
-            background: rgba(212,165,116,0.15);
-            border: 1px solid rgba(212,165,116,0.3);
-            color: var(--color-warm);
-            padding: 0.4rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
+        .hero-content > * {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero-content.revealed > * {
+            animation: heroFadeIn var(--duration-slow) var(--ease-out) forwards;
+        }
+        .hero-content.revealed > *:nth-child(1) { animation-delay: 0ms; }
+        .hero-content.revealed > *:nth-child(2) { animation-delay: 120ms; }
+        .hero-content.revealed > *:nth-child(3) { animation-delay: 240ms; }
+        .hero-content.revealed > *:nth-child(4) { animation-delay: 360ms; }
+        .hero-content.revealed > *:nth-child(5) { animation-delay: 480ms; }
+
+        @keyframes heroFadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-logo-wrap {
+            margin-bottom: var(--space-xl);
         }
 
         .hero-logo {
-            width: 100px;
+            width: 130px;
             height: auto;
-            margin-bottom: 1.5rem;
-            border-radius: 12px;
+            margin: 0 auto;
+            border-radius: var(--radius-lg);
+            box-shadow:
+                0 8px 32px rgba(196, 154, 108, 0.2),
+                0 2px 8px rgba(44, 24, 16, 0.08);
+        }
+
+        .hero-overline {
+            margin-bottom: var(--space-lg);
         }
 
         .hero h1 {
-            font-size: clamp(1.8rem, 4.5vw, 2.8rem);
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
+            font-family: var(--font-display);
+            font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+            font-weight: 600;
+            line-height: 1.15;
+            color: var(--dark);
+            letter-spacing: -0.01em;
+            margin-bottom: var(--space-lg);
         }
 
-        .hero h1 span { color: var(--color-warm); }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
 
-        .hero p {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.7);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            line-height: 1.7;
+        .hero-subtitle {
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto var(--space-2xl);
+            line-height: 1.75;
         }
 
         .hero-meta {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: var(--space-2xl);
             flex-wrap: wrap;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.45);
         }
 
-        .hero-meta span {
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .hero-meta-value {
+            font-family: var(--font-display);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .hero-meta-label {
+            font-size: 0.6875rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ============================================
+           SECTION LAYOUT
+           ============================================ */
+        .section {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+
+        .section-intro {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+        }
+
+        .section-intro .overline {
+            display: block;
+            margin-bottom: var(--space-sm);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-weight: 600;
+            color: var(--dark);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            margin-bottom: var(--space-md);
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--muted);
+            max-width: 540px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           CONCEPT CARDS — The heart of the page
+           ============================================ */
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+            margin-bottom: var(--space-5xl);
+        }
+
+        .concept-card {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-card);
+            transition:
+                transform var(--duration-base) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-out);
+            /* For scroll reveal */
+            opacity: 0;
+            transform: translateY(32px);
+        }
+
+        .concept-card.revealed {
+            animation: cardReveal var(--duration-slow) var(--ease-out) forwards;
+        }
+        .concept-card.revealed:nth-child(1) { animation-delay: 0ms; }
+        .concept-card.revealed:nth-child(2) { animation-delay: 120ms; }
+        .concept-card.revealed:nth-child(3) { animation-delay: 240ms; }
+
+        @keyframes cardReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .concept-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        /* Browser mockup frame */
+        .concept-preview {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-browser-bar {
+            background: #F0EBE5;
+            padding: 10px 14px;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 6px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .hero-meta svg {
-            width: 16px;
-            height: 16px;
-            opacity: 0.6;
+        .concept-browser-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #D4CCC3;
         }
 
-        /* Main Content */
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
+        .concept-browser-dot:first-child { background: #E8B4B4; }
+        .concept-browser-dot:nth-child(2) { background: #E8D8B4; }
+        .concept-browser-dot:nth-child(3) { background: #B4D8B4; }
+
+        .concept-browser-url {
+            margin-left: 8px;
+            font-size: 0.625rem;
+            color: var(--muted);
+            background: rgba(44, 24, 16, 0.04);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-family: var(--font-body);
+            letter-spacing: 0.01em;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--color-dark);
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.3px;
-        }
-
-        .section-header p {
-            font-size: 1.05rem;
-            color: var(--color-text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Example Cards */
-        .examples-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .example-card {
-            background: var(--color-surface);
-            border-radius: var(--radius-lg);
+        .concept-screenshot-wrap {
+            height: 290px;
             overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid var(--color-border-light);
-        }
-
-        .example-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .example-preview {
             position: relative;
-            height: 220px;
-            overflow: hidden;
         }
 
-        .example-preview-bg {
+        .concept-screenshot {
             width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            transition: transform 0.4s ease;
+            height: auto;
+            display: block;
+            transition: transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(0);
         }
 
-        .example-card:hover .example-preview-bg {
-            transform: scale(1.03);
+        .concept-card:hover .concept-screenshot {
+            transform: translateY(-30%);
         }
 
-        .ex-warm .example-preview-bg {
-            background: linear-gradient(135deg, #fdf6ee 0%, #f5e6d3 50%, #e8d5c0 100%);
-        }
-
-        .ex-heritage .example-preview-bg {
-            background: linear-gradient(135deg, #FAF7F2 0%, #F0E0D6 40%, #C4917B 100%);
-        }
-
-        .ex-coastal .example-preview-bg {
-            background: linear-gradient(135deg, #f0f7f4 0%, #d5e8de 50%, #a7c7b8 100%);
-        }
-
-        .example-number {
+        /* Fade-out gradient at bottom of screenshot */
+        .concept-screenshot-wrap::after {
+            content: '';
             position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-            color: #ffffff;
-            padding: 0.35rem 0.85rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, var(--surface) 0%, transparent 100%);
+            pointer-events: none;
+            transition: opacity var(--duration-base) ease;
+        }
+
+        .concept-card:hover .concept-screenshot-wrap::after {
+            opacity: 0;
+        }
+
+        /* Concept card body */
+        .concept-body {
+            padding: var(--space-lg) var(--space-xl) var(--space-xl);
+        }
+
+        /* Concept indicator — thin accent bar at top of body */
+        .concept-indicator {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .concept-indicator-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .concept-indicator-label {
+            font-size: 0.6875rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
-        .example-body {
-            padding: 1.5rem;
+        /* Concept-specific tints */
+        .concept-card--warm .concept-body {
+            background: linear-gradient(180deg, rgba(184, 134, 11, 0.03) 0%, transparent 60%);
+        }
+        .concept-card--warm .concept-indicator-dot { background: var(--warm-gold); }
+        .concept-card--warm .concept-indicator-label { color: var(--warm-gold); }
+
+        .concept-card--heritage .concept-body {
+            background: linear-gradient(180deg, rgba(196, 145, 123, 0.05) 0%, transparent 60%);
+        }
+        .concept-card--heritage .concept-indicator-dot { background: var(--heritage-rose); }
+        .concept-card--heritage .concept-indicator-label { color: var(--heritage-rose); }
+
+        .concept-card--coastal .concept-body {
+            background: linear-gradient(180deg, rgba(74, 124, 89, 0.04) 0%, transparent 60%);
+        }
+        .concept-card--coastal .concept-indicator-dot { background: var(--coastal-sage); }
+        .concept-card--coastal .concept-indicator-label { color: var(--coastal-sage); }
+
+        /* Concept name — styled per-concept */
+        .concept-name {
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.375rem;
+            line-height: 1.3;
         }
 
-        .example-body h3 {
-            font-size: 1.25rem;
+        .concept-card--warm .concept-name {
+            font-family: 'Playfair Display', var(--font-display);
+        }
+        .concept-card--heritage .concept-name {
+            font-family: 'DM Serif Display', var(--font-display);
+        }
+        .concept-card--coastal .concept-name {
+            font-family: 'Cormorant Garamond', var(--font-display);
             font-weight: 700;
-            color: var(--color-dark);
-            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
         }
 
-        .example-body .subtitle {
-            font-size: 0.85rem;
-            color: var(--color-text-muted);
-            margin-bottom: 1rem;
+        .concept-tagline {
+            font-size: 0.875rem;
+            color: var(--muted);
+            margin-bottom: var(--space-lg);
+            line-height: 1.6;
         }
 
-        .example-features {
+        .concept-features {
             list-style: none;
-            margin-bottom: 1.25rem;
+            margin-bottom: var(--space-lg);
         }
 
-        .example-features li {
-            font-size: 0.85rem;
-            color: var(--color-text);
+        .concept-features li {
+            font-size: 0.8125rem;
+            color: var(--body-text);
             padding: 0.3rem 0;
             display: flex;
             align-items: flex-start;
             gap: 0.5rem;
+            line-height: 1.5;
         }
 
-        .example-features li::before {
+        .concept-features li::before {
             content: '';
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
-            background: var(--color-accent);
-            margin-top: 0.5rem;
             flex-shrink: 0;
+            margin-top: 0.45rem;
         }
 
-        .example-tags {
+        .concept-card--warm .concept-features li::before { background: var(--warm-gold); }
+        .concept-card--heritage .concept-features li::before { background: var(--heritage-rose); }
+        .concept-card--coastal .concept-features li::before { background: var(--coastal-sage); }
+
+        .concept-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-bottom: 1.25rem;
+            gap: 0.375rem;
+            margin-bottom: var(--space-lg);
         }
 
-        .example-tag {
-            font-size: 0.7rem;
-            padding: 0.25rem 0.6rem;
+        .concept-tag {
+            font-size: 0.6875rem;
+            padding: 0.25rem 0.625rem;
             border-radius: 50px;
-            background: var(--color-bg);
-            color: var(--color-text-muted);
+            background: var(--bg);
+            color: var(--muted);
             font-weight: 500;
-            border: 1px solid var(--color-border-light);
+            border: 1px solid var(--border-light);
         }
 
+        /* CTA buttons — concept-colored */
         .btn-view {
-            display: inline-flex;
+            display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
-            background: var(--color-primary);
             color: #ffffff;
             text-decoration: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: var(--radius-sm);
-            font-size: 0.9rem;
+            padding: 0.75rem var(--space-lg);
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 0.8125rem;
             font-weight: 600;
-            transition: background 0.2s ease;
+            letter-spacing: 0.02em;
+            transition:
+                background var(--duration-fast) ease,
+                transform var(--duration-fast) ease,
+                box-shadow var(--duration-fast) ease;
             width: 100%;
-            justify-content: center;
         }
-
-        .btn-view:hover { background: var(--color-primary-hover); }
 
         .btn-view svg {
-            width: 16px;
-            height: 16px;
-            transition: transform 0.2s ease;
+            width: 15px;
+            height: 15px;
+            transition: transform var(--duration-fast) ease;
         }
 
-        .btn-view:hover svg { transform: translateX(3px); }
-
-        /* Business Info */
-        .business-info {
-            background: var(--color-surface);
-            border-radius: var(--radius-lg);
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            border: 1px solid var(--color-border-light);
-            box-shadow: var(--shadow-sm);
+        .btn-view:hover svg {
+            transform: translateX(3px);
         }
 
-        .business-info h2 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--color-dark);
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--color-border-light);
+        .btn-view--warm {
+            background: var(--warm-gold);
+            box-shadow: 0 2px 8px rgba(184, 134, 11, 0.25);
+        }
+        .btn-view--warm:hover {
+            background: #9A7209;
+            box-shadow: 0 4px 16px rgba(184, 134, 11, 0.3);
         }
 
-        .info-grid {
+        .btn-view--heritage {
+            background: var(--heritage-rose);
+            box-shadow: 0 2px 8px rgba(196, 145, 123, 0.3);
+        }
+        .btn-view--heritage:hover {
+            background: #A87968;
+            box-shadow: 0 4px 16px rgba(196, 145, 123, 0.35);
+        }
+
+        .btn-view--coastal {
+            background: var(--coastal-sage);
+            box-shadow: 0 2px 8px rgba(74, 124, 89, 0.3);
+        }
+        .btn-view--coastal:hover {
+            background: #3B6548;
+            box-shadow: 0 4px 16px rgba(74, 124, 89, 0.35);
+        }
+
+        /* ============================================
+           BUSINESS OVERVIEW — Editorial layout
+           ============================================ */
+        .business-section {
+            padding-bottom: var(--space-5xl);
+        }
+
+        .business-strip {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            /* scroll reveal */
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        .business-strip.revealed {
+            animation: cardReveal var(--duration-slow) var(--ease-out) forwards;
+        }
+
+        .business-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 280px 1fr;
+            min-height: 0;
         }
 
-        .info-card {
-            background: var(--color-bg);
-            border-radius: var(--radius-md);
-            padding: 1.25rem;
-            border: 1px solid var(--color-border-light);
+        .business-heritage {
+            background: linear-gradient(135deg, var(--dark) 0%, #3D2518 100%);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-3xl) var(--space-xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .info-card h4 {
-            font-size: 0.75rem;
+        .business-heritage::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 30%, rgba(196, 154, 108, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .business-heritage-overline {
+            font-family: var(--font-body);
+            font-size: 0.625rem;
             font-weight: 600;
-            color: var(--color-text-muted);
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
+            position: relative;
         }
 
-        .info-card p {
-            font-size: 0.9rem;
-            color: var(--color-dark);
+        .business-heritage-year {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            position: relative;
+            margin-bottom: var(--space-sm);
+        }
+
+        .business-heritage-sub {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.5);
+            position: relative;
+        }
+
+        .business-details {
+            padding: var(--space-2xl) var(--space-2xl);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl) var(--space-2xl);
+            align-content: center;
+        }
+
+        .business-detail {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .business-detail-label {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .business-detail-value {
+            font-size: 0.9375rem;
+            color: var(--dark);
             font-weight: 500;
             line-height: 1.5;
         }
 
-        /* Footer */
-        .site-footer {
-            background: var(--color-dark);
-            color: rgba(255,255,255,0.5);
-            text-align: center;
-            padding: 2rem 1.5rem;
-            font-size: 0.8rem;
-        }
-
-        .site-footer a {
-            color: var(--color-warm);
+        .business-detail-value a {
+            color: var(--accent);
             text-decoration: none;
+            border-bottom: 1px solid rgba(196, 154, 108, 0.3);
+            transition: border-color var(--duration-fast) ease;
         }
 
-        /* Responsive */
+        .business-detail-value a:hover {
+            border-color: var(--accent);
+        }
+
+        .business-detail--reputation {
+            grid-column: span 2;
+        }
+
+        .reputation-badges {
+            display: flex;
+            gap: var(--space-lg);
+            flex-wrap: wrap;
+            margin-top: var(--space-xs);
+        }
+
+        .reputation-badge {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 0.8125rem;
+            color: var(--body-text);
+            font-weight: 500;
+        }
+
+        .reputation-stars {
+            display: flex;
+            gap: 1px;
+            color: var(--warm-gold);
+        }
+
+        .reputation-stars svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .site-footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.35);
+            padding: var(--space-2xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .footer-logo {
+            height: 28px;
+            width: auto;
+            opacity: 0.5;
+            transition: opacity var(--duration-fast) ease;
+        }
+
+        .footer-logo:hover { opacity: 0.7; }
+
+        .footer-text {
+            font-size: 0.75rem;
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+        }
+
+        .footer-text a {
+            color: var(--accent-light);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(212, 165, 116, 0.3);
+            transition: border-color var(--duration-fast) ease;
+        }
+
+        .footer-text a:hover {
+            border-color: var(--accent-light);
+        }
+
+        .footer-divider {
+            width: 40px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* ============================================
+           RESPONSIVE — 1024px
+           ============================================ */
+        @media (max-width: 1024px) {
+            .concepts-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: var(--space-lg);
+            }
+
+            .concept-body {
+                padding: var(--space-md) var(--space-lg) var(--space-lg);
+            }
+
+            .business-layout {
+                grid-template-columns: 220px 1fr;
+            }
+
+            .business-heritage-year {
+                font-size: 3.25rem;
+            }
+        }
+
+        /* ============================================
+           RESPONSIVE — 768px
+           ============================================ */
         @media (max-width: 768px) {
-            .hero { padding: 3rem 1.5rem 4rem; }
-            .hero-meta { gap: 1rem; }
-            .examples-grid { grid-template-columns: 1fr; }
-            .info-grid { grid-template-columns: 1fr; }
+            .hero {
+                padding: var(--space-3xl) var(--space-lg) var(--space-4xl);
+            }
+
+            .hero-meta {
+                gap: var(--space-lg);
+            }
+
+            .concepts-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .business-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .business-heritage {
+                padding: var(--space-2xl) var(--space-xl);
+            }
+
+            .business-heritage-year {
+                font-size: 3.5rem;
+            }
+
+            .business-details {
+                padding: var(--space-xl);
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .business-detail--reputation {
+                grid-column: span 2;
+            }
+        }
+
+        /* ============================================
+           RESPONSIVE — 480px
+           ============================================ */
+        @media (max-width: 480px) {
+            .hero {
+                padding: var(--space-2xl) var(--space-md) var(--space-3xl);
+            }
+
+            .hero-logo {
+                width: 100px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: var(--space-md);
+                align-items: center;
+            }
+
+            .concept-screenshot-wrap {
+                height: 240px;
+            }
+
+            .business-details {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+
+            .business-detail--reputation {
+                grid-column: span 1;
+            }
+
+            .reputation-badges {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+
+            .concept-body {
+                padding: var(--space-md) var(--space-lg) var(--space-lg);
+            }
+        }
+
+        /* ============================================
+           PREFERS-REDUCED-MOTION
+           ============================================ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .hero-content > *,
+            .concept-card,
+            .business-strip {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .concept-card:hover .concept-screenshot {
+                transform: none;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="site-header">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ============================================
+         HEADER
+         ============================================ -->
+    <header class="site-header" role="banner">
         <div class="header-inner">
-            <a href="https://premiercodeinc.com" class="logo">
-                <img src="../premiercode/img/PremierCodeInc_300_white_outlined.png" alt="Premier Code, Inc.">
+            <a href="https://premiercodeinc.com" class="header-logo" aria-label="Premier Code, Inc. homepage">
+                <img src="../premiercode/img/PremierCodeInc_300_white_outlined.png" alt="Premier Code, Inc." width="140" height="36">
             </a>
-            <span class="header-tagline">Website Design Proposal</span>
+            <span class="header-label">Design Proposal</span>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <span class="hero-badge">Proposal</span>
-            <div>
-                <img src="doghouse-logo.jpg" alt="The Dog House All Breed Grooming" class="hero-logo">
+    <!-- ============================================
+         HERO
+         ============================================ -->
+    <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-content" id="hero-content">
+            <div class="hero-logo-wrap">
+                <img src="doghouse-logo.jpg" alt="The Dog House All Breed Grooming logo" class="hero-logo" width="130" height="130">
             </div>
-            <h1>Website Redesign for <span>The Dog House</span></h1>
-            <p>Three professional homepage concepts for The Dog House All Breed Grooming — serving the Garland, TX community with expert pet care since 1984.</p>
-            <div class="hero-meta">
-                <span>
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-                    3 Design Concepts
-                </span>
-                <span>
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    March 2026
-                </span>
-                <span>
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                    Premier Code, Inc.
-                </span>
+
+            <p class="overline hero-overline">Prepared Exclusively for Rick Holloway</p>
+
+            <h1 id="hero-heading">Website Redesign for<br><em>The Dog House</em></h1>
+
+            <p class="hero-subtitle">Three bespoke homepage concepts capturing 40 years of trusted pet grooming — crafted to elevate your digital presence and welcome the next generation of loyal clients.</p>
+
+            <div class="hero-meta" role="list">
+                <div class="hero-meta-item" role="listitem">
+                    <span class="hero-meta-value">3</span>
+                    <span class="hero-meta-label">Concepts</span>
+                </div>
+                <div class="hero-meta-item" role="listitem">
+                    <span class="hero-meta-value">March 2026</span>
+                    <span class="hero-meta-label">Presented</span>
+                </div>
+                <div class="hero-meta-item" role="listitem">
+                    <span class="hero-meta-value">Premier Code</span>
+                    <span class="hero-meta-label">Design Studio</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <main class="main-content">
-        <div class="section-header">
-            <h2>Homepage Design Concepts</h2>
-            <p>Each design captures The Dog House's 40+ year legacy of trusted pet grooming while presenting a modern, professional online presence.</p>
+    <!-- Decorative divider -->
+    <div class="divider" aria-hidden="true">
+        <span class="divider__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 12.5c0-2.5 2-4.5 4.5-4.5s3.5 1.5 3.5 3c0 1-1 1.5-1.5 1.5s-1-.5-1-1c0-.5.5-1 .5-1"/>
+                <path d="M19.5 12.5c0-2.5-2-4.5-4.5-4.5S11.5 9.5 11.5 11c0 1 1 1.5 1.5 1.5s1-.5 1-1c0-.5-.5-1-.5-1"/>
+                <path d="M12 16v4"/>
+                <path d="M10 20h4"/>
+            </svg>
+        </span>
+    </div>
+
+    <!-- ============================================
+         MAIN CONTENT
+         ============================================ -->
+    <main id="main-content">
+        <!-- Concepts Section -->
+        <section class="section" aria-labelledby="concepts-heading" style="padding-top: var(--space-2xl); padding-bottom: var(--space-xl);">
+            <div class="section-intro">
+                <span class="overline">Design Concepts</span>
+                <h2 class="section-title" id="concepts-heading">Three Visions, One Legacy</h2>
+                <p class="section-subtitle">Each concept honors The Dog House's four decades of excellence while crafting a distinct visual identity. Hover over each preview to explore the design.</p>
+            </div>
+
+            <div class="concepts-grid" id="concepts-grid">
+
+                <!-- Concept 1: Warm Elegance -->
+                <article class="concept-card concept-card--warm">
+                    <div class="concept-preview">
+                        <div class="concept-browser-bar" aria-hidden="true">
+                            <span class="concept-browser-dot"></span>
+                            <span class="concept-browser-dot"></span>
+                            <span class="concept-browser-dot"></span>
+                            <span class="concept-browser-url">thedoghousegarland.com</span>
+                        </div>
+                        <div class="concept-screenshot-wrap">
+                            <img src="images/preview-warm-elegance.png" alt="Preview of the Warm Elegance design concept showing cream and gold tones with classic serif typography" class="concept-screenshot" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="concept-body">
+                        <div class="concept-indicator">
+                            <span class="concept-indicator-dot" aria-hidden="true"></span>
+                            <span class="concept-indicator-label">Concept 01</span>
+                        </div>
+                        <h3 class="concept-name">Warm Elegance</h3>
+                        <p class="concept-tagline">Inviting cream and gold tones with classic Playfair Display serif — warmth that feels like coming home.</p>
+                        <ul class="concept-features">
+                            <li>Warm color palette evoking trust and comfort</li>
+                            <li>Full-service showcase with elegant card layout</li>
+                            <li>Integrated reviews and 40-year heritage highlight</li>
+                            <li>Appointment-focused call to action</li>
+                        </ul>
+                        <div class="concept-tags">
+                            <span class="concept-tag">Warm Tones</span>
+                            <span class="concept-tag">Classic</span>
+                            <span class="concept-tag">Inviting</span>
+                            <span class="concept-tag">Serif Accents</span>
+                        </div>
+                        <a href="warm-elegance/index.html" class="btn-view btn-view--warm">
+                            View Design
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Concept 2: Heritage Bloom -->
+                <article class="concept-card concept-card--heritage">
+                    <div class="concept-preview">
+                        <div class="concept-browser-bar" aria-hidden="true">
+                            <span class="concept-browser-dot"></span>
+                            <span class="concept-browser-dot"></span>
+                            <span class="concept-browser-dot"></span>
+                            <span class="concept-browser-url">thedoghousegarland.com</span>
+                        </div>
+                        <div class="concept-screenshot-wrap">
+                            <img src="images/preview-heritage-bloom.png" alt="Preview of the Heritage Bloom design concept featuring dusty rose and soft navy with editorial typography" class="concept-screenshot" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="concept-body">
+                        <div class="concept-indicator">
+                            <span class="concept-indicator-dot" aria-hidden="true"></span>
+                            <span class="concept-indicator-label">Concept 02</span>
+                        </div>
+                        <h3 class="concept-name">Heritage Bloom</h3>
+                        <p class="concept-tagline">Dusty rose and soft navy with DM Serif Display — editorial artisan character that tells a story.</p>
+                        <ul class="concept-features">
+                            <li>Warm dusty rose and soft navy palette</li>
+                            <li>Editorial asymmetric layouts like a magazine</li>
+                            <li>Heritage branding strip celebrating 40+ years</li>
+                            <li>Pull-quote testimonials and menu-style services</li>
+                        </ul>
+                        <div class="concept-tags">
+                            <span class="concept-tag">Editorial</span>
+                            <span class="concept-tag">Artisan</span>
+                            <span class="concept-tag">Heritage</span>
+                            <span class="concept-tag">Rose + Navy</span>
+                        </div>
+                        <a href="heritage-bloom/index.html" class="btn-view btn-view--heritage">
+                            View Design
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Concept 3: Coastal Luxe -->
+                <article class="concept-card concept-card--coastal">
+                    <div class="concept-preview">
+                        <div class="concept-browser-bar" aria-hidden="true">
+                            <span class="concept-browser-dot"></span>
+                            <span class="concept-browser-dot"></span>
+                            <span class="concept-browser-dot"></span>
+                            <span class="concept-browser-url">thedoghousegarland.com</span>
+                        </div>
+                        <div class="concept-screenshot-wrap">
+                            <img src="images/preview-coastal-luxe.png" alt="Preview of the Coastal Luxe design concept with sage green and cream in a spa-like premium aesthetic" class="concept-screenshot" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="concept-body">
+                        <div class="concept-indicator">
+                            <span class="concept-indicator-dot" aria-hidden="true"></span>
+                            <span class="concept-indicator-label">Concept 03</span>
+                        </div>
+                        <h3 class="concept-name">Coastal Luxe</h3>
+                        <p class="concept-tagline">Sage green and cream with Cormorant Garamond — spa-like calm that whispers premium quality.</p>
+                        <ul class="concept-features">
+                            <li>Calming sage green and natural tones</li>
+                            <li>Spa-inspired premium grooming presentation</li>
+                            <li>Elegant service tiers with visual hierarchy</li>
+                            <li>Trust-building testimonial showcase</li>
+                        </ul>
+                        <div class="concept-tags">
+                            <span class="concept-tag">Spa-Like</span>
+                            <span class="concept-tag">Fresh</span>
+                            <span class="concept-tag">Premium</span>
+                            <span class="concept-tag">Natural</span>
+                        </div>
+                        <a href="coastal-luxe/index.html" class="btn-view btn-view--coastal">
+                            View Design
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Decorative divider -->
+        <div class="divider" aria-hidden="true">
+            <span class="divider__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 12.5c0-2.5 2-4.5 4.5-4.5s3.5 1.5 3.5 3c0 1-1 1.5-1.5 1.5s-1-.5-1-1c0-.5.5-1 .5-1"/>
+                    <path d="M19.5 12.5c0-2.5-2-4.5-4.5-4.5S11.5 9.5 11.5 11c0 1 1 1.5 1.5 1.5s1-.5 1-1c0-.5-.5-1-.5-1"/>
+                    <path d="M12 16v4"/>
+                    <path d="M10 20h4"/>
+                </svg>
+            </span>
         </div>
 
-        <div class="examples-grid">
-            <!-- Example 1: Warm Elegance -->
-            <div class="example-card ex-warm">
-                <div class="example-preview">
-                    <div class="example-preview-bg"></div>
-                    <span class="example-number">Concept 01</span>
-                </div>
-                <div class="example-body">
-                    <h3>Warm Elegance</h3>
-                    <p class="subtitle">Inviting cream and gold tones with classic, refined typography</p>
-                    <ul class="example-features">
-                        <li>Warm color palette evoking trust and comfort</li>
-                        <li>Full-service showcase with elegant card layout</li>
-                        <li>Integrated reviews and 40-year heritage highlight</li>
-                        <li>Appointment-focused call to action</li>
-                    </ul>
-                    <div class="example-tags">
-                        <span class="example-tag">Warm Tones</span>
-                        <span class="example-tag">Classic</span>
-                        <span class="example-tag">Inviting</span>
-                        <span class="example-tag">Serif Accents</span>
-                    </div>
-                    <a href="warm-elegance/index.html" class="btn-view">
-                        View Design
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                    </a>
-                </div>
+        <!-- Business Overview -->
+        <section class="section business-section" aria-labelledby="business-heading" style="padding-top: var(--space-2xl);">
+            <div class="section-intro">
+                <span class="overline">Client Profile</span>
+                <h2 class="section-title" id="business-heading">Business Overview</h2>
             </div>
 
-            <!-- Example 2: Heritage Bloom -->
-            <div class="example-card ex-heritage">
-                <div class="example-preview">
-                    <div class="example-preview-bg"></div>
-                    <span class="example-number">Concept 02</span>
-                </div>
-                <div class="example-body">
-                    <h3>Heritage Bloom</h3>
-                    <p class="subtitle">Dusty rose and navy editorial design with artisan character</p>
-                    <ul class="example-features">
-                        <li>Warm dusty rose and soft navy palette</li>
-                        <li>Editorial asymmetric layouts like a magazine</li>
-                        <li>Heritage branding strip celebrating 40+ years</li>
-                        <li>Pull-quote testimonials and menu-style services</li>
-                    </ul>
-                    <div class="example-tags">
-                        <span class="example-tag">Editorial</span>
-                        <span class="example-tag">Artisan</span>
-                        <span class="example-tag">Heritage</span>
-                        <span class="example-tag">Rose + Navy</span>
+            <div class="business-strip" id="business-strip">
+                <div class="business-layout">
+                    <div class="business-heritage">
+                        <span class="business-heritage-overline">Established</span>
+                        <span class="business-heritage-year">1984</span>
+                        <span class="business-heritage-sub">40+ years of trust</span>
                     </div>
-                    <a href="heritage-bloom/index.html" class="btn-view">
-                        View Design
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Example 3: Coastal Luxe -->
-            <div class="example-card ex-coastal">
-                <div class="example-preview">
-                    <div class="example-preview-bg"></div>
-                    <span class="example-number">Concept 03</span>
-                </div>
-                <div class="example-body">
-                    <h3>Coastal Luxe</h3>
-                    <p class="subtitle">Fresh sage and cream palette with a premium spa-like feel</p>
-                    <ul class="example-features">
-                        <li>Calming sage green and natural tones</li>
-                        <li>Spa-inspired premium grooming presentation</li>
-                        <li>Elegant service tiers with visual hierarchy</li>
-                        <li>Trust-building testimonial showcase</li>
-                    </ul>
-                    <div class="example-tags">
-                        <span class="example-tag">Spa-Like</span>
-                        <span class="example-tag">Fresh</span>
-                        <span class="example-tag">Premium</span>
-                        <span class="example-tag">Natural</span>
+                    <div class="business-details">
+                        <div class="business-detail">
+                            <span class="business-detail-label">Owner</span>
+                            <span class="business-detail-value">Rick Holloway</span>
+                        </div>
+                        <div class="business-detail">
+                            <span class="business-detail-label">Phone</span>
+                            <span class="business-detail-value"><a href="tel:+19726759769">(972) 675-9769</a></span>
+                        </div>
+                        <div class="business-detail">
+                            <span class="business-detail-label">Location</span>
+                            <span class="business-detail-value">1456 Belt Line Rd, Ste 100<br>Garland, TX 75044</span>
+                        </div>
+                        <div class="business-detail">
+                            <span class="business-detail-label">Target Domain</span>
+                            <span class="business-detail-value">thedoghousegarland.com</span>
+                        </div>
+                        <div class="business-detail business-detail--reputation">
+                            <span class="business-detail-label">Reputation</span>
+                            <div class="reputation-badges">
+                                <span class="reputation-badge">
+                                    <span class="reputation-stars" aria-label="4.5 out of 5 stars">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                        <svg viewBox="0 0 24 24" fill="currentColor" opacity="0.4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                    </span>
+                                    4.5 on Yelp (71 reviews)
+                                </span>
+                                <span class="reputation-badge">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--coastal-sage)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                    Neighborhood Favorite on Nextdoor
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <a href="coastal-luxe/index.html" class="btn-view">
-                        View Design
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                    </a>
                 </div>
             </div>
-        </div>
-
-        <!-- Business Info -->
-        <div class="business-info">
-            <h2>Business Overview</h2>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h4>Established</h4>
-                    <p>1984 — Over 40 years serving Garland, TX</p>
-                </div>
-                <div class="info-card">
-                    <h4>Owner</h4>
-                    <p>Rick Holloway</p>
-                </div>
-                <div class="info-card">
-                    <h4>Location</h4>
-                    <p>1456 Belt Line Rd, Ste 100<br>Garland, TX 75044</p>
-                </div>
-                <div class="info-card">
-                    <h4>Services</h4>
-                    <p>All breed dog &amp; cat grooming, specialty treatments, de-shedding</p>
-                </div>
-                <div class="info-card">
-                    <h4>Ratings</h4>
-                    <p>4.5 stars on Yelp (71 reviews), Neighborhood Favorite on Nextdoor</p>
-                </div>
-                <div class="info-card">
-                    <h4>Target Domain</h4>
-                    <p>thedoghousegarland.com</p>
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
 
-    <footer class="site-footer">
-        <p>Prepared by <a href="https://premiercodeinc.com">Premier Code, Inc.</a> &mdash; Confidential Design Proposal</p>
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-inner">
+            <a href="https://premiercodeinc.com" aria-label="Premier Code, Inc. homepage">
+                <img src="../premiercode/img/PremierCodeInc_300_white_outlined.png" alt="Premier Code, Inc." class="footer-logo" width="120" height="30">
+            </a>
+            <div class="footer-divider" aria-hidden="true"></div>
+            <p class="footer-text">
+                Confidential design proposal prepared by <a href="https://premiercodeinc.com">Premier Code, Inc.</a><br>
+                &copy; 2026 Premier Code, Inc. &mdash; All rights reserved.
+            </p>
+        </div>
     </footer>
+
+    <!-- ============================================
+         JAVASCRIPT — Scroll reveal with IntersectionObserver
+         ============================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // Respect reduced motion
+            var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            // Hero fade-in on load
+            var heroContent = document.getElementById('hero-content');
+            if (heroContent) {
+                if (prefersReducedMotion) {
+                    heroContent.classList.add('revealed');
+                } else {
+                    // Small delay for polish — let the page settle
+                    setTimeout(function() {
+                        heroContent.classList.add('revealed');
+                    }, 150);
+                }
+            }
+
+            if (prefersReducedMotion) {
+                // Make everything visible immediately
+                var cards = document.querySelectorAll('.concept-card, .business-strip');
+                for (var i = 0; i < cards.length; i++) {
+                    cards[i].classList.add('revealed');
+                }
+                return;
+            }
+
+            // IntersectionObserver for scroll reveals
+            if ('IntersectionObserver' in window) {
+                var observerOptions = {
+                    threshold: 0.15,
+                    rootMargin: '0px 0px -40px 0px'
+                };
+
+                var revealObserver = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('revealed');
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Observe concept cards
+                var conceptCards = document.querySelectorAll('.concept-card');
+                conceptCards.forEach(function(card) {
+                    revealObserver.observe(card);
+                });
+
+                // Observe business strip
+                var businessStrip = document.getElementById('business-strip');
+                if (businessStrip) {
+                    revealObserver.observe(businessStrip);
+                }
+            } else {
+                // Fallback: show everything
+                var allRevealable = document.querySelectorAll('.concept-card, .business-strip');
+                allRevealable.forEach(function(el) {
+                    el.classList.add('revealed');
+                });
+            }
+        })();
+    </script>
 </body>
 </html>
