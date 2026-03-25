@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>The Dog House All Breed Grooming - Website Design Proposals | Premier Code, Inc.</title>
+    <meta name="description" content="Website design proposals for The Dog House All Breed Grooming by Premier Code, Inc.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --color-bg: #faf9f7;
+            --color-surface: #ffffff;
+            --color-dark: #2c1810;
+            --color-dark-alt: #3d2317;
+            --color-primary: #c0392b;
+            --color-primary-hover: #a93226;
+            --color-accent: #e74c3c;
+            --color-warm: #d4a574;
+            --color-text: #3a3a3a;
+            --color-text-muted: #7a7a7a;
+            --color-border: #e8e4df;
+            --color-border-light: #f0ece7;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.12);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        .site-header {
+            background: var(--color-dark);
+            color: #ffffff;
+            padding: 0.75rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .header-tagline {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.5);
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-alt) 40%, #5a2d1a 100%);
+            color: #ffffff;
+            padding: 4rem 1.5rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 60%, rgba(212,165,116,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 40%, rgba(231,76,60,0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212,165,116,0.15);
+            border: 1px solid rgba(212,165,116,0.3);
+            color: var(--color-warm);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span { color: var(--color-warm); }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .hero-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .hero-meta svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--color-dark);
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.3px;
+        }
+
+        .section-header p {
+            font-size: 1.05rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Example Cards */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .example-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .example-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .example-preview {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .example-preview-bg {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: transform 0.4s ease;
+        }
+
+        .example-card:hover .example-preview-bg {
+            transform: scale(1.03);
+        }
+
+        .ex-warm .example-preview-bg {
+            background: linear-gradient(135deg, #fdf6ee 0%, #f5e6d3 50%, #e8d5c0 100%);
+        }
+
+        .ex-slate .example-preview-bg {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+        }
+
+        .ex-coastal .example-preview-bg {
+            background: linear-gradient(135deg, #f0f7f4 0%, #d5e8de 50%, #a7c7b8 100%);
+        }
+
+        .example-number {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+            padding: 0.35rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .example-body {
+            padding: 1.5rem;
+        }
+
+        .example-body h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .example-body .subtitle {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .example-features {
+            list-style: none;
+            margin-bottom: 1.25rem;
+        }
+
+        .example-features li {
+            font-size: 0.85rem;
+            color: var(--color-text);
+            padding: 0.3rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .example-features li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .example-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .example-tag {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 50px;
+            background: var(--color-bg);
+            color: var(--color-text-muted);
+            font-weight: 500;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .btn-view {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--color-primary);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.2s ease;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-view:hover { background: var(--color-primary-hover); }
+
+        .btn-view svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-view:hover svg { transform: translateX(3px); }
+
+        /* Business Info */
+        .business-info {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--color-border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .business-info h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--color-border-light);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: var(--color-bg);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .info-card h4 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            font-size: 0.9rem;
+            color: var(--color-dark);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--color-dark);
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 2rem 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        .site-footer a {
+            color: var(--color-warm);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero { padding: 3rem 1.5rem 4rem; }
+            .hero-meta { gap: 1rem; }
+            .examples-grid { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="https://premiercodeinc.com" class="logo">
+                <img src="../premiercode/img/PremierCodeInc_300_white_outlined.png" alt="Premier Code, Inc.">
+            </a>
+            <span class="header-tagline">Website Design Proposal</span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">Proposal</span>
+            <div>
+                <img src="doghouse-logo.jpg" alt="The Dog House All Breed Grooming" class="hero-logo">
+            </div>
+            <h1>Website Redesign for <span>The Dog House</span></h1>
+            <p>Three professional homepage concepts for The Dog House All Breed Grooming — serving the Garland, TX community with expert pet care since 1984.</p>
+            <div class="hero-meta">
+                <span>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                    3 Design Concepts
+                </span>
+                <span>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    March 2026
+                </span>
+                <span>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    Premier Code, Inc.
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="section-header">
+            <h2>Homepage Design Concepts</h2>
+            <p>Each design captures The Dog House's 40+ year legacy of trusted pet grooming while presenting a modern, professional online presence.</p>
+        </div>
+
+        <div class="examples-grid">
+            <!-- Example 1: Warm Elegance -->
+            <div class="example-card ex-warm">
+                <div class="example-preview">
+                    <div class="example-preview-bg"></div>
+                    <span class="example-number">Concept 01</span>
+                </div>
+                <div class="example-body">
+                    <h3>Warm Elegance</h3>
+                    <p class="subtitle">Inviting cream and gold tones with classic, refined typography</p>
+                    <ul class="example-features">
+                        <li>Warm color palette evoking trust and comfort</li>
+                        <li>Full-service showcase with elegant card layout</li>
+                        <li>Integrated reviews and 40-year heritage highlight</li>
+                        <li>Appointment-focused call to action</li>
+                    </ul>
+                    <div class="example-tags">
+                        <span class="example-tag">Warm Tones</span>
+                        <span class="example-tag">Classic</span>
+                        <span class="example-tag">Inviting</span>
+                        <span class="example-tag">Serif Accents</span>
+                    </div>
+                    <a href="warm-elegance/index.html" class="btn-view">
+                        View Design
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Example 2: Modern Slate -->
+            <div class="example-card ex-slate">
+                <div class="example-preview">
+                    <div class="example-preview-bg"></div>
+                    <span class="example-number">Concept 02</span>
+                </div>
+                <div class="example-body">
+                    <h3>Modern Slate</h3>
+                    <p class="subtitle">Bold dark design with strong contrast and commanding presence</p>
+                    <ul class="example-features">
+                        <li>Dark sophisticated palette with red accents</li>
+                        <li>Strong visual hierarchy for quick scanning</li>
+                        <li>Stats-driven credibility section</li>
+                        <li>Modern grid layout with glass effects</li>
+                    </ul>
+                    <div class="example-tags">
+                        <span class="example-tag">Dark Mode</span>
+                        <span class="example-tag">Bold</span>
+                        <span class="example-tag">Professional</span>
+                        <span class="example-tag">Modern</span>
+                    </div>
+                    <a href="modern-slate/index.html" class="btn-view">
+                        View Design
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Example 3: Coastal Luxe -->
+            <div class="example-card ex-coastal">
+                <div class="example-preview">
+                    <div class="example-preview-bg"></div>
+                    <span class="example-number">Concept 03</span>
+                </div>
+                <div class="example-body">
+                    <h3>Coastal Luxe</h3>
+                    <p class="subtitle">Fresh sage and cream palette with a premium spa-like feel</p>
+                    <ul class="example-features">
+                        <li>Calming sage green and natural tones</li>
+                        <li>Spa-inspired premium grooming presentation</li>
+                        <li>Elegant service tiers with visual hierarchy</li>
+                        <li>Trust-building testimonial showcase</li>
+                    </ul>
+                    <div class="example-tags">
+                        <span class="example-tag">Spa-Like</span>
+                        <span class="example-tag">Fresh</span>
+                        <span class="example-tag">Premium</span>
+                        <span class="example-tag">Natural</span>
+                    </div>
+                    <a href="coastal-luxe/index.html" class="btn-view">
+                        View Design
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Info -->
+        <div class="business-info">
+            <h2>Business Overview</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>Established</h4>
+                    <p>1984 — Over 40 years serving Garland, TX</p>
+                </div>
+                <div class="info-card">
+                    <h4>Owner</h4>
+                    <p>Rick Holloway</p>
+                </div>
+                <div class="info-card">
+                    <h4>Location</h4>
+                    <p>1456 Belt Line Rd, Ste 100<br>Garland, TX 75044</p>
+                </div>
+                <div class="info-card">
+                    <h4>Services</h4>
+                    <p>All breed dog &amp; cat grooming, specialty treatments, de-shedding</p>
+                </div>
+                <div class="info-card">
+                    <h4>Ratings</h4>
+                    <p>4.5 stars on Yelp (71 reviews), Neighborhood Favorite on Nextdoor</p>
+                </div>
+                <div class="info-card">
+                    <h4>Target Domain</h4>
+                    <p>thedoghousegarland.com</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>Prepared by <a href="https://premiercodeinc.com">Premier Code, Inc.</a> &mdash; Confidential Design Proposal</p>
+    </footer>
+</body>
+</html>
