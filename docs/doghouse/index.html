@@ -9,7 +9,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Bitter:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
         /* ============================================
@@ -30,7 +30,7 @@
             --border-light: #F3EDE6;
 
             /* Concept accent colors */
-            --warm-gold: #B8860B;
+            --barn-red: #8B3A2A;
             --heritage-rose: #C4917B;
             --coastal-sage: #4a7c59;
 
@@ -486,11 +486,11 @@
         }
 
         /* Concept-specific tints */
-        .concept-card--warm .concept-body {
+        .concept-card--country .concept-body {
             background: linear-gradient(180deg, rgba(184, 134, 11, 0.03) 0%, transparent 60%);
         }
-        .concept-card--warm .concept-indicator-dot { background: var(--warm-gold); }
-        .concept-card--warm .concept-indicator-label { color: var(--warm-gold); }
+        .concept-card--country .concept-indicator-dot { background: var(--barn-red); }
+        .concept-card--country .concept-indicator-label { color: var(--barn-red); }
 
         .concept-card--heritage .concept-body {
             background: linear-gradient(180deg, rgba(196, 145, 123, 0.05) 0%, transparent 60%);
@@ -513,8 +513,8 @@
             line-height: 1.3;
         }
 
-        .concept-card--warm .concept-name {
-            font-family: 'Playfair Display', var(--font-display);
+        .concept-card--country .concept-name {
+            font-family: 'Bitter', var(--font-display);
         }
         .concept-card--heritage .concept-name {
             font-family: 'DM Serif Display', var(--font-display);
@@ -556,7 +556,7 @@
             margin-top: 0.45rem;
         }
 
-        .concept-card--warm .concept-features li::before { background: var(--warm-gold); }
+        .concept-card--country .concept-features li::before { background: var(--barn-red); }
         .concept-card--heritage .concept-features li::before { background: var(--heritage-rose); }
         .concept-card--coastal .concept-features li::before { background: var(--coastal-sage); }
 
@@ -608,11 +608,11 @@
             transform: translateX(3px);
         }
 
-        .btn-view--warm {
-            background: var(--warm-gold);
+        .btn-view--country {
+            background: var(--barn-red);
             box-shadow: 0 2px 8px rgba(184, 134, 11, 0.25);
         }
-        .btn-view--warm:hover {
+        .btn-view--country:hover {
             background: #9A7209;
             box-shadow: 0 4px 16px rgba(184, 134, 11, 0.3);
         }
@@ -776,7 +776,7 @@
         .reputation-stars {
             display: flex;
             gap: 1px;
-            color: var(--warm-gold);
+            color: var(--barn-red);
         }
 
         .reputation-stars svg {
@@ -1043,8 +1043,8 @@
 
             <div class="concepts-grid" id="concepts-grid">
 
-                <!-- Concept 1: Warm Elegance -->
-                <article class="concept-card concept-card--warm">
+                <!-- Concept 1: Barnwood & Bandanas -->
+                <article class="concept-card concept-card--country">
                     <div class="concept-preview">
                         <div class="concept-browser-bar" aria-hidden="true">
                             <span class="concept-browser-dot"></span>
@@ -1053,7 +1053,7 @@
                             <span class="concept-browser-url">thedoghousegarland.com</span>
                         </div>
                         <div class="concept-screenshot-wrap">
-                            <img src="images/preview-warm-elegance.png" alt="Preview of the Warm Elegance design concept showing cream and gold tones with classic serif typography" class="concept-screenshot" loading="lazy">
+                            <img src="images/preview-barnwood-bandanas.png" alt="Preview of the Barnwood and Bandanas design concept showing warm rustic earth tones with slab serif typography" class="concept-screenshot" loading="lazy">
                         </div>
                     </div>
                     <div class="concept-body">
@@ -1061,21 +1061,21 @@
                             <span class="concept-indicator-dot" aria-hidden="true"></span>
                             <span class="concept-indicator-label">Concept 01</span>
                         </div>
-                        <h3 class="concept-name">Warm Elegance</h3>
-                        <p class="concept-tagline">Inviting cream and gold tones with classic Playfair Display serif — warmth that feels like coming home.</p>
+                        <h3 class="concept-name">Barnwood &amp; Bandanas</h3>
+                        <p class="concept-tagline">Country rustic warmth with Bitter slab serif — your dog's second home, Texas style.</p>
                         <ul class="concept-features">
-                            <li>Warm color palette evoking trust and comfort</li>
-                            <li>Full-service showcase with elegant card layout</li>
-                            <li>Integrated reviews and 40-year heritage highlight</li>
-                            <li>Appointment-focused call to action</li>
+                            <li>Warm earth tones: saddle brown, barn red, wheat</li>
+                            <li>Bandana pattern accents and lone star details</li>
+                            <li>Bento-style services grid with featured groom card</li>
+                            <li>40-year heritage storytelling with rustic charm</li>
                         </ul>
                         <div class="concept-tags">
-                            <span class="concept-tag">Warm Tones</span>
-                            <span class="concept-tag">Classic</span>
-                            <span class="concept-tag">Inviting</span>
-                            <span class="concept-tag">Serif Accents</span>
+                            <span class="concept-tag">Country</span>
+                            <span class="concept-tag">Rustic</span>
+                            <span class="concept-tag">Texas</span>
+                            <span class="concept-tag">Farmhouse</span>
                         </div>
-                        <a href="warm-elegance/index.html" class="btn-view btn-view--warm">
+                        <a href="barnwood-bandanas/index.html" class="btn-view btn-view--country">
                             View Design
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                         </a>
