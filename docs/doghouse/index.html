@@ -382,6 +382,10 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .concept-card {
+            cursor: pointer;
+        }
+
         .concept-card:hover {
             transform: translateY(-6px);
             box-shadow: var(--shadow-card-hover);
@@ -1313,6 +1317,15 @@
                     el.classList.add('revealed');
                 });
             }
+            // Make entire concept cards clickable
+            document.querySelectorAll('.concept-card').forEach(function(card) {
+                card.addEventListener('click', function(e) {
+                    var link = card.querySelector('.btn-view');
+                    if (link && e.target !== link) {
+                        link.click();
+                    }
+                });
+            });
         })();
     </script>
 </body>
