@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>The Dog House All Breed Grooming | Barnwood &amp; Bandanas | Garland, TX</title>
-    <meta name="description" content="The Dog House All Breed Grooming in Garland, TX. Over 40 years of expert dog and cat grooming. Named one of the 3 Best Pet Groomers in Garland for 9+ consecutive years.">
+    <title>The Dog House All Breed Grooming | Garland, TX Since 1984</title>
+    <meta name="description" content="The Dog House All Breed Grooming in Garland, TX. Over 40 years of expert dog grooming. Named one of the 3 Best Pet Groomers in Garland for 9+ consecutive years.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700&family=Rye&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Rye&family=Vollkorn:ital,wght@0,500;0,700;0,800;1,500&display=swap" rel="stylesheet">
     <style>
         /* ========================================
            CSS RESET & FOUNDATION
@@ -22,17 +22,19 @@
         :root {
             --saddle: #5C3A1E;
             --barn-red: #8B3A2A;
+            --barn-red-dark: #6E2E22;
             --wheat: #F5ECD7;
-            --denim: #4A6178;
-            --sage: #7A8B6F;
             --amber: #C8943E;
+            --amber-glow: rgba(200, 148, 62, 0.1);
+            --sage: #7A8B6F;
             --bark: #2E2A26;
             --weathered: #8C8278;
             --linen: #EDE6D8;
             --cotton: #FAF7F2;
+            --plank: #4A3728;
 
-            --font-display: 'Bitter', Georgia, serif;
-            --font-body: 'Source Sans 3', 'Source Sans Pro', -apple-system, sans-serif;
+            --font-display: 'Vollkorn', Georgia, serif;
+            --font-body: 'Cabin', -apple-system, sans-serif;
             --font-accent: 'Rye', cursive;
 
             --section-padding: clamp(4rem, 8vw, 7rem);
@@ -58,7 +60,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Subtle linen texture on wheat backgrounds */
+        /* Woodgrain texture overlay on body — 5% opacity, visible but subtle */
         body::before {
             content: "";
             position: fixed;
@@ -66,10 +68,37 @@
             pointer-events: none;
             z-index: 0;
             background:
-                radial-gradient(ellipse at 20% 50%, rgba(92, 58, 30, 0.015) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 30%, rgba(139, 58, 42, 0.01) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(0,0,0,0.02) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 4px 4px;
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(92, 58, 30, 0.03) 0px,
+                    transparent 1px,
+                    transparent 3px,
+                    rgba(92, 58, 30, 0.02) 4px,
+                    transparent 5px,
+                    transparent 8px,
+                    rgba(92, 58, 30, 0.025) 9px,
+                    transparent 10px,
+                    transparent 14px
+                ),
+                repeating-linear-gradient(
+                    2deg,
+                    rgba(74, 55, 40, 0.015) 0px,
+                    transparent 2px,
+                    transparent 20px
+                );
+            opacity: 0.6;
+        }
+
+        /* Grain noise overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            background-size: 200px 200px;
         }
 
         img {
@@ -78,11 +107,7 @@
             display: block;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
+        a { color: inherit; text-decoration: none; }
         ul, ol { list-style: none; }
 
         .container {
@@ -98,87 +123,62 @@
             position: absolute;
             top: -100%;
             left: 1rem;
-            background: var(--bark);
-            color: var(--wheat);
+            background: var(--barn-red);
+            color: #fff;
             padding: 0.75rem 1.5rem;
             border-radius: 0 0 6px 6px;
-            font-weight: 600;
             z-index: 9999;
-            transition: top 0.2s;
+            font-weight: 600;
         }
-
         .skip-link:focus {
             top: 0;
         }
 
         /* ========================================
-           BANDANA PATTERN STRIP
+           BANDANA STRIP — 16px tall, visible pattern
            ======================================== */
         .bandana-strip {
-            height: 5px;
-            background: var(--barn-red);
+            height: 16px;
+            background:
+                linear-gradient(45deg, var(--barn-red) 25%, transparent 25%),
+                linear-gradient(-45deg, var(--barn-red) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, var(--barn-red) 75%),
+                linear-gradient(-45deg, transparent 75%, var(--barn-red) 75%);
+            background-size: 16px 16px;
+            background-color: var(--barn-red-dark);
             position: relative;
-            overflow: hidden;
-        }
-
-        .bandana-strip::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: repeating-linear-gradient(
-                90deg,
-                transparent 0px,
-                transparent 6px,
-                var(--wheat) 6px,
-                var(--wheat) 8px,
-                transparent 8px,
-                transparent 14px,
-                rgba(245, 236, 215, 0.5) 14px,
-                rgba(245, 236, 215, 0.5) 15px
-            );
-        }
-
-        .bandana-strip::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent 0px,
-                transparent 4px,
-                rgba(245, 236, 215, 0.15) 4px,
-                rgba(245, 236, 215, 0.15) 5px
-            );
+            z-index: 100;
         }
 
         /* ========================================
            NAVIGATION
            ======================================== */
         .nav {
-            background: var(--bark);
             position: sticky;
             top: 0;
-            z-index: 1000;
-            padding: 0.75rem 0;
+            z-index: 100;
+            background: linear-gradient(135deg, var(--bark) 0%, #3a2820 60%, var(--barn-red-dark) 100%);
+            border-bottom: 3px solid var(--barn-red);
+            box-shadow: 0 4px 20px rgba(46, 42, 38, 0.4);
         }
 
-        .nav__inner {
+        .nav .container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 2rem;
+            padding-block: 0;
+            min-height: 72px;
         }
 
         .nav__brand {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            flex-shrink: 0;
         }
 
         .nav__logo {
-            width: 44px;
-            height: 44px;
+            width: 52px;
+            height: 52px;
             border-radius: 6px;
             object-fit: cover;
         }
@@ -186,77 +186,57 @@
         .nav__brand-text {
             display: flex;
             flex-direction: column;
-            line-height: 1.2;
         }
 
         .nav__brand-name {
             font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--wheat);
-            letter-spacing: 0.01em;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
         }
 
-        .nav__brand-est {
+        .nav__est {
             font-family: var(--font-accent);
-            font-size: 0.65rem;
+            font-size: 0.85rem;
             color: var(--amber);
-            letter-spacing: 0.06em;
+            letter-spacing: 0.04em;
         }
 
         .nav__links {
             display: flex;
+            gap: 0.25rem;
             align-items: center;
-            gap: 2rem;
         }
 
-        .nav__link {
+        .nav__links a {
             font-family: var(--font-body);
+            font-size: 0.9rem;
             font-weight: 600;
-            font-size: 0.875rem;
-            color: var(--wheat);
-            letter-spacing: 0.02em;
-            position: relative;
-            padding-bottom: 2px;
-            transition: color var(--duration) var(--ease-warm);
+            color: rgba(255,255,255,0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: color var(--duration) var(--ease-warm), background var(--duration) var(--ease-warm);
         }
 
-        .nav__link::after {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--barn-red);
-            transition: width 0.3s var(--ease-warm);
-        }
-
-        .nav__link:hover::after,
-        .nav__link:focus::after {
-            width: 100%;
-        }
-
-        .nav__link:hover,
-        .nav__link:focus {
+        .nav__links a:hover,
+        .nav__links a:focus-visible {
             color: #fff;
+            background: rgba(139, 58, 42, 0.35);
         }
 
         .nav__cta {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: var(--cotton);
-            background: var(--barn-red);
-            padding: 0.55rem 1.25rem;
-            border-radius: 6px;
-            transition: background var(--duration) var(--ease-warm), transform 0.2s;
-            white-space: nowrap;
+            background: var(--barn-red) !important;
+            color: #fff !important;
+            padding: 0.5rem 1.25rem !important;
+            border-radius: 4px !important;
+            font-weight: 700 !important;
+            transition: background var(--duration) var(--ease-warm), box-shadow var(--duration) var(--ease-warm) !important;
         }
 
         .nav__cta:hover {
-            background: #9E4433;
-            transform: translateY(-1px);
+            background: var(--barn-red-dark) !important;
+            box-shadow: 0 4px 16px rgba(200, 148, 62, 0.25) !important;
         }
 
         /* Mobile hamburger */
@@ -266,194 +246,204 @@
             border: none;
             cursor: pointer;
             padding: 0.5rem;
-            flex-direction: column;
-            gap: 5px;
+            z-index: 200;
         }
 
         .nav__toggle span {
             display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--wheat);
+            width: 26px;
+            height: 3px;
+            background: #fff;
+            margin: 5px 0;
             border-radius: 2px;
-            transition: transform 0.3s, opacity 0.3s;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
         .nav__toggle[aria-expanded="true"] span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
+            transform: rotate(45deg) translate(5px, 6px);
         }
-
         .nav__toggle[aria-expanded="true"] span:nth-child(2) {
             opacity: 0;
         }
-
         .nav__toggle[aria-expanded="true"] span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
+            transform: rotate(-45deg) translate(5px, -6px);
         }
 
         /* ========================================
-           BUTTONS
-           ======================================== */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 0.95rem;
-            padding: 0.85rem 1.75rem;
-            border-radius: 6px;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s var(--ease-warm);
-            text-decoration: none;
-            line-height: 1.2;
-        }
-
-        .btn--primary {
-            background: var(--barn-red);
-            color: var(--cotton);
-            border-color: var(--barn-red);
-        }
-
-        .btn--primary:hover {
-            background: #9E4433;
-            border-color: #9E4433;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 58, 42, 0.3);
-        }
-
-        .btn--outline {
-            background: transparent;
-            color: var(--denim);
-            border-color: var(--denim);
-        }
-
-        .btn--outline:hover {
-            background: var(--denim);
-            color: var(--cotton);
-            transform: translateY(-2px);
-        }
-
-        .btn--white {
-            background: var(--cotton);
-            color: var(--barn-red);
-            border-color: var(--cotton);
-        }
-
-        .btn--white:hover {
-            background: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-
-        .btn--white-outline {
-            background: transparent;
-            color: var(--cotton);
-            border-color: var(--cotton);
-        }
-
-        .btn--white-outline:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-2px);
-        }
-
-        /* ========================================
-           HERO SECTION
+           HERO — Cinematic with WARM brown overlay
            ======================================== */
         .hero {
             position: relative;
-            min-height: 85vh;
-            min-height: 85dvh;
+            min-height: 92vh;
+            min-height: 92dvh;
             display: flex;
             align-items: center;
             overflow: hidden;
-            background: var(--bark);
         }
 
-        .hero__image-wrap {
+        .hero__img {
             position: absolute;
             inset: 0;
             z-index: 0;
         }
 
-        .hero__image-wrap img {
+        .hero__img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center 30%;
-            filter: brightness(0.85) saturate(1.1) sepia(0.08);
         }
 
-        .hero__image-wrap::after {
+        /* Warm brown overlay — like looking through amber-tinted glass */
+        .hero__img::after {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                to right,
-                rgba(46, 42, 38, 0.7) 0%,
-                rgba(46, 42, 38, 0.4) 50%,
-                transparent 80%
-            );
+            background:
+                linear-gradient(135deg, rgba(62, 38, 28, 0.82) 0%, rgba(46, 42, 38, 0.65) 50%, rgba(62, 38, 28, 0.78) 100%),
+                radial-gradient(ellipse at 30% 80%, rgba(200, 148, 62, 0.15) 0%, transparent 60%);
+        }
+
+        /* Grain on hero */
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            background-size: 200px 200px;
         }
 
         .hero__content {
             position: relative;
-            z-index: 1;
-            max-width: 580px;
+            z-index: 2;
+            max-width: 680px;
             padding: var(--section-padding) 0;
+            padding-left: clamp(1.5rem, 6vw, 4rem);
         }
 
         .hero__badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(200, 148, 62, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(200, 148, 62, 0.3);
-            border-radius: 50px;
-            padding: 0.45rem 1rem;
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 0.8rem;
+            font-family: var(--font-accent);
+            font-size: 0.95rem;
             color: var(--amber);
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
+            background: rgba(200, 148, 62, 0.12);
+            border: 1px solid rgba(200, 148, 62, 0.25);
+            padding: 0.5rem 1.25rem;
+            border-radius: 4px;
             margin-bottom: 1.5rem;
+            letter-spacing: 0.03em;
         }
 
         .hero__badge svg {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             fill: var(--amber);
         }
 
         .hero__heading {
             font-family: var(--font-display);
-            font-weight: 700;
-            font-size: clamp(2.25rem, 4.5vw, 3.75rem);
-            line-height: 1.1;
-            color: var(--wheat);
-            letter-spacing: -0.01em;
+            font-size: clamp(2.5rem, 6vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.08;
+            color: #fff;
             margin-bottom: 1.25rem;
+            letter-spacing: -0.01em;
         }
 
-        .hero__subtitle {
+        .hero__heading em {
+            font-style: normal;
+            color: var(--amber);
+        }
+
+        .hero__sub {
             font-family: var(--font-body);
-            font-weight: 300;
-            font-size: clamp(1.05rem, 1.5vw, 1.2rem);
-            color: rgba(245, 236, 215, 0.75);
-            line-height: 1.7;
-            max-width: 480px;
+            font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.65;
             margin-bottom: 2rem;
+            max-width: 520px;
         }
 
-        .hero__ctas {
+        .hero__actions {
             display: flex;
-            flex-wrap: wrap;
             gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.85rem 2rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--duration) var(--ease-warm);
+            text-decoration: none;
+        }
+
+        .btn--primary {
+            background: var(--barn-red);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(139, 58, 42, 0.3);
+        }
+
+        .btn--primary:hover {
+            background: var(--barn-red-dark);
+            box-shadow: 0 6px 24px rgba(200, 148, 62, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .btn--outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.35);
+        }
+
+        .btn--outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        .btn--amber {
+            background: var(--amber);
+            color: var(--bark);
+            box-shadow: 0 4px 16px rgba(200, 148, 62, 0.3);
+        }
+
+        .btn--amber:hover {
+            background: #d4a34a;
+            box-shadow: 0 6px 24px rgba(200, 148, 62, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* ========================================
+           WOOD BEAM SECTION DIVIDER
+           ======================================== */
+        .wood-beam {
+            height: 10px;
+            background: linear-gradient(
+                180deg,
+                #3a2a1e 0%,
+                var(--plank) 30%,
+                #5a432f 50%,
+                var(--plank) 70%,
+                #352618 100%
+            );
+            box-shadow:
+                inset 0 2px 3px rgba(0,0,0,0.3),
+                inset 0 -1px 2px rgba(0,0,0,0.2),
+                0 2px 6px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 5;
         }
 
         /* ========================================
@@ -461,505 +451,645 @@
            ======================================== */
         .trust-strip {
             background: var(--linen);
-            padding: 1.75rem 0;
-            border-bottom: 1px solid rgba(140, 130, 120, 0.15);
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(92, 58, 30, 0.08);
+            position: relative;
+            z-index: 5;
         }
 
-        .trust-strip__inner {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            text-align: center;
+        .trust-strip .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem 3rem;
         }
 
         .trust-item {
             display: flex;
-            flex-direction: column;
             align-items: center;
             gap: 0.5rem;
-        }
-
-        .trust-item__icon {
-            width: 28px;
-            height: 28px;
-            color: var(--amber);
-        }
-
-        .trust-item__icon svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .trust-item__label {
             font-family: var(--font-body);
+            font-size: 0.9rem;
             font-weight: 600;
-            font-size: 0.8rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
             color: var(--saddle);
         }
 
-        .trust-item__stars {
-            display: flex;
-            gap: 2px;
+        .trust-item svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
         }
 
-        .trust-item__stars svg {
-            width: 14px;
-            height: 14px;
-            fill: var(--amber);
+        .trust-stars {
+            color: var(--amber);
+            font-size: 1rem;
+            letter-spacing: 1px;
         }
 
         /* ========================================
-           SECTION SHARED STYLES
+           SECTION UTILITIES
            ======================================== */
         .section {
             padding: var(--section-padding) 0;
             position: relative;
-            z-index: 1;
+            z-index: 5;
         }
 
-        .section--linen {
-            background: var(--linen);
-        }
-
-        .section--dark {
-            background: var(--bark);
-            color: var(--cotton);
-        }
-
-        .section--barn-red {
-            background: var(--barn-red);
-            color: var(--cotton);
+        .section__overline {
+            font-family: var(--font-accent);
+            font-size: 0.95rem;
+            color: var(--barn-red);
+            letter-spacing: 0.04em;
+            margin-bottom: 0.5rem;
+            display: block;
         }
 
         .section__heading {
             font-family: var(--font-display);
-            font-weight: 700;
-            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            font-size: clamp(1.8rem, 4vw, 2.75rem);
+            font-weight: 800;
             color: var(--saddle);
-            text-align: center;
-            margin-bottom: 0.75rem;
-            line-height: 1.2;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
         }
 
-        .section--dark .section__heading {
-            color: var(--cotton);
-        }
-
-        .section--barn-red .section__heading {
-            color: var(--cotton);
-        }
-
-        .section__subtitle {
-            font-family: var(--font-body);
-            font-weight: 400;
-            font-size: 1.05rem;
+        .section__sub {
+            font-size: 1.1rem;
             color: var(--weathered);
-            text-align: center;
-            max-width: 560px;
-            margin-inline: auto;
-            margin-bottom: 3rem;
-            line-height: 1.7;
-        }
-
-        .section--dark .section__subtitle {
-            color: rgba(250, 247, 242, 0.6);
+            max-width: 580px;
+            line-height: 1.65;
         }
 
         /* ========================================
-           SERVICES BENTO GRID
+           SERVICES — Bento Grid
            ======================================== */
-        .services-grid {
+        .services {
+            background: var(--wheat);
+        }
+
+        .services__grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.25rem;
+            margin-top: 2.5rem;
         }
 
         .service-card {
-            background: var(--cotton);
-            border: 1px solid rgba(140, 130, 120, 0.2);
-            border-radius: 10px;
+            background: linear-gradient(175deg, var(--cotton) 0%, #f3ead6 100%);
+            border: 2px solid rgba(92, 58, 30, 0.1);
+            border-left: 4px solid var(--saddle);
+            border-radius: 6px;
             padding: 1.75rem;
+            transition: transform var(--duration) var(--ease-warm), box-shadow var(--duration) var(--ease-warm);
             position: relative;
-            overflow: hidden;
-            transition: transform 0.3s var(--ease-warm), box-shadow 0.3s var(--ease-warm);
-        }
-
-        .service-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--barn-red);
-            transition: height 0.3s var(--ease-warm);
         }
 
         .service-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(92, 58, 30, 0.1);
+            box-shadow: 0 12px 32px rgba(92, 58, 30, 0.12);
         }
 
-        .service-card:hover::before {
-            height: 5px;
-        }
-
-        .service-card--feature {
-            grid-column: span 2;
+        .service-card--featured {
+            border-left: 6px solid var(--barn-red);
             grid-row: span 2;
-            display: flex;
-            flex-direction: column;
+            background: linear-gradient(175deg, #fff9f0 0%, #f0e4cd 100%);
         }
 
-        .service-card--feature .service-card__image {
-            flex: 1;
-            min-height: 200px;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 1.25rem;
-        }
-
-        .service-card--feature .service-card__image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: saturate(1.05) brightness(1.02);
+        .service-card--wide {
+            grid-column: span 2;
         }
 
         .service-card__icon {
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
+            width: 44px;
+            height: 44px;
+            margin-bottom: 1rem;
+            color: var(--barn-red);
+        }
+
+        .service-card__icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--barn-red);
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         .service-card__title {
             font-family: var(--font-display);
-            font-weight: 500;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
+            font-weight: 700;
             color: var(--saddle);
             margin-bottom: 0.5rem;
         }
 
-        .service-card--feature .service-card__title {
-            font-size: 1.35rem;
-            font-weight: 700;
-        }
-
-        .service-card__desc {
-            font-family: var(--font-body);
-            font-size: 0.925rem;
+        .service-card__text {
+            font-size: 0.95rem;
             color: var(--weathered);
             line-height: 1.6;
         }
 
-        .service-card__tag {
-            display: inline-block;
-            margin-top: 0.75rem;
+        .service-card__price {
             font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 0.75rem;
-            color: var(--sage);
-            background: rgba(122, 139, 111, 0.1);
-            padding: 0.25rem 0.65rem;
-            border-radius: 50px;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--barn-red);
+            font-size: 0.9rem;
+            margin-top: 0.75rem;
         }
 
         /* ========================================
-           ABOUT / OUR STORY
+           ABOUT
            ======================================== */
         .about {
+            background: var(--linen);
             position: relative;
             overflow: hidden;
         }
 
-        /* Faint wood grain texture */
+        /* Wood texture on about background */
         .about::before {
             content: "";
             position: absolute;
             inset: 0;
-            background:
-                repeating-radial-gradient(
-                    ellipse at 20% 50%,
-                    rgba(92, 58, 30, 0.02) 0px,
-                    transparent 2px,
-                    transparent 20px
-                ),
-                repeating-radial-gradient(
-                    ellipse at 80% 30%,
-                    rgba(92, 58, 30, 0.015) 0px,
-                    transparent 1.5px,
-                    transparent 18px
-                );
             pointer-events: none;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(92, 58, 30, 0.025) 0px,
+                    transparent 1px,
+                    transparent 4px,
+                    rgba(92, 58, 30, 0.02) 5px,
+                    transparent 6px,
+                    transparent 12px
+                );
+            opacity: 0.8;
         }
 
         .about__grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: clamp(2rem, 5vw, 4rem);
+            gap: 4rem;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
         .about__image-wrap {
             position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(46, 42, 38, 0.15);
         }
 
         .about__image-wrap img {
             width: 100%;
-            border-radius: 10px;
-            border: 1px solid rgba(140, 130, 120, 0.2);
-            filter: saturate(1.05) brightness(1.02) sepia(0.04);
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+        }
+
+        .about__stamp {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 110px;
+            height: 110px;
+            border: 4px double var(--barn-red);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(245, 236, 215, 0.92);
+            transform: rotate(-8deg);
+            box-shadow:
+                inset 0 0 0 2px var(--barn-red),
+                2px 3px 8px rgba(0,0,0,0.2),
+                inset 1px 1px 3px rgba(139, 58, 42, 0.15);
+        }
+
+        .about__stamp-year {
+            font-family: var(--font-accent);
+            font-size: 1.3rem;
+            color: var(--barn-red);
+            line-height: 1;
+        }
+
+        .about__stamp-text {
+            font-family: var(--font-accent);
+            font-size: 0.65rem;
+            color: var(--barn-red);
+            letter-spacing: 0.05em;
+            margin-top: 2px;
+        }
+
+        .about__stamp-est {
+            font-family: var(--font-accent);
+            font-size: 0.75rem;
+            color: var(--barn-red);
+            margin-bottom: 2px;
         }
 
         .about__content {
             position: relative;
+            z-index: 1;
         }
 
-        .about__heading {
+        .about__heading-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .about__heading-group .section__heading {
+            display: inline;
+        }
+
+        .about__years {
             font-family: var(--font-display);
-            font-weight: 700;
-            font-size: clamp(1.75rem, 3vw, 2.25rem);
-            line-height: 1.2;
-            color: var(--saddle);
-            margin-bottom: 1.25rem;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--barn-red);
+            position: relative;
+            display: inline-block;
         }
 
-        .about__heading span {
-            color: var(--barn-red);
+        .about__years::after {
+            content: "";
+            position: absolute;
+            bottom: 2px;
+            left: -4px;
+            right: -4px;
+            height: 8px;
+            background: rgba(139, 58, 42, 0.15);
+            border-radius: 2px;
+            z-index: -1;
         }
 
         .about__text {
-            font-family: var(--font-body);
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: var(--bark);
-            line-height: 1.7;
+            line-height: 1.75;
             margin-bottom: 1rem;
         }
 
-        .about__text:last-of-type {
-            margin-bottom: 1.75rem;
+        .about__text strong {
+            color: var(--saddle);
         }
 
-        .about__stamp {
-            display: inline-flex;
+        .about__owner {
+            display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-family: var(--font-accent);
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid rgba(92, 58, 30, 0.1);
+        }
+
+        .about__owner-name {
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--saddle);
             font-size: 1.1rem;
-            color: var(--barn-red);
-            border: 2px solid var(--barn-red);
-            border-radius: 8px;
-            padding: 0.6rem 1.25rem;
-            opacity: 0.8;
-            transform: rotate(-2deg);
-            letter-spacing: 0.02em;
+        }
+
+        .about__owner-title {
+            font-size: 0.9rem;
+            color: var(--weathered);
         }
 
         /* ========================================
-           TESTIMONIALS
+           TESTIMONIALS — Dark with WARM glow
            ======================================== */
-        .testimonials-grid {
+        .testimonials {
+            background: var(--bark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Warm amber fireplace glow */
+        .testimonials::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at 50% 100%, rgba(200, 148, 62, 0.1) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 90%, rgba(200, 148, 62, 0.06) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 95%, rgba(200, 148, 62, 0.06) 0%, transparent 40%);
+        }
+
+        /* Wood texture on dark sections */
+        .testimonials::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(200, 148, 62, 0.02) 0px,
+                    transparent 1px,
+                    transparent 5px,
+                    rgba(200, 148, 62, 0.015) 6px,
+                    transparent 7px,
+                    transparent 14px
+                );
+        }
+
+        .testimonials .section__overline {
+            color: var(--amber);
+        }
+
+        .testimonials .section__heading {
+            color: #fff;
+        }
+
+        .testimonials .section__sub {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .testimonials__grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
+            margin-top: 2.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .testimonial-card {
-            background: var(--linen);
-            border-radius: 10px;
-            padding: 2rem 1.75rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 1.75rem;
             position: relative;
         }
 
         .testimonial-card__stars {
-            display: flex;
-            gap: 3px;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-card__stars svg {
-            width: 16px;
-            height: 16px;
-            fill: var(--amber);
+            color: var(--amber);
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: 2px;
         }
 
         .testimonial-card__quote {
             font-family: var(--font-body);
-            font-style: italic;
             font-size: 0.95rem;
-            color: rgba(250, 247, 242, 0.85);
+            color: rgba(255,255,255,0.75);
             line-height: 1.7;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
+            font-style: italic;
         }
 
         .testimonial-card__author {
-            font-family: var(--font-display);
-            font-weight: 500;
-            font-size: 0.95rem;
-            color: var(--cotton);
-        }
-
-        .testimonial-card__dog {
-            font-family: var(--font-body);
-            font-size: 0.8rem;
-            color: rgba(250, 247, 242, 0.5);
-            margin-top: 0.15rem;
-        }
-
-        /* ========================================
-           HAPPY DOGS FEATURE
-           ======================================== */
-        .happy-dogs {
-            text-align: center;
-            max-width: 640px;
-            margin-inline: auto;
-        }
-
-        .happy-dogs__heading {
-            font-family: var(--font-display);
             font-weight: 700;
-            font-size: clamp(1.75rem, 3vw, 2.25rem);
-            color: var(--saddle);
-            margin-bottom: 1rem;
-            line-height: 1.2;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
         }
 
-        .happy-dogs__text {
-            font-family: var(--font-body);
-            font-size: 1.05rem;
-            color: var(--bark);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .happy-dogs__accent {
-            display: inline-block;
-            width: 60px;
-            height: 3px;
-            background: var(--barn-red);
-            border-radius: 2px;
+        .testimonial-card__source {
+            font-size: 0.8rem;
+            color: var(--amber);
         }
 
         /* ========================================
-           CTA SECTION
+           HEARTH SECTION — "Every Dog Goes Home Happy"
+           THE fireplace moment
+           ======================================== */
+        .hearth {
+            background: var(--bark);
+            position: relative;
+            overflow: hidden;
+            padding: clamp(5rem, 10vw, 8rem) 0;
+            text-align: center;
+        }
+
+        /* Firelight glow emanating upward */
+        .hearth::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at 50% 100%, rgba(200, 148, 62, 0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 85%, rgba(139, 58, 42, 0.08) 0%, transparent 45%),
+                radial-gradient(ellipse at 30% 100%, rgba(200, 148, 62, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 100%, rgba(200, 148, 62, 0.08) 0%, transparent 40%);
+        }
+
+        /* Visible wood texture */
+        .hearth::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(200, 148, 62, 0.025) 0px,
+                    transparent 1px,
+                    transparent 6px,
+                    rgba(200, 148, 62, 0.02) 7px,
+                    transparent 8px,
+                    transparent 16px
+                );
+        }
+
+        .hearth__content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Paw print decorations */
+        .hearth__paws {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.3;
+        }
+
+        .hearth__paws svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--amber);
+        }
+
+        .hearth__tagline {
+            font-family: var(--font-accent);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--amber);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 20px rgba(200, 148, 62, 0.2);
+        }
+
+        /* Bandana-pattern divider */
+        .hearth__divider {
+            width: 120px;
+            height: 14px;
+            margin: 0 auto 1.5rem;
+            background:
+                linear-gradient(45deg, var(--barn-red) 25%, transparent 25%),
+                linear-gradient(-45deg, var(--barn-red) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, var(--barn-red) 75%),
+                linear-gradient(-45deg, transparent 75%, var(--barn-red) 75%);
+            background-size: 14px 14px;
+            background-color: var(--barn-red-dark);
+            border-radius: 2px;
+            opacity: 0.7;
+        }
+
+        .hearth__text {
+            font-family: var(--font-display);
+            font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.75;
+            max-width: 520px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        /* Wooden frame border feel */
+        .hearth__content::before,
+        .hearth__content::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: rgba(200, 148, 62, 0.2);
+            margin: 2rem auto;
+            border-radius: 1px;
+        }
+
+        /* ========================================
+           CTA SECTION — Full barn-red
            ======================================== */
         .cta-section {
+            background: linear-gradient(135deg, var(--barn-red) 0%, var(--barn-red-dark) 100%);
+            padding: clamp(3rem, 6vw, 5rem) 0;
             text-align: center;
+            position: relative;
+            z-index: 5;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255,255,255,0.015) 0px,
+                    transparent 1px,
+                    transparent 5px,
+                    rgba(255,255,255,0.01) 6px,
+                    transparent 7px,
+                    transparent 12px
+                );
         }
 
         .cta-section__heading {
             font-family: var(--font-display);
-            font-weight: 700;
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            color: var(--cotton);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            color: #fff;
             margin-bottom: 0.75rem;
         }
 
-        .cta-section__phone {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            color: var(--wheat);
-            margin-bottom: 2rem;
-            display: block;
-        }
-
-        .cta-section__phone a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .cta-section__phone a:hover {
-            text-decoration: underline;
-        }
-
-        .cta-section__buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
         .cta-section__sub {
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            color: rgba(250, 247, 242, 0.6);
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2rem;
+        }
+
+        .cta-section .btn--amber {
+            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
         }
 
         /* ========================================
            CONTACT & HOURS
            ======================================== */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: clamp(2rem, 5vw, 4rem);
+        .contact {
+            background: var(--wheat);
         }
 
-        .contact-info__item {
+        .contact__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(175deg, var(--cotton) 0%, #f3ead6 100%);
+            border: 2px solid rgba(92, 58, 30, 0.1);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .contact-card__title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--saddle);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid rgba(92, 58, 30, 0.1);
+        }
+
+        .contact-card__row {
             display: flex;
             align-items: flex-start;
             gap: 0.75rem;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
         }
 
-        .contact-info__icon {
+        .contact-card__row svg {
             width: 20px;
             height: 20px;
             flex-shrink: 0;
-            color: var(--barn-red);
             margin-top: 2px;
+            color: var(--barn-red);
         }
 
-        .contact-info__icon svg {
-            width: 100%;
-            height: 100%;
+        .contact-card__label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--weathered);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.15rem;
         }
 
-        .contact-info__text {
-            font-family: var(--font-body);
-            font-size: 0.95rem;
+        .contact-card__value {
+            font-size: 1rem;
             color: var(--bark);
-            line-height: 1.6;
         }
 
-        .contact-info__text a {
-            color: var(--denim);
-            text-decoration: underline;
-            text-decoration-color: rgba(74, 97, 120, 0.3);
-            text-underline-offset: 2px;
-            transition: text-decoration-color 0.2s;
+        .contact-card__value a {
+            color: var(--barn-red);
+            font-weight: 600;
+            transition: color var(--duration) var(--ease-warm);
         }
 
-        .contact-info__text a:hover {
-            text-decoration-color: var(--denim);
+        .contact-card__value a:hover {
+            color: var(--barn-red-dark);
         }
 
-        .contact-map {
-            margin-top: 1.5rem;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid rgba(140, 130, 120, 0.2);
-        }
-
-        .contact-map iframe {
-            display: block;
-            width: 100%;
-            height: 220px;
-            border: 0;
-        }
-
-        /* Hours Table */
         .hours-table {
             width: 100%;
             border-collapse: collapse;
         }
 
         .hours-table tr {
-            border-bottom: 1px solid rgba(140, 130, 120, 0.12);
+            border-bottom: 1px solid rgba(92, 58, 30, 0.06);
         }
 
         .hours-table tr:last-child {
@@ -967,26 +1097,39 @@
         }
 
         .hours-table td {
-            padding: 0.65rem 0;
-        }
-
-        .hours-table__day {
-            font-family: var(--font-display);
-            font-weight: 500;
+            padding: 0.5rem 0;
             font-size: 0.95rem;
-            color: var(--saddle);
         }
 
-        .hours-table__time {
-            font-family: var(--font-body);
-            font-size: 0.95rem;
-            color: var(--bark);
-            text-align: right;
-        }
-
-        .hours-table__time--closed {
-            color: var(--barn-red);
+        .hours-table td:first-child {
             font-weight: 600;
+            color: var(--saddle);
+            width: 45%;
+        }
+
+        .hours-table td:last-child {
+            color: var(--bark);
+        }
+
+        .hours-closed {
+            color: var(--weathered);
+            font-style: italic;
+        }
+
+        /* Map */
+        .contact__map {
+            margin-top: 2.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid rgba(92, 58, 30, 0.1);
+            box-shadow: 0 6px 24px rgba(46, 42, 38, 0.08);
+        }
+
+        .contact__map iframe {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            display: block;
         }
 
         /* ========================================
@@ -994,74 +1137,130 @@
            ======================================== */
         .footer {
             background: var(--bark);
-            color: var(--wheat);
-            padding: 3.5rem 0 0;
+            color: rgba(255,255,255,0.6);
+            padding: 3rem 0 1.5rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        .footer__red-rule {
+            height: 4px;
+            background: var(--barn-red);
+            margin-bottom: 2.5rem;
         }
 
         .footer__grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
             gap: 3rem;
-            padding-bottom: 2.5rem;
-            border-bottom: 1px solid rgba(245, 236, 215, 0.1);
+            margin-bottom: 2.5rem;
         }
 
         .footer__brand-name {
             font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1.15rem;
-            color: var(--wheat);
-            margin-bottom: 0.75rem;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
         }
 
-        .footer__brand-desc {
-            font-family: var(--font-body);
-            font-size: 0.875rem;
-            color: rgba(245, 236, 215, 0.5);
-            line-height: 1.6;
+        .footer__brand-est {
+            font-family: var(--font-accent);
+            font-size: 0.85rem;
+            color: var(--amber);
+            margin-bottom: 1rem;
+        }
+
+        .footer__desc {
+            font-size: 0.9rem;
+            line-height: 1.65;
             max-width: 320px;
         }
 
         .footer__heading {
             font-family: var(--font-display);
             font-weight: 700;
-            font-size: 0.95rem;
-            color: var(--wheat);
+            font-size: 1rem;
+            color: var(--barn-red);
             margin-bottom: 1rem;
-            letter-spacing: 0.01em;
+            letter-spacing: 0.02em;
         }
 
-        .footer__link {
-            display: block;
-            font-family: var(--font-body);
-            font-size: 0.875rem;
-            color: rgba(245, 236, 215, 0.5);
-            margin-bottom: 0.6rem;
-            transition: color 0.2s;
+        .footer__links li {
+            margin-bottom: 0.5rem;
         }
 
-        .footer__link:hover {
-            color: var(--wheat);
+        .footer__links a {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            transition: color var(--duration) var(--ease-warm);
+        }
+
+        .footer__links a:hover {
+            color: var(--amber);
         }
 
         .footer__bottom {
-            padding: 1.5rem 0;
-            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
         }
 
-        .footer__copyright {
-            font-family: var(--font-body);
-            font-size: 0.8rem;
-            color: rgba(245, 236, 215, 0.35);
+        .footer__bottom a {
+            color: var(--amber);
         }
 
         /* ========================================
-           SCROLL REVEAL ANIMATIONS
+           GALLERY STRIP
+           ======================================== */
+        .gallery-strip {
+            background: var(--linen);
+            padding: 2.5rem 0;
+            position: relative;
+            z-index: 5;
+        }
+
+        .gallery-strip__heading {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery-strip__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .gallery-strip__item {
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 16px rgba(46, 42, 38, 0.1);
+        }
+
+        .gallery-strip__item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s var(--ease-warm);
+        }
+
+        .gallery-strip__item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ========================================
+           SCROLL REVEAL
            ======================================== */
         .reveal {
             opacity: 0;
             transform: translateY(24px);
-            transition: opacity 0.6s var(--ease-warm), transform 0.6s var(--ease-warm);
+            transition: opacity 0.7s var(--ease-warm), transform 0.7s var(--ease-warm);
         }
 
         .reveal.is-visible {
@@ -1069,11 +1268,12 @@
             transform: translateY(0);
         }
 
-        .reveal-delay-1 { transition-delay: 80ms; }
-        .reveal-delay-2 { transition-delay: 160ms; }
-        .reveal-delay-3 { transition-delay: 240ms; }
-        .reveal-delay-4 { transition-delay: 320ms; }
-        .reveal-delay-5 { transition-delay: 400ms; }
+        .reveal-delay-1 { transition-delay: 0.08s; }
+        .reveal-delay-2 { transition-delay: 0.16s; }
+        .reveal-delay-3 { transition-delay: 0.24s; }
+        .reveal-delay-4 { transition-delay: 0.32s; }
+        .reveal-delay-5 { transition-delay: 0.40s; }
+        .reveal-delay-6 { transition-delay: 0.48s; }
 
         @media (prefers-reduced-motion: reduce) {
             .reveal {
@@ -1084,30 +1284,34 @@
         }
 
         /* ========================================
-           RESPONSIVE
+           RESPONSIVE — 1024px
            ======================================== */
         @media (max-width: 1024px) {
-            .services-grid {
+            .services__grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
-            .service-card--feature {
-                grid-column: span 2;
+            .service-card--featured {
                 grid-row: span 1;
             }
-
-            .testimonials-grid {
+            .testimonials__grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
-            .testimonials-grid .testimonial-card:last-child {
+            .testimonials__grid .testimonial-card:last-child {
                 grid-column: span 2;
-                max-width: 480px;
-                margin-inline: auto;
+            }
+            .footer__grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
+        /* ========================================
+           RESPONSIVE — 768px
+           ======================================== */
         @media (max-width: 768px) {
+            .nav__toggle {
+                display: block;
+            }
+
             .nav__links {
                 display: none;
                 position: absolute;
@@ -1115,539 +1319,605 @@
                 left: 0;
                 right: 0;
                 background: var(--bark);
+                border-top: 2px solid var(--barn-red);
                 flex-direction: column;
-                padding: 1.5rem;
-                gap: 1rem;
-                border-top: 1px solid rgba(245, 236, 215, 0.1);
-                box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+                padding: 1rem;
+                box-shadow: 0 12px 32px rgba(0,0,0,0.3);
             }
 
             .nav__links.is-open {
                 display: flex;
             }
 
-            .nav__toggle {
-                display: flex;
+            .nav__links a {
+                padding: 0.75rem 1rem;
+                width: 100%;
+                text-align: left;
+            }
+
+            .hero {
+                min-height: 80vh;
+                min-height: 80dvh;
             }
 
             .hero__content {
-                max-width: 100%;
-            }
-
-            .trust-strip__inner {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.25rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .service-card--feature {
-                grid-column: span 1;
+                padding-left: clamp(1.25rem, 4vw, 2rem);
+                padding-right: clamp(1.25rem, 4vw, 2rem);
             }
 
             .about__grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .testimonials-grid .testimonial-card:last-child {
-                grid-column: span 1;
-                max-width: none;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
                 gap: 2.5rem;
+            }
+
+            .about__image-wrap {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .services__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card--wide {
+                grid-column: span 1;
+            }
+
+            .testimonials__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials__grid .testimonial-card:last-child {
+                grid-column: span 1;
+            }
+
+            .contact__grid {
+                grid-template-columns: 1fr;
             }
 
             .footer__grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+
+            .footer__bottom {
+                flex-direction: column;
+                gap: 0.75rem;
+                text-align: center;
+            }
+
+            .gallery-strip__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
+        /* ========================================
+           RESPONSIVE — 480px
+           ======================================== */
         @media (max-width: 480px) {
             .hero {
                 min-height: 75vh;
                 min-height: 75dvh;
             }
 
-            .hero__ctas {
+            .hero__heading {
+                font-size: clamp(2rem, 8vw, 2.75rem);
+            }
+
+            .hero__actions {
                 flex-direction: column;
             }
 
-            .hero__ctas .btn {
+            .hero__actions .btn {
                 width: 100%;
+                justify-content: center;
             }
 
-            .trust-strip__inner {
-                grid-template-columns: 1fr 1fr;
+            .hearth__tagline {
+                font-size: clamp(1.6rem, 7vw, 2.2rem);
             }
 
-            .cta-section__buttons {
+            .trust-strip .container {
                 flex-direction: column;
-                align-items: center;
+                gap: 0.75rem;
             }
 
-            .cta-section__buttons .btn {
-                width: 100%;
-                max-width: 300px;
+            .gallery-strip__grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+
+    <!-- Skip Link -->
     <a href="#main" class="skip-link">Skip to main content</a>
 
-    <!-- Bandana Pattern Strip -->
+    <!-- Bandana Strip Top -->
     <div class="bandana-strip" aria-hidden="true"></div>
 
-    <!-- ========================================
-         NAVIGATION
-         ======================================== -->
-    <nav class="nav" aria-label="Main navigation">
-        <div class="container nav__inner">
+    <!-- Navigation -->
+    <nav class="nav" aria-label="Primary navigation">
+        <div class="container">
             <a href="#" class="nav__brand" aria-label="The Dog House - Home">
-                <img src="../doghouse-logo.jpg" alt="The Dog House logo" class="nav__logo" width="44" height="44">
+                <img src="../doghouse-logo.jpg" alt="The Dog House logo" class="nav__logo" width="52" height="52">
                 <span class="nav__brand-text">
                     <span class="nav__brand-name">The Dog House</span>
-                    <span class="nav__brand-est">Est. 1984</span>
+                    <span class="nav__est">Est. 1984</span>
                 </span>
             </a>
 
-            <button class="nav__toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+            <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
-            <div class="nav__links" id="nav-menu" role="menubar">
-                <a href="#services" class="nav__link" role="menuitem">Services</a>
-                <a href="#about" class="nav__link" role="menuitem">Our Story</a>
-                <a href="#testimonials" class="nav__link" role="menuitem">Reviews</a>
-                <a href="#contact" class="nav__link" role="menuitem">Contact</a>
-                <a href="tel:+19726759769" class="nav__cta" role="menuitem">Call Now</a>
+            <div class="nav__links" id="nav-links" role="menubar">
+                <a href="#services" role="menuitem">Services</a>
+                <a href="#about" role="menuitem">About</a>
+                <a href="#testimonials" role="menuitem">Reviews</a>
+                <a href="#contact" role="menuitem">Contact</a>
+                <a href="tel:+19726759769" class="nav__cta" role="menuitem">(972) 675-9769</a>
             </div>
         </div>
     </nav>
 
     <main id="main">
-        <!-- ========================================
-             HERO SECTION
-             ======================================== -->
+
+        <!-- ===== HERO ===== -->
         <section class="hero" aria-label="Welcome to The Dog House">
-            <div class="hero__image-wrap">
-                <img src="../dog01.jpg" alt="Golden retriever puppy wearing a pink bandana, freshly groomed at The Dog House" width="1200" height="800">
+            <div class="hero__img">
+                <img src="../dog01.jpg" alt="Happy golden retriever puppy wearing a pink bandana, freshly groomed at The Dog House" width="1920" height="1080" loading="eager" fetchpriority="high">
             </div>
-
-            <div class="container">
-                <div class="hero__content">
-                    <div class="hero__badge">
-                        <!-- Lone star icon -->
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                        40+ Years Serving Garland, TX
-                    </div>
-
-                    <h1 class="hero__heading">Where Every Dog Is Family</h1>
-
-                    <p class="hero__subtitle">For over 40 years, The Dog House has been the neighborhood's most trusted grooming shop. Every breed. Every temperament. Every dog goes home happy.</p>
-
-                    <div class="hero__ctas">
-                        <a href="tel:+19726759769" class="btn btn--primary">Book an Appointment</a>
-                        <a href="#services" class="btn btn--outline" style="color: var(--wheat); border-color: rgba(245,236,215,0.4);">Our Services</a>
-                    </div>
+            <div class="hero__content">
+                <div class="hero__badge">
+                    <!-- Star icon -->
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    Garland's Favorite Since 1984
+                </div>
+                <h1 class="hero__heading">
+                    Where Every Pup<br>Gets the <em>Royal Treatment</em>
+                </h1>
+                <p class="hero__sub">
+                    Over 40 years of trusted, full-service grooming for dogs of all breeds. Named one of the 3 Best Pet Groomers in Garland for 9+ consecutive years.
+                </p>
+                <div class="hero__actions">
+                    <a href="tel:+19726759769" class="btn btn--primary">
+                        <!-- Phone icon -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        Book an Appointment
+                    </a>
+                    <a href="#services" class="btn btn--outline">View Services</a>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================
-             TRUST STRIP
-             ======================================== -->
-        <section class="trust-strip" aria-label="Awards and recognitions">
+        <!-- Wood Beam Divider -->
+        <div class="wood-beam" aria-hidden="true"></div>
+
+        <!-- ===== TRUST STRIP ===== -->
+        <section class="trust-strip" aria-label="Awards and recognition">
             <div class="container">
-                <div class="trust-strip__inner">
-                    <div class="trust-item reveal">
-                        <div class="trust-item__stars" aria-label="4.5 out of 5 stars">
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24" style="opacity:0.5"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                        </div>
-                        <span class="trust-item__label">4.5 Stars on Yelp</span>
-                    </div>
-
-                    <div class="trust-item reveal reveal-delay-1">
-                        <div class="trust-item__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                        </div>
-                        <span class="trust-item__label">40+ Years Experience</span>
-                    </div>
-
-                    <div class="trust-item reveal reveal-delay-2">
-                        <div class="trust-item__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 5 5 5 9c0 2 1 3.5 2.5 4.5C6 14.5 4 16 4 18c0 2.5 3.5 4 8 4s8-1.5 8-4c0-2-2-3.5-3.5-4.5C18 12.5 19 11 19 9c0-4-3-7-7-7zm-2 14.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm4 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/></svg>
-                        </div>
-                        <span class="trust-item__label">All Breeds Welcome</span>
-                    </div>
-
-                    <div class="trust-item reveal reveal-delay-3">
-                        <div class="trust-item__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                        </div>
-                        <span class="trust-item__label">Free Treats &amp; Bandanas</span>
-                    </div>
+                <div class="trust-item">
+                    <span class="trust-stars" aria-label="4.5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                    <span>4.5 Stars on Yelp (71 Reviews)</span>
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--barn-red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    <span>Nextdoor Favorite (93/100)</span>
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    <span>3 Best Pet Groomers &mdash; 9+ Years</span>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================
-             SERVICES SECTION
-             ======================================== -->
-        <section id="services" class="section" aria-labelledby="services-heading">
+        <!-- ===== SERVICES ===== -->
+        <section class="section services" id="services" aria-labelledby="services-heading">
             <div class="container">
-                <h2 class="section__heading reveal" id="services-heading">Our Grooming Services</h2>
-                <p class="section__subtitle reveal reveal-delay-1">From full grooms to specialty treatments, every service is tailored to your pet's breed, coat type, and comfort level.</p>
+                <span class="section__overline reveal">Our</span>
+                <h2 class="section__heading reveal" id="services-heading">Grooming Services</h2>
+                <p class="section__sub reveal">Professional care for every breed, every coat, every tail-wagger.</p>
 
-                <div class="services-grid">
-                    <!-- Feature Card: Full Groom -->
-                    <div class="service-card service-card--feature reveal">
-                        <div class="service-card__image">
-                            <img src="../dog-with-heart.jpg" alt="Fluffy dog holding a red heart plush toy after grooming" width="600" height="400">
+                <div class="services__grid">
+                    <!-- Featured: Full Groom -->
+                    <div class="service-card service-card--featured reveal reveal-delay-1">
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 48 48"><path d="M14 8c-3 0-5 2-5 5v22c0 3 2 5 5 5h20c3 0 5-2 5-5V13c0-3-2-5-5-5H14z" stroke-width="2.5"/><path d="M20 18l-3 8h6l-3 8" stroke-width="2.5"/><circle cx="32" cy="16" r="2" stroke-width="2"/></svg>
                         </div>
-                        <div class="service-card__icon" aria-hidden="true">&#9988;</div>
-                        <h3 class="service-card__title">Full Groom with Haircut</h3>
-                        <p class="service-card__desc">Our signature service includes breed-specific styling, bath, blow-dry, brush-out, nail trim, ear cleaning, and teeth brushing. Available for all breeds, dogs and cats.</p>
-                        <span class="service-card__tag">Most Popular</span>
+                        <h3 class="service-card__title">Full Groom</h3>
+                        <p class="service-card__text">
+                            Our signature service: bath, haircut, blow dry, brush-out, nail trim, ear cleaning, and a bandana to finish. Every breed, every coat type. Your pup leaves looking and feeling like a million bucks.
+                        </p>
+                        <p class="service-card__price">Starting from $45 &middot; By appointment</p>
                     </div>
 
-                    <!-- Bath & Brush -->
-                    <div class="service-card reveal reveal-delay-1">
-                        <div class="service-card__icon" aria-hidden="true">&#128703;</div>
-                        <h3 class="service-card__title">Bath &amp; Brush-Out</h3>
-                        <p class="service-card__desc">A thorough bath with premium shampoo, complete brush-out, blow-dry, nail trim, and ear cleaning.</p>
+                    <!-- Bath & Brush-Out -->
+                    <div class="service-card reveal reveal-delay-2">
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 48 48"><path d="M8 24h32v8c0 4-3 8-8 8H16c-4 0-8-4-8-8v-8z" stroke-width="2.5"/><path d="M12 24v-6c0-6 5-10 12-10s12 4 12 10v6" stroke-width="2.5"/><circle cx="18" cy="28" r="2" stroke-width="2"/><circle cx="30" cy="28" r="2" stroke-width="2"/></svg>
+                        </div>
+                        <h3 class="service-card__title">Bath & Brush-Out</h3>
+                        <p class="service-card__text">
+                            Deep-clean bath with premium shampoo, thorough brush-out, blow dry, nail trim, and ear cleaning. Perfect for between-groom freshness.
+                        </p>
                     </div>
 
                     <!-- Nail Services -->
-                    <div class="service-card reveal reveal-delay-2">
-                        <div class="service-card__icon" aria-hidden="true">&#128062;</div>
-                        <h3 class="service-card__title">Nail Clipping &amp; Grinding</h3>
-                        <p class="service-card__desc">Gentle nail trimming and smoothing with a Dremel grinder for a comfortable, snag-free finish.</p>
+                    <div class="service-card reveal reveal-delay-3">
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 48 48"><path d="M24 6c-2 0-4 2-4 4v14h8V10c0-2-2-4-4-4z" stroke-width="2.5"/><path d="M14 24h20v4c0 8-4 14-10 14s-10-6-10-14v-4z" stroke-width="2.5"/></svg>
+                        </div>
+                        <h3 class="service-card__title">Nail Clipping & Grinding</h3>
+                        <p class="service-card__text">
+                            Quick, careful nail maintenance with clipping or smooth Dremel grinding. Walk-ins welcome.
+                        </p>
                     </div>
 
                     <!-- Specialty Treatments -->
-                    <div class="service-card reveal reveal-delay-3">
-                        <div class="service-card__icon" aria-hidden="true">&#127807;</div>
+                    <div class="service-card service-card--wide reveal reveal-delay-4">
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 48 48"><path d="M24 4l4 8h8l-6 6 2 8-8-4-8 4 2-8-6-6h8l4-8z" stroke-width="2.5"/></svg>
+                        </div>
                         <h3 class="service-card__title">Specialty Treatments</h3>
-                        <p class="service-card__desc">Oatmeal baths, hypoallergenic shampoos, conditioner treatments, and natural coat care for sensitive skin.</p>
-                        <span class="service-card__tag">Gentle Care</span>
+                        <p class="service-card__text">
+                            Oatmeal & conditioner treatments, hypoallergenic shampoos, Furminator de-shedding, flea baths, skunk odor removal, teeth brushing, and all-natural shampoo options. Whatever your pup needs, we have it covered.
+                        </p>
                     </div>
 
-                    <!-- FURminator -->
-                    <div class="service-card reveal reveal-delay-4">
-                        <div class="service-card__icon" aria-hidden="true">&#10024;</div>
-                        <h3 class="service-card__title">FURminator De-Shedding</h3>
-                        <p class="service-card__desc">Professional de-shedding treatment that reduces loose hair by up to 90%. Your furniture will thank you.</p>
-                    </div>
-
-                    <!-- Flea & Skunk -->
+                    <!-- Ear & Teeth -->
                     <div class="service-card reveal reveal-delay-5">
-                        <div class="service-card__icon" aria-hidden="true">&#128737;</div>
-                        <h3 class="service-card__title">Flea &amp; Odor Treatments</h3>
-                        <p class="service-card__desc">Flea baths, skunk odor removal, and deep-cleaning treatments. Because life with pets gets messy sometimes.</p>
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16" stroke-width="2.5"/><path d="M18 22c0-3 3-6 6-6s6 3 6 6" stroke-width="2.5"/><path d="M24 28v4" stroke-width="2.5"/></svg>
+                        </div>
+                        <h3 class="service-card__title">Ear Cleaning & Teeth Brushing</h3>
+                        <p class="service-card__text">
+                            Gentle ear cleaning and teeth brushing for a happy, healthy pup. Add to any grooming service.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================
-             ABOUT / OUR STORY
-             ======================================== -->
-        <section id="about" class="section section--linen about" aria-labelledby="about-heading">
+        <!-- Wood Beam Divider -->
+        <div class="wood-beam" aria-hidden="true"></div>
+
+        <!-- ===== ABOUT ===== -->
+        <section class="section about" id="about" aria-labelledby="about-heading">
             <div class="container">
                 <div class="about__grid">
                     <div class="about__image-wrap reveal">
-                        <img src="../dog-with-heart.jpg" alt="A fluffy groomed dog holding a red heart plush, representing the love and care at The Dog House" width="600" height="400">
+                        <img src="../dog-with-heart.jpg" alt="Fluffy dog with heart shape, representing the love and care at The Dog House" width="600" height="750" loading="lazy">
+                        <div class="about__stamp" aria-label="Established 1984, over 40 years of grooming">
+                            <span class="about__stamp-est">Est.</span>
+                            <span class="about__stamp-year">1984</span>
+                            <span class="about__stamp-text">40+ Years</span>
+                        </div>
                     </div>
-
-                    <div class="about__content reveal reveal-delay-1">
-                        <h2 class="about__heading" id="about-heading"><span>40 Years</span> of Wagging Tails</h2>
-
-                        <p class="about__text">When Rick Holloway opened The Dog House in 1984, Garland was a different place. But some things haven't changed: neighbors still want a groomer they can trust, a place where their dog is treated like family, not a number on a schedule.</p>
-
-                        <p class="about__text">Four decades later, we still operate on that same promise. We specialize in every breed and every temperament -- from the anxious rescue who needs extra patience to the senior dog who deserves gentle, expert care. Our team of nine experienced groomers knows that every dog is different, and every dog deserves to go home looking great and feeling loved.</p>
-
-                        <p class="about__text">Named one of the "3 Best Pet Groomers in Garland" for nine consecutive years, with a 93 out of 100 Neighborhood Favorite score on Nextdoor. We're proud of the recognition, but what matters most is seeing tails wag at pickup.</p>
-
-                        <div class="about__stamp" aria-label="Established 1984">
-                            <!-- Lone star -->
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            Est. 1984
+                    <div class="about__content">
+                        <span class="section__overline reveal">Our Story</span>
+                        <div class="about__heading-group reveal">
+                            <h2 class="section__heading" id="about-heading">
+                                <span class="about__years">40+ Years</span> of Tail-Wagging Grooming
+                            </h2>
+                        </div>
+                        <p class="about__text reveal">
+                            Since 1984, <strong>The Dog House All Breed Grooming</strong> has been Garland's trusted grooming destination. What started as a small neighborhood shop has grown into one of the most recognized grooming businesses in the DFW metroplex &mdash; and we still treat every dog like family.
+                        </p>
+                        <p class="about__text reveal">
+                            Walk into our shop and you'll notice the difference right away: a warm fireplace in the entry, the scent of natural shampoos, and a team that genuinely loves what they do. We've been named one of the <strong>3 Best Pet Groomers in Garland</strong> for over 9 consecutive years &mdash; and we earn that reputation every single day.
+                        </p>
+                        <div class="about__owner reveal">
+                            <div>
+                                <div class="about__owner-name">Rick Holloway</div>
+                                <div class="about__owner-title">Owner & Master Groomer</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================
-             TESTIMONIALS
-             ======================================== -->
-        <section id="testimonials" class="section section--dark" aria-labelledby="testimonials-heading">
-            <div class="container">
-                <h2 class="section__heading reveal" id="testimonials-heading">What Our Families Say</h2>
-                <p class="section__subtitle reveal reveal-delay-1">Real reviews from real neighbors who trust us with their best friends.</p>
+        <!-- Wood Beam Divider -->
+        <div class="wood-beam" aria-hidden="true"></div>
 
-                <div class="testimonials-grid">
+        <!-- ===== TESTIMONIALS ===== -->
+        <section class="section testimonials" id="testimonials" aria-labelledby="testimonials-heading">
+            <div class="container">
+                <span class="section__overline reveal">What Folks Say</span>
+                <h2 class="section__heading reveal" id="testimonials-heading">Trusted by Garland Pet Owners</h2>
+                <p class="section__sub reveal">Real reviews from real dog parents in our community.</p>
+
+                <div class="testimonials__grid">
                     <div class="testimonial-card reveal reveal-delay-1">
-                        <div class="testimonial-card__stars" aria-label="5 out of 5 stars">
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                        </div>
-                        <p class="testimonial-card__quote">"We've been bringing our dogs to The Dog House for over twenty years. Rick and his team know every one of our pups by name. There's nobody else we'd trust -- they're part of our family at this point."</p>
-                        <p class="testimonial-card__author">Linda M.</p>
-                        <p class="testimonial-card__dog">(Maggie &amp; Duke, Golden Retrievers)</p>
+                        <div class="testimonial-card__stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <blockquote class="testimonial-card__quote">
+                            "I've been bringing my dogs here for over 15 years. Rick and his team are the absolute best. They treat my babies like their own. Wouldn't go anywhere else!"
+                        </blockquote>
+                        <div class="testimonial-card__author">Sandra M.</div>
+                        <div class="testimonial-card__source">Yelp Review</div>
                     </div>
 
                     <div class="testimonial-card reveal reveal-delay-2">
-                        <div class="testimonial-card__stars" aria-label="5 out of 5 stars">
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                        </div>
-                        <p class="testimonial-card__quote">"Our rescue Benny was terrified of groomers when we first adopted him. The team at The Dog House took it slow, gave him treats, and never rushed him. Now he actually gets excited when we pull into the parking lot."</p>
-                        <p class="testimonial-card__author">Marcus T.</p>
-                        <p class="testimonial-card__dog">(Benny, Terrier Mix -- Rescue)</p>
+                        <div class="testimonial-card__stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <blockquote class="testimonial-card__quote">
+                            "The fireplace in the entry makes you feel welcome the moment you walk in. My golden retriever always comes home smelling amazing and looking like a show dog."
+                        </blockquote>
+                        <div class="testimonial-card__author">James R.</div>
+                        <div class="testimonial-card__source">Nextdoor</div>
                     </div>
 
                     <div class="testimonial-card reveal reveal-delay-3">
-                        <div class="testimonial-card__stars" aria-label="5 out of 5 stars">
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                        </div>
-                        <p class="testimonial-card__quote">"Every single time we pick up Sadie, she's wearing the cutest little bandana and smells amazing. The treats in her bag are a nice touch too. You can tell these people genuinely love what they do."</p>
-                        <p class="testimonial-card__author">Jennifer &amp; Chris R.</p>
-                        <p class="testimonial-card__dog">(Sadie, Miniature Schnauzer)</p>
+                        <div class="testimonial-card__stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <blockquote class="testimonial-card__quote">
+                            "40 years for a reason! Professional, kind, and reasonably priced. My anxious rescue is completely at ease here. That says everything."
+                        </blockquote>
+                        <div class="testimonial-card__author">Patricia L.</div>
+                        <div class="testimonial-card__source">Google Review</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================
-             EVERY DOG GOES HOME HAPPY
-             ======================================== -->
-        <section class="section" aria-labelledby="happy-heading">
+        <!-- ===== HEARTH: "Every Dog Goes Home Happy" ===== -->
+        <section class="hearth" aria-label="Every Dog Goes Home Happy">
             <div class="container">
-                <div class="happy-dogs reveal">
-                    <h2 class="happy-dogs__heading" id="happy-heading">Every Dog Goes Home Happy</h2>
-                    <p class="happy-dogs__text">It started years ago as a simple gesture -- a treat and a fresh bandana for every pup at pickup. Somewhere along the way, it became our signature. Parents tell us their dogs perk up at the sound of the treat bag rustling. Kids run to the door to see what color bandana their best friend is wearing this time. It's a small thing, but the small things are what make a grooming shop feel like home.</p>
-                    <div class="happy-dogs__accent" aria-hidden="true"></div>
+                <div class="hearth__content reveal">
+                    <div class="hearth__paws" aria-hidden="true">
+                        <!-- Paw print SVGs -->
+                        <svg viewBox="0 0 24 24"><ellipse cx="7" cy="5" rx="2.5" ry="3"/><ellipse cx="17" cy="5" rx="2.5" ry="3"/><ellipse cx="3.5" cy="11" rx="2.5" ry="3"/><ellipse cx="20.5" cy="11" rx="2.5" ry="3"/><path d="M12 22c-4 0-7-3-7-6 0-2 1.5-4 3.5-5s3-1 3.5-1 1.5 0 3.5 1 3.5 3 3.5 5c0 3-3 6-7 6z"/></svg>
+                        <svg viewBox="0 0 24 24"><ellipse cx="7" cy="5" rx="2.5" ry="3"/><ellipse cx="17" cy="5" rx="2.5" ry="3"/><ellipse cx="3.5" cy="11" rx="2.5" ry="3"/><ellipse cx="20.5" cy="11" rx="2.5" ry="3"/><path d="M12 22c-4 0-7-3-7-6 0-2 1.5-4 3.5-5s3-1 3.5-1 1.5 0 3.5 1 3.5 3 3.5 5c0 3-3 6-7 6z"/></svg>
+                        <svg viewBox="0 0 24 24"><ellipse cx="7" cy="5" rx="2.5" ry="3"/><ellipse cx="17" cy="5" rx="2.5" ry="3"/><ellipse cx="3.5" cy="11" rx="2.5" ry="3"/><ellipse cx="20.5" cy="11" rx="2.5" ry="3"/><path d="M12 22c-4 0-7-3-7-6 0-2 1.5-4 3.5-5s3-1 3.5-1 1.5 0 3.5 1 3.5 3 3.5 5c0 3-3 6-7 6z"/></svg>
+                    </div>
+                    <h2 class="hearth__tagline">"Every Dog Goes<br>Home Happy"</h2>
+                    <div class="hearth__divider" aria-hidden="true"></div>
+                    <p class="hearth__text">
+                        That's not just our motto &mdash; it's the promise we've kept for over forty years. From the warm fireplace at our front door to the bandana we tie around every freshly groomed pup, everything we do is about love, care, and tail wags.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================
-             CTA SECTION
-             ======================================== -->
-        <section class="section section--barn-red cta-section" aria-label="Book an appointment">
+        <!-- ===== CTA SECTION ===== -->
+        <section class="cta-section" aria-label="Book your appointment">
+            <div class="container reveal">
+                <h2 class="cta-section__heading">Ready to Pamper Your Pup?</h2>
+                <p class="cta-section__sub">Call us or stop by &mdash; walk-ins welcome for nail trims.</p>
+                <a href="tel:+19726759769" class="btn btn--amber">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    Call (972) 675-9769
+                </a>
+            </div>
+        </section>
+
+        <!-- Wood Beam Divider -->
+        <div class="wood-beam" aria-hidden="true"></div>
+
+        <!-- ===== GALLERY ===== -->
+        <section class="gallery-strip" aria-label="Photo gallery">
             <div class="container">
-                <div class="reveal">
-                    <h2 class="cta-section__heading">Ready to Book?</h2>
-                    <span class="cta-section__phone"><a href="tel:+19726759769">(972) 675-9769</a></span>
-
-                    <div class="cta-section__buttons">
-                        <a href="tel:+19726759769" class="btn btn--white">Call (972) 675-9769</a>
-                        <a href="mailto:rick@thedoghousegarland.com" class="btn btn--white-outline">Email Us</a>
+                <div class="gallery-strip__heading">
+                    <span class="section__overline">Happy Pups</span>
+                </div>
+                <div class="gallery-strip__grid">
+                    <div class="gallery-strip__item reveal reveal-delay-1">
+                        <img src="../dog01.jpg" alt="Golden retriever puppy with pink bandana after grooming" width="400" height="400" loading="lazy">
                     </div>
-
-                    <p class="cta-section__sub">Serving Garland, Rowlett, Sachse, and surrounding communities</p>
+                    <div class="gallery-strip__item reveal reveal-delay-2">
+                        <img src="../dog-with-heart.jpg" alt="Fluffy dog with heart, representing the love at The Dog House" width="400" height="400" loading="lazy">
+                    </div>
+                    <div class="gallery-strip__item reveal reveal-delay-3">
+                        <img src="../doghouse-logo.jpg" alt="The Dog House All Breed Grooming logo" width="400" height="400" loading="lazy">
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================
-             CONTACT & HOURS
-             ======================================== -->
-        <section id="contact" class="section section--linen" aria-labelledby="contact-heading">
+        <!-- ===== CONTACT & HOURS ===== -->
+        <section class="section contact" id="contact" aria-labelledby="contact-heading">
             <div class="container">
-                <h2 class="section__heading reveal" id="contact-heading">Visit Us</h2>
-                <p class="section__subtitle reveal reveal-delay-1">We'd love to meet you and your pup.</p>
+                <span class="section__overline reveal">Get in Touch</span>
+                <h2 class="section__heading reveal" id="contact-heading">Visit The Dog House</h2>
+                <p class="section__sub reveal">We're conveniently located on Belt Line Road in Garland.</p>
 
-                <div class="contact-grid">
-                    <div class="reveal">
-                        <div class="contact-info__item">
-                            <div class="contact-info__icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            </div>
-                            <div class="contact-info__text">
-                                1456 Belt Line Rd, Ste 100<br>Garland, TX 75044
+                <div class="contact__grid">
+                    <div class="contact-card reveal reveal-delay-1">
+                        <h3 class="contact-card__title">Contact Information</h3>
+
+                        <div class="contact-card__row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <div>
+                                <div class="contact-card__label">Address</div>
+                                <div class="contact-card__value">
+                                    <a href="https://www.google.com/maps/place/1456+Belt+Line+Rd+Ste+100,+Garland,+TX+75044" target="_blank" rel="noopener noreferrer">
+                                        1456 Belt Line Rd, Ste 100<br>Garland, TX 75044
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="contact-info__item">
-                            <div class="contact-info__icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                            </div>
-                            <div class="contact-info__text">
-                                <a href="tel:+19726759769">(972) 675-9769</a>
-                            </div>
-                        </div>
-
-                        <div class="contact-info__item">
-                            <div class="contact-info__icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                            </div>
-                            <div class="contact-info__text">
-                                <a href="mailto:rick@thedoghousegarland.com">rick@thedoghousegarland.com</a>
+                        <div class="contact-card__row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <div>
+                                <div class="contact-card__label">Phone</div>
+                                <div class="contact-card__value">
+                                    <a href="tel:+19726759769">(972) 675-9769</a>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="contact-info__item">
-                            <div class="contact-info__icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <div class="contact-card__row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <div>
+                                <div class="contact-card__label">Email</div>
+                                <div class="contact-card__value">
+                                    <a href="mailto:rick@thedoghousegarland.com">rick@thedoghousegarland.com</a>
+                                </div>
                             </div>
-                            <div class="contact-info__text">
-                                <a href="https://thedoghousegarland.com" target="_blank" rel="noopener noreferrer">thedoghousegarland.com</a>
-                            </div>
-                        </div>
-
-                        <div class="contact-map">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.8!2d-96.6193!3d32.9126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864ea1f3b4a4d8a7%3A0x5c8e3b0c6f0a5e2f!2s1456+Belt+Line+Rd+%23100%2C+Garland%2C+TX+75044!5e0!3m2!1sen!2sus!4v1711000000000!5m2!1sen!2sus"
-                                allowfullscreen=""
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"
-                                title="Map showing The Dog House location at 1456 Belt Line Rd, Garland, TX">
-                            </iframe>
                         </div>
                     </div>
 
-                    <div class="reveal reveal-delay-1">
-                        <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--saddle); margin-bottom: 1.25rem;">Hours</h3>
+                    <div class="contact-card reveal reveal-delay-2">
+                        <h3 class="contact-card__title">Business Hours</h3>
                         <table class="hours-table" aria-label="Business hours">
                             <tbody>
                                 <tr>
-                                    <td class="hours-table__day">Sunday</td>
-                                    <td class="hours-table__time hours-table__time--closed">Closed</td>
+                                    <td>Monday</td>
+                                    <td class="hours-closed">Closed</td>
                                 </tr>
                                 <tr>
-                                    <td class="hours-table__day">Monday</td>
-                                    <td class="hours-table__time hours-table__time--closed">Closed</td>
+                                    <td>Tuesday</td>
+                                    <td>7:00 AM &ndash; 6:30 PM</td>
                                 </tr>
                                 <tr>
-                                    <td class="hours-table__day">Tuesday</td>
-                                    <td class="hours-table__time">7:00 AM - 6:30 PM</td>
+                                    <td>Wednesday</td>
+                                    <td>8:00 AM &ndash; 6:30 PM</td>
                                 </tr>
                                 <tr>
-                                    <td class="hours-table__day">Wednesday</td>
-                                    <td class="hours-table__time">8:00 AM - 6:30 PM</td>
+                                    <td>Thursday</td>
+                                    <td>8:00 AM &ndash; 6:30 PM</td>
                                 </tr>
                                 <tr>
-                                    <td class="hours-table__day">Thursday</td>
-                                    <td class="hours-table__time">8:00 AM - 6:30 PM</td>
+                                    <td>Friday</td>
+                                    <td>8:00 AM &ndash; 6:30 PM</td>
                                 </tr>
                                 <tr>
-                                    <td class="hours-table__day">Friday</td>
-                                    <td class="hours-table__time">8:00 AM - 6:30 PM</td>
+                                    <td>Saturday</td>
+                                    <td>8:00 AM &ndash; 6:30 PM</td>
                                 </tr>
                                 <tr>
-                                    <td class="hours-table__day">Saturday</td>
-                                    <td class="hours-table__time">8:00 AM - 6:30 PM</td>
+                                    <td>Sunday</td>
+                                    <td class="hours-closed">Closed</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+
+                <!-- Google Map -->
+                <div class="contact__map reveal">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.8!2d-96.6365!3d32.9145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864ea1c0c5a7e1e7%3A0x0!2s1456+Belt+Line+Rd+Ste+100%2C+Garland%2C+TX+75044!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Map showing The Dog House location at 1456 Belt Line Rd, Ste 100, Garland, TX 75044">
+                    </iframe>
+                </div>
             </div>
         </section>
+
     </main>
 
-    <!-- ========================================
-         FOOTER
-         ======================================== -->
+    <!-- ===== FOOTER ===== -->
+    <div class="bandana-strip" aria-hidden="true"></div>
     <footer class="footer" role="contentinfo">
         <div class="container">
+            <div class="footer__red-rule" aria-hidden="true"></div>
             <div class="footer__grid">
                 <div>
-                    <p class="footer__brand-name">The Dog House All Breed Grooming</p>
-                    <p class="footer__brand-desc">Garland's trusted neighborhood groomer since 1984. Every breed, every temperament, every dog goes home happy with treats and a fresh bandana.</p>
+                    <div class="footer__brand-name">The Dog House All Breed Grooming</div>
+                    <div class="footer__brand-est">Garland, Texas &middot; Est. 1984</div>
+                    <p class="footer__desc">
+                        Over 40 years of trusted grooming for dogs of all breeds. Where every dog goes home happy.
+                    </p>
                 </div>
                 <div>
-                    <p class="footer__heading">Quick Links</p>
-                    <a href="#services" class="footer__link">Services</a>
-                    <a href="#about" class="footer__link">Our Story</a>
-                    <a href="#testimonials" class="footer__link">Reviews</a>
-                    <a href="#contact" class="footer__link">Contact</a>
+                    <h3 class="footer__heading">Quick Links</h3>
+                    <ul class="footer__links">
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#testimonials">Reviews</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <p class="footer__heading">Contact</p>
-                    <a href="tel:+19726759769" class="footer__link">(972) 675-9769</a>
-                    <a href="mailto:rick@thedoghousegarland.com" class="footer__link">rick@thedoghousegarland.com</a>
-                    <span class="footer__link">1456 Belt Line Rd, Ste 100</span>
-                    <span class="footer__link">Garland, TX 75044</span>
+                    <h3 class="footer__heading">Contact</h3>
+                    <ul class="footer__links">
+                        <li><a href="tel:+19726759769">(972) 675-9769</a></li>
+                        <li><a href="mailto:rick@thedoghousegarland.com">rick@thedoghousegarland.com</a></li>
+                        <li>1456 Belt Line Rd, Ste 100</li>
+                        <li>Garland, TX 75044</li>
+                    </ul>
                 </div>
             </div>
-
             <div class="footer__bottom">
-                <p class="footer__copyright">&copy; 2026 The Dog House All Breed Grooming. All rights reserved.</p>
+                <span>&copy; 2026 The Dog House All Breed Grooming. All rights reserved.</span>
+                <span>Website by <a href="https://premiercodeinc.com" target="_blank" rel="noopener noreferrer">Premier Code, Inc.</a></span>
             </div>
         </div>
-        <!-- Bandana Pattern Strip (footer bookend) -->
-        <div class="bandana-strip" aria-hidden="true"></div>
     </footer>
+    <!-- Bandana Strip Bottom -->
+    <div class="bandana-strip" aria-hidden="true"></div>
 
-    <!-- ========================================
-         JAVASCRIPT
-         ======================================== -->
+    <!-- ===== STRUCTURED DATA ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "PetGrooming",
+        "name": "The Dog House All Breed Grooming",
+        "image": "../doghouse-logo.jpg",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1456 Belt Line Rd, Ste 100",
+            "addressLocality": "Garland",
+            "addressRegion": "TX",
+            "postalCode": "75044",
+            "addressCountry": "US"
+        },
+        "telephone": "+1-972-675-9769",
+        "email": "rick@thedoghousegarland.com",
+        "url": "https://thedoghousegarland.com",
+        "openingHoursSpecification": [
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "07:00", "closes": "18:30" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "08:00", "closes": "18:30" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "08:00", "closes": "18:30" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "08:00", "closes": "18:30" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "18:30" }
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": "71",
+            "bestRating": "5"
+        },
+        "foundingDate": "1984",
+        "founder": {
+            "@type": "Person",
+            "name": "Rick Holloway"
+        }
+    }
+    </script>
+
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // Mobile navigation toggle
-        (function() {
-            const toggle = document.querySelector('.nav__toggle');
-            const menu = document.getElementById('nav-menu');
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav__toggle');
+        const navLinks = document.querySelector('.nav__links');
 
-            if (toggle && menu) {
-                toggle.addEventListener('click', function() {
-                    const expanded = this.getAttribute('aria-expanded') === 'true';
-                    this.setAttribute('aria-expanded', !expanded);
-                    menu.classList.toggle('is-open');
-                });
+        navToggle.addEventListener('click', () => {
+            const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !isOpen);
+            navLinks.classList.toggle('is-open');
+        });
 
-                // Close menu when a link is clicked
-                menu.querySelectorAll('.nav__link, .nav__cta').forEach(function(link) {
-                    link.addEventListener('click', function() {
-                        toggle.setAttribute('aria-expanded', 'false');
-                        menu.classList.remove('is-open');
-                    });
-                });
-            }
-        })();
+        // Close mobile nav on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('is-open');
+            });
+        });
 
         // Scroll reveal with IntersectionObserver
-        (function() {
-            var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            if (prefersReduced) {
-                document.querySelectorAll('.reveal').forEach(function(el) {
-                    el.classList.add('is-visible');
-                });
-                return;
-            }
-
-            var observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
+        if (!prefersReducedMotion) {
+            const revealEls = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
                         observer.unobserve(entry.target);
@@ -1658,21 +1928,29 @@
                 rootMargin: '0px 0px -40px 0px'
             });
 
-            document.querySelectorAll('.reveal').forEach(function(el) {
-                observer.observe(el);
+            revealEls.forEach(el => observer.observe(el));
+        } else {
+            document.querySelectorAll('.reveal').forEach(el => {
+                el.classList.add('is-visible');
             });
-        })();
+        }
 
-        // Smooth scroll for anchor links (fallback for older browsers)
-        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-            anchor.addEventListener('click', function(e) {
-                var target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+        // Close mobile nav on outside click
+        document.addEventListener('click', (e) => {
+            if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                navToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('is-open');
+            }
+        });
+
+        // Close mobile nav on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                navToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('is-open');
+            }
         });
     </script>
+
 </body>
 </html>
