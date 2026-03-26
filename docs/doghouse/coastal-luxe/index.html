@@ -592,20 +592,19 @@
             aspect-ratio: 4 / 5;
             object-fit: cover;
             object-position: top;
-            border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+            border-radius: var(--radius-2xl);
             box-shadow: var(--shadow-elevated);
         }
 
-        /* Decorative ring behind image */
+        /* Decorative border behind image */
         .hero__image-frame::before {
             content: '';
             position: absolute;
-            inset: -20px;
-            border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+            inset: -12px;
+            border-radius: calc(var(--radius-2xl) + 6px);
             border: 1.5px solid var(--sage-light);
             opacity: 0.5;
             z-index: -1;
-            animation: float-slow 15s ease-in-out infinite;
         }
 
         /* Small accent dot */
@@ -617,8 +616,8 @@
             border-radius: 50%;
             background: var(--coral-soft);
             opacity: 0.3;
-            bottom: -10px;
-            left: -20px;
+            bottom: -20px;
+            left: -25px;
             z-index: -1;
         }
 
@@ -1820,7 +1819,7 @@
 
             <div class="hero__visual reveal reveal--delay-2">
                 <div class="hero__image-frame">
-                    <img src="../dog01.jpg" alt="A happy golden retriever puppy wearing a pink bandana after grooming at The Dog House">
+                    <img src="../images/IMG_5305.jpeg" alt="Golden retriever statue wearing a blue bandana welcomes visitors at The Dog House">
 
                     <div class="hero__stat-card hero__stat-card--years">
                         <div class="hero__stat-number">40+</div>
@@ -1882,10 +1881,10 @@
         <div class="container container--wide story__inner">
             <div class="story__images scroll-reveal">
                 <div class="story__img-primary">
-                    <img src="../dog-with-heart.jpg" alt="A fluffy dog cuddling with a red heart plush toy">
+                    <img src="../images/IMG_5290.jpeg" alt="The Dog House welcoming entry area with stone fireplace and wreath">
                 </div>
                 <div class="story__img-secondary">
-                    <img src="../dog01.jpg" alt="Golden retriever puppy with pink bandana">
+                    <img src="../images/IMG_5293.jpeg" alt="Close-up of The Dog House stone fireplace with framed photos on the mantel">
                 </div>
                 <div class="story__year-badge">Est. 1984</div>
             </div>
@@ -2056,14 +2055,14 @@
 
             <div class="gallery__grid">
                 <div class="gallery__item scroll-reveal">
-                    <img src="../dog01.jpg" alt="Golden retriever puppy freshly groomed with a pink bandana">
+                    <img src="../images/IMG_5302.jpeg" alt="LIVE LOVE BARK carved wooden sign at The Dog House">
                     <div class="gallery__item-overlay">
                         <div class="gallery__item-title">Ready to Shine</div>
                         <div class="gallery__item-sub">Full groom with bandana</div>
                     </div>
                 </div>
                 <div class="gallery__item scroll-reveal">
-                    <img src="../dog-with-heart.jpg" alt="Fluffy dog snuggling a red heart plush toy after grooming">
+                    <img src="../images/IMG_5304.jpeg" alt="Glass jars filled with bone-shaped dog treats at The Dog House">
                     <div class="gallery__item-overlay">
                         <div class="gallery__item-title">Feeling the Love</div>
                         <div class="gallery__item-sub">Bath, brush-out, and cuddles</div>
