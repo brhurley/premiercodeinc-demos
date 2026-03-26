@@ -88,6 +88,17 @@
         a { color: inherit; }
 
         /* Skip Link */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
         .skip-link {
             position: absolute;
             top: -100%;
@@ -1039,12 +1050,7 @@
     <main id="main-content">
         <!-- Concepts Section -->
         <section class="section" aria-labelledby="concepts-heading" style="padding-top: var(--space-2xl); padding-bottom: var(--space-xl);">
-            <div class="section-intro">
-                <span class="overline">Design Concepts</span>
-                <h2 class="section-title" id="concepts-heading">Three Visions, One Legacy</h2>
-                <p class="section-subtitle">Each concept honors The Dog House's four decades of excellence while crafting a distinct visual identity. Hover over each preview to explore the design.</p>
-            </div>
-
+            <h2 class="sr-only" id="concepts-heading">Design Concepts</h2>
             <div class="concepts-grid" id="concepts-grid">
 
                 <!-- Concept 1: Barnwood & Bandanas -->
